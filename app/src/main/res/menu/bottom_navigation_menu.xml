@@ -4,30 +4,30 @@
         android:id="@+id/menu_icon"
         android:enabled="true"
         android:icon="@drawable/baseline_menu_24"
-        android:title="Subreddit"
+        android:title="@string/subreddit"
         />
     <item
         android:id="@+id/search_icon"
         android:enabled="true"
         android:icon="@drawable/baseline_search_24"
-        android:title="Search"
+        android:title="@string/search"
         />
     <item
         android:id="@id/redditry_icon"
         android:enabled="true"
         android:icon="@drawable/redditry_logo_256x256"
-        android:title="Home"
+        android:title="@string/home"
         />
     <item
         android:id="@+id/add_icon"
         android:enabled="true"
         android:icon="@drawable/baseline_add_24"
-        android:title="Add"
+        android:title="@string/add"
         />
     <item
         android:id="@+id/profil_icon"
         android:enabled="true"
         android:icon="@drawable/baseline_account_circle_24"
-        android:title="Profil"
+        android:title="@string/profil"
         />
 </menu>
