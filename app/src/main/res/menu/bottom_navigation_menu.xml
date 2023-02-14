@@ -27,6 +27,7 @@
     <item
         android:id="@+id/profil_icon"
         android:enabled="true"
+        android:icon="@drawable/baseline_account_circle_24"
         android:title="Profil"
         />
 </menu>
