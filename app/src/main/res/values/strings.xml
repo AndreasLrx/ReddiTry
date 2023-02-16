@@ -5,4 +5,14 @@
     <string name="home">Home</string>
     <string name="add">Add</string>
     <string name="profil">Profil</string>
+    <string name="placeholder_post_subreddit">r/IconFamily</string>
+    <string name="placeholder_post_user">u/loveIcon</string>
+    <string name="placeholder_post_title">DISCOVER ALL THE WONDERFUL THINGS I\'VE CREATED IN MY FUCKING LIFE</string>
+    <string name="placeholder_post_content">Hey everyone!\n\n\As a programmer, I love to challenge myself and learn new skills. Over the years, I\'ve created a variety of awesome projects that I\'m really proud of, and I wanted to share them with you all.\n\n\First, I created a web app that helps people track their water intake and reminds them to drink water throughout the day. It was a fun project that taught me a lot about web development and working with APIs.\n\n\I also created a game using Unity that has a retro aesthetic and a simple yet addictive gameplay. It was my first experience with game development and I had a blast creating it.\n\n\Another project I\'m proud of is a machine learning model that can predict the likelihood of a given tweet going viral. I trained it using data from Twitter\'s API and was pleasantly surprised with how accurate the predictions were.\n\n\Lastly, I built a portfolio website to showcase all of my programming projects and to provide potential clients with a way to get in touch with me. It was a fun way to practice my front-end development skills.\n\n\I\'m always looking for new challenges and ways to improve my programming skills, and I\'m excited to see what projects I\'ll create in the future. If you want to check out any of the projects I mentioned, feel free to reach out to me!\n\n\Thanks for reading, and happy programming!</string>
+    <string name="placeholder_post_comments">861</string>
+    <string name="placeholder_post_votes">573</string>
+    <string name="up_vote">Up vote</string>
+    <string name="down_vote">Down vote</string>
+    <string name="comment">Comment</string>
+    <string name="altname_post_image">Post Image</string>
 </resources>
