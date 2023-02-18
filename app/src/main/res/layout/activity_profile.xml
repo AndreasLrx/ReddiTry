@@ -6,30 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <include layout="@layout/component_headerprofile"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="145 followers"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406" />
+        <include
+            android:id="@+id/description_profile"
+            layout="@layout/component_description_profile"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_below="@+id/photo"
+       />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        <include
+            android:id="@+id/photo"
+            layout="@layout/component_photo"
+            android:layout_below="@+id/header_profile"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            />
+
+        <include
+            android:id="@+id/header_profile"
+            layout="@layout/component_headerprofile" />
+
+
+    </RelativeLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

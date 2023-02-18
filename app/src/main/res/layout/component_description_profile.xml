@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
+    android:layout_gravity="start"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_gravity="center"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="145 followers"
+        android:textSize="10sp"
+        />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+
+        >
+
+        <ImageView
+            android:layout_gravity="center"
+            android:id="@+id/component_email"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            app:layout_constraintVertical_bias="0.363"
+            android:src="@drawable/baseline_alternate_email_24"
+            />
+
+        <TextView
+            android:layout_marginStart="10dp"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:text="This.is.an@email" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="20dp"
+        >
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:src="@drawable/baseline_flag_24"
+            />
+
+        <TextView
+            android:layout_marginStart="10dp"
+
+            android:layout_gravity="center"
+            android:layout_width="200dp"
+            android:layout_height="20dp"
+            android:text="France"
+
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="350dp"
+        android:layout_height="57dp"
+        android:layout_gravity="center"
+        android:text="This is a wonderful description you can have in your profile page" />
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Follow" />
+
+</LinearLayout>
