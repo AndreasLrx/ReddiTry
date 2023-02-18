@@ -9,20 +9,24 @@
     android:orientation="vertical">
 
 
-<RelativeLayout
-    android:background="@color/beige_light"
-    android:layout_width="match_parent"
-    android:layout_height="50dp">
+    <RelativeLayout
+        android:background="@color/beige_light"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
 
-    <TextView
-        android:gravity="center"
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Posts"
+        />
+    </RelativeLayout>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Posts"
-        />
-</RelativeLayout>
-
-
+    >
+</ScrollView>
 
 
 </LinearLayout>
