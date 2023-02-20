@@ -18,4 +18,5 @@
     <string name="down_vote">Down vote</string>
     <string name="comment">Comment</string>
     <string name="altname_post_image">Post Image</string>
+    <string name="background_image" />
 </resources>

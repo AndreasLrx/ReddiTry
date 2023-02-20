@@ -11,6 +11,7 @@
         <attr name="post_color" format="enum">
             <enum name="purple" value="0" />
             <enum name="orange" value="1" />
+            <enum name="semi_transparent" value="2" />
         </attr>
         <attr name="post_format" format="enum">
             <enum name="expanded" value="0" />

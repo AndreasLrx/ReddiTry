@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="match_parent"
     android:layout_gravity="start"
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-
     <RelativeLayout
-        android:background="@color/beige_light"
+        android:background="@color/semi_transparent"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
@@ -24,9 +23,41 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    >
-</ScrollView>
+        android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.redditry.components.PostComponent
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subreddit="@string/placeholder_post_subreddit"
+            app:sender="@string/placeholder_post_user"
+            app:post_title="@string/placeholder_post_title"
+            app:votes_count="573"
+            app:comments_count="861"
+            app:subreddit_icon="@drawable/redditry_logo_256x256"
+            app:post_content="@string/placeholder_post_content"
+            app:post_color="semi_transparent"
+            app:post_format="small" />
+
+        <com.redditry.components.PostComponent
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:subreddit="@string/placeholder_post_subreddit"
+            app:sender="@string/placeholder_post_user"
+            app:post_title="@string/placeholder_post_title"
+            app:votes_count="573"
+            app:comments_count="861"
+            app:subreddit_icon="@drawable/redditry_logo_256x256"
+            app:post_content="@string/placeholder_post_content"
+            app:post_color="semi_transparent"
+            app:post_format="small" />
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>
