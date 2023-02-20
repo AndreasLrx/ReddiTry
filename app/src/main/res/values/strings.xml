@@ -19,4 +19,11 @@
     <string name="comment">Comment</string>
     <string name="altname_post_image">Post Image</string>
     <string name="background_image" />
+    <string name="this_is_an_email">This.is.an@email</string>
+    <string name="france">France</string>
+    <string name="this_is_a_wonderful_description_you_can_have_in_your_profile_page">This is a wonderful description you can have in your profile page</string>
+    <string name="follow">Follow</string>
+    <string name="edit">EDIT</string>
+    <string name="posts">Posts</string>
+    <string name="_145_followers">145 followers</string>
 </resources>
