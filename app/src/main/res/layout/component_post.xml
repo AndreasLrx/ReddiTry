@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    tools:parentTag="android.widget.RelativeLayout"
+    android:background="@color/purple_light">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <RelativeLayout
+            android:id="@+id/component_post_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/component_post_icon"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/component_post_subreddit_icon"
+                    app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:strokeColor="@color/black"
+                    app:strokeWidth="0.5dp"
+                    android:src="@drawable/redditry_logo"
+                    android:scaleType="fitCenter" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/component_post_text_subreddit"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/component_post_icon"
+                android:textSize="16sp"
+                android:text="@string/placeholder_post_subreddit" />
+
+            <TextView
+                android:id="@+id/component_post_text_user"
+                android:textColor="@color/grey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_post_user"
+                android:layout_alignStart="@id/component_post_text_subreddit"
+                android:layout_alignBottom="@id/component_post_icon"
+                android:layout_marginBottom="6dp"
+                android:textSize="11sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/component_post_text_title"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/component_post_header"
+            android:textSize="16sp"
+            android:text="@string/placeholder_post_title" />
+
+        <ImageView
+            android:id="@+id/component_post_image"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:layout_below="@id/component_post_text_title"
+            android:contentDescription="@string/altname_post_image" />
+
+        <TextView
+            android:id="@+id/component_post_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/component_post_image"
+            android:text="@string/placeholder_post_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="10dp"
+            android:textSize="13sp"
+            android:ellipsize="end" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/component_post_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/component_post_button_upvote_constraint"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/component_post_button_upvote"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:background="@color/transparent"
+                    android:foregroundTint="@color/grey"
+                    android:foreground="@drawable/upvote_icon"
+                    android:contentDescription="@string/up_vote" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <TextView
+                android:id="@+id/component_post_text_votes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/component_post_button_upvote_constraint"
+                android:layout_alignBottom="@id/component_post_button_upvote_constraint"
+                android:layout_marginHorizontal="2dp"
+                android:text="@string/placeholder_post_votes"
+                android:textColor="@color/grey"
+                android:textSize="11sp" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/component_post_button_down_vote_constraint"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/component_post_text_votes">
+
+                <ImageButton
+                    android:id="@+id/component_post_button_down_vote"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:background="@color/transparent"
+                    android:foregroundTint="@color/grey"
+                    android:foreground="@drawable/upvote_icon"
+                    android:contentDescription="@string/down_vote"
+                    android:rotation="180" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/component_post_button_comment_constraint"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@id/component_post_button_down_vote_constraint"
+                android:layout_marginStart="10dp">
+
+                <ImageButton
+                    android:id="@+id/component_post_button_comment"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="1:1"
+                    android:background="@color/transparent"
+                    android:foregroundTint="@color/grey"
+                    android:foreground="@drawable/round_mode_comment_24"
+                    android:scaleX="-1"
+                    android:contentDescription="@string/comment" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/component_post_text_comments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="2dp"
+                android:layout_toEndOf="@id/component_post_button_comment_constraint"
+                android:layout_alignBottom="@id/component_post_button_upvote_constraint"
+                android:text="@string/placeholder_post_comments"
+                android:textColor="@color/grey"
+                android:textSize="11sp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</merge>
