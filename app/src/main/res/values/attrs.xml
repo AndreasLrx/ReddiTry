@@ -1,0 +1,20 @@
+<resources>
+    <declare-styleable name="PostComponent">
+        <attr name="subreddit" format="string" />
+        <attr name="sender" format="string" />
+        <attr name="post_title" format="string" />
+        <attr name="post_content" format="string" />
+        <attr name="subreddit_icon" format="reference" />
+        <attr name="image" format="reference" />
+        <attr name="votes_count" format="integer" />
+        <attr name="comments_count" format="integer" />
+        <attr name="post_color" format="enum">
+            <enum name="purple" value="0" />
+            <enum name="orange" value="1" />
+        </attr>
+        <attr name="post_format" format="enum">
+            <enum name="expanded" value="0" />
+            <enum name="small" value="1" />
+        </attr>
+    </declare-styleable>
+</resources>
