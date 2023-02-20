@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <ImageView
         android:id="@+id/login_background"
         android:layout_height="match_parent"
@@ -21,6 +22,7 @@
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/wallpaper_android"
         android:contentDescription="@string/background_image" />
+
 
     <ImageView
         android:id="@+id/login_logo"
@@ -72,5 +74,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button"
         app:layout_constraintVertical_bias="0.036" />
+
+    <WebView
+        android:id="@+id/webv"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="invisible"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
