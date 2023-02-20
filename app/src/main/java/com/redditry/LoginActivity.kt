@@ -1,102 +1,46 @@
 package com.redditry
 
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.kirkbushman.araw.helpers.AuthAppHelper
-import com.kirkbushman.araw.helpers.AuthUserlessHelper
 import com.redditry.databinding.LoginBinding
-import com.redditry.utils.DoAsync
-import com.redditry.utils.Provider
-import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
-@AndroidEntryPoint
-class LoginActivity:AppCompatActivity() {
 
-    companion object {
+class LoginActivity : AppCompatActivity() {
 
-        private const val PARAM_AUTO_LOGIN = "intent_param_auto_login"
-
-        fun start(context: Context, stopAutoLogin: Boolean = false) {
-            val intent = Intent(context, LoginActivity::class.java)
-            intent.putExtra(PARAM_AUTO_LOGIN, stopAutoLogin)
-
-            context.startActivity(intent)
-        }
-    }
-
-    lateinit var appAuth: AuthAppHelper
-
-    lateinit var userlessAuth: AuthUserlessHelper
-
-    private lateinit var binding:LoginBinding
+    private lateinit var binding: LoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        appAuth = AuthAppHelper(
-            context = this,
-            clientId = "FpteTHr9cnd-5yViWFKp0w",
-            redirectUrl = "http://localhost:3000/api/login",
-            scopes = arrayOf("subscribe","structuredstyles","vote","mysubreddits","read","identity","account"), // array of scopes strings
-            logging = true
-        )
-
-        userlessAuth = AuthUserlessHelper(this,"FpteTHr9cnd-5yViWFKp0w")
-
-        binding.loginButton.setOnClickListener {
-            binding.webv.visibility = View.VISIBLE
-            if (!appAuth.shouldLogin()) {
-
-                savedInstalledApp()
-            } else {
-
-                fetchInstalledApp()
-            }
+        binding.loginRegister.setOnClickListener {
+            val urlString = "https://www.reddit.com/register/"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
+            startActivity(intent)
         }
-    }
 
-    private fun savedInstalledApp() {
-        DoAsync(
-            doWork = {
-                val client = appAuth.getSavedRedditClient()
-                if (client != null) {
-                    Provider.setRedditClient(client)
-                }
-            },
-            onPost = {
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+        val sharedPreferences = getSharedPreferences("redditry", MODE_PRIVATE)
+        var token = sharedPreferences.getString("redditToken", "")
+        val uri = intent.data
+        if (uri != null) {
+            val params = uri.encodedQuery
+            token = params?.split("=")?.get(2)
+            val myEdit = sharedPreferences.edit()
+            myEdit.putString("redditToken", token.toString())
+            myEdit.apply()
+            binding.loginRegister.text = token
+        }
+        if (token != "" && token != null) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        } else {
+            binding.loginButton.setOnClickListener {
+                val urlString = "https://www.reddit.com/api/v1/authorize.compact?client_id=s-w2UUr5ZeLMbnI7lOMmwg&response_type=code&state=%22random%22&redirect_uri=http://localhost:3000/api/login&duration=permanent&scope=identity"
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
                 startActivity(intent)
             }
-        )
-    }
-
-    private fun fetchInstalledApp() {
-        appAuth.startWebViewAuthentication(binding.webv) {
-            binding.webv.stopLoading()
-
-            DoAsync(
-                doWork = {
-                    if (!userlessAuth.shouldLogin()) {
-                        userlessAuth.forceRevoke()
-                    }
-
-                    val client = appAuth.getRedditClient(it)
-                    if (client != null) {
-                        Provider.setRedditClient(client)
-                    }
-
-
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                }
-            )
         }
     }
-
 }

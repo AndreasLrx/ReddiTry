@@ -14,24 +14,23 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+        </activity>
+        <activity android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
                 <data
-                    android:host="localhost:3000"
+                    android:host="localhost"
                     android:pathPrefix="/api/login"
                     android:scheme="http" />
+                <action android:name="android.intent.action.VIEW" />
             </intent-filter>
-
         </activity>
-        <activity android:name=".LoginActivity" />
     </application>
 
 </manifest>
