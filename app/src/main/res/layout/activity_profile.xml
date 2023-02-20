@@ -7,38 +7,79 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="59dp"
-        android:layout_height="40dp"
-        android:backgroundTint="@color/black"
-        android:text="EDIT"
-        android:textSize="10sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="16dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="145 followers"
-        android:textSize="10sp"
+    <ImageView
+        android:id="@+id/login_background"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:rotation="180"
+        android:alpha="0.3"
+        android:scaleX="1.5"
+        android:scaleY="1.7"
+        android:translationY="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/wallpaper_android"
+        android:contentDescription="@string/background_image" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Username"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+    >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <include
+                android:id="@+id/header_profile"
+                layout="@layout/component_headerprofile" />
+
+            <include
+                android:id="@+id/photo"
+                layout="@layout/component_photo"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+            />
+
+            <include
+                android:id="@+id/description_profile"
+                layout="@layout/component_description_profile"
+                android:layout_width="match_parent"
+                android:layout_height="250dp" />
+
+
+            <include
+                layout="@layout/component_post_profile" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+            />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="145 followers"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.406" />
+
+    </ScrollView>
+
+
+    <include
+        layout="@layout/component_bottom_navigation_menu" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

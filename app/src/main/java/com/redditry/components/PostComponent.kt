@@ -47,6 +47,8 @@ class PostComponent @JvmOverloads constructor(
                 setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
             else if (backgroundColorId == 1)
                 setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
+            else if (backgroundColorId == 2)
+                setBackgroundColor(ContextCompat.getColor(context, R.color.semi_transparent))
 
             // Subreddit icon
             val icon = styledAttributes.getDrawable(R.styleable.PostComponent_subreddit_icon)
