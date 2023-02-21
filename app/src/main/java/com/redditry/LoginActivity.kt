@@ -35,15 +35,14 @@ class LoginActivity : AppCompatActivity() {
         if (token != "" && token != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-        } else {
-            binding.loginButton.setOnClickListener {
-                val redirectUri = "http://localhost:3000/api/login"
-                val clientId = "s-w2UUr5ZeLMbnI7lOMmwg"
-                val scope = "identity"
-                val urlString = "https://www.reddit.com/api/v1/authorize.compact?client_id=$clientId&response_type=code&state=%22random%22&redirect_uri=$redirectUri&duration=permanent&scope=$scope"
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-                startActivity(intent)
-            }
+        }
+        binding.loginButton.setOnClickListener {
+            val redirectUri = "http://localhost:3000/api/login"
+            val clientId = "s-w2UUr5ZeLMbnI7lOMmwg"
+            val scope = "identity"
+            val urlString = "https://www.reddit.com/api/v1/authorize.compact?client_id=$clientId&response_type=code&state=%22random%22&redirect_uri=$redirectUri&duration=permanent&scope=$scope"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
+            startActivity(intent)
         }
     }
 }

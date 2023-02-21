@@ -18,7 +18,4 @@
     <string name="down_vote">Down vote</string>
     <string name="comment">Comment</string>
     <string name="altname_post_image">Post Image</string>
-    <string name="background_image">Background image</string>
-    <string name="login_with_reddit">Login with reddit</string>
-    <string name="or_create_a_reddit_account"><u>or create a Reddit account</u></string>
 </resources>
