@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.redditry.databinding.LoginBinding
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginBinding
