@@ -5,6 +5,9 @@
     <string name="home">Home</string>
     <string name="add">Add</string>
     <string name="profil">Profil</string>
+    <string name="background_image">Background image</string>
+    <string name="login_with_reddit">Login with reddit</string>
+    <string name="or_create_a_reddit_account"><u>or create a Reddit account</u></string>
     <string name="placeholder_post_subreddit">r/IconFamily</string>
     <string name="placeholder_post_user">u/loveIcon</string>
     <string name="placeholder_post_title">DISCOVER ALL THE WONDERFUL THINGS I\'VE CREATED IN MY FUCKING LIFE</string>
