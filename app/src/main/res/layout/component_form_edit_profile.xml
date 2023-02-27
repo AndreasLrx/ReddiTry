@@ -10,7 +10,7 @@
     tools:context=".ProfileActivity">
 
     <TextView
-        android:id="@+id/titleEdit"
+        android:id="@+id/component_form_edit_profile_titleEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -18,10 +18,10 @@
         android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/displayName"
+        android:id="@+id/component_form_edit_profile_displayName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/titleEdit"
+        android:layout_below="@+id/component_form_edit_profile_titleEdit"
         android:hint="@string/text_area_name_form"
         android:paddingTop="20dp"
         android:textColorHint="@color/grey"
@@ -35,10 +35,10 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/name"
+        android:id="@+id/component_form_edit_profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/displayName"
+        android:layout_below="@+id/component_form_edit_profile_displayName"
         android:hint="@string/text_area_form_edit"
         android:paddingTop="20dp"
         android:textColorHint="@color/grey"
@@ -59,10 +59,10 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email"
+        android:id="@+id/component_form_edit_profile_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/name"
+        android:layout_below="@+id/component_form_edit_profile_name"
         android:hint="@string/form_new_email"
         android:paddingTop="20dp"
         android:textColorHint="@color/grey"
@@ -76,10 +76,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/menu"
+        android:id="@+id/component_form_edit_profile_menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/email"
+        android:layout_below="@+id/component_form_edit_profile_email"
         android:hint="@string/select_country"
         android:paddingTop="20dp">
 
@@ -89,7 +89,7 @@
             android:background="@color/white">
 
             <Spinner
-                android:id="@+id/countryList"
+                android:id="@+id/component_form_edit_profile_countryList"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:entries="@array/countryList" />
