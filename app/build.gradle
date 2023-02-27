@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.7.10'
 }
 
 android {
@@ -15,6 +16,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "REDDIT_CLIENT_ID", '"s-w2UUr5ZeLMbnI7lOMmwg"')
+        buildConfigField("String", "REDDIT_REDIRECT_URI", '"http://localhost:3000/api/login"')
+        buildConfigField("String", "REDDIT_SCOPE", '"identity"')
     }
 
     buildTypes {
@@ -41,8 +45,9 @@ configurations {
 
 dependencies {
 
-    implementation 'com.google.code.gson:gson:2.10.1'
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation 'com.squareup.moshi:moshi-kotlin:1.14.0'
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.8.0'
