@@ -48,4 +48,8 @@
     <string name="log_out">log_out</string>
     <string name="alt_banner">banner</string>
     <string name="alt_profile_picture">profile_picture</string>
+    <string name="placeholder_subreddit_name">Subreddit Name</string>
+    <string name="placeholder_number_members">_254_543_members</string>
+    <string name="placeholder_description_subreddit">Cette session Bootstrap - Organizational theory de type Bootstrap a été déplacée du 20/02/2023, 15h00 au 20/02/2023, 14h30Pensez à vous désinscrire de cette session si vous n\'êtes pas disponible au nouvel horaire Voir les autres inscrits ...</string>
+    <string name="placeholder_subscribe">Subscribe</string>
 </resources>
