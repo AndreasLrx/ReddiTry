@@ -8,52 +8,48 @@
     android:orientation="vertical"
     tools:context=".ProfileActivity">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/username"
+        android:text="@string/placeholder_username"
         android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/number_of_followers"
+        android:layout_marginBottom="20dp"
+        android:text="@string/placeholder_number_of_followers"
         android:textSize="10sp"
-        tools:ignore="SmallSp"
-        android:layout_marginBottom="20dp"
-        />
+        tools:ignore="SmallSp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:text="@string/email"
-        app:drawableLeftCompat="@drawable/baseline_alternate_email_24"
         android:layout_marginBottom="20dp"
-        />
+        android:text="@string/placeholder_email"
+        app:drawableLeftCompat="@drawable/baseline_alternate_email_24" />
 
     <TextView
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/placeholder_country"
         app:drawableLeftCompat="@drawable/baseline_flag_24"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="@string/Country"
 
         />
 
-
     <TextView
-        android:padding="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/description_profile" />
+        android:padding="20dp"
+        android:text="@string/placeholder_description_profile" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/activity_profile_desc_follow_button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
