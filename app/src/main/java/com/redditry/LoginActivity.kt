@@ -21,16 +21,15 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginBinding
     private val redirectUri = BuildConfig.REDDIT_REDIRECT_URI
     private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.reddit.com/api/v1/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
+        .baseUrl("https://www.reddit.com/api/v1/")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
             val params = uri.encodedQuery
             val code = params?.split("=")?.get(2)
 
-
             val api = retrofit.create(ApiReddit::class.java)
 
             GlobalScope.launch {
@@ -59,7 +57,7 @@ class LoginActivity : AppCompatActivity() {
                     code = code!!,
                     redirect_uri = redirectUri
                 )
-                        .execute()
+                    .execute()
                 if (resp.isSuccessful) {
                     val myEdit = sharedPreferences.edit()
                     myEdit.putString("redditToken", resp.body()?.access_token)
@@ -70,7 +68,6 @@ class LoginActivity : AppCompatActivity() {
                 }
                 stopAnimation()
             }
-
         }
         if (token != "" && token != null) {
             val intent = Intent(this, MainActivity::class.java)
