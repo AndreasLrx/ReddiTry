@@ -12,10 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleX="1.1"
-        android:src="@drawable/banniere"
-        android:contentDescription="banner"
+        android:src="@drawable/banner"
+        android:contentDescription="@string/banner"
         />
-
 
     <FrameLayout
         android:id="@+id/container_profile_picture"
@@ -24,11 +23,12 @@
         android:layout_centerInParent="true"
         android:background="@drawable/circular_background_profile"
         >
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/logo_64x64"
-        android:contentDescription="Profile Picture" />
+        android:contentDescription="@string/profile_picture" />
 
     </FrameLayout>
 

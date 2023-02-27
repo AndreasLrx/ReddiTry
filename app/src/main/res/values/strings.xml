@@ -18,12 +18,15 @@
     <string name="down_vote">Down vote</string>
     <string name="comment">Comment</string>
     <string name="altname_post_image">Post Image</string>
-    <string name="background_image" />
-    <string name="this_is_an_email">This.is.an@email</string>
-    <string name="france">France</string>
-    <string name="this_is_a_wonderful_description_you_can_have_in_your_profile_page">This is a wonderful description you can have in your profile page</string>
-    <string name="follow">Follow</string>
-    <string name="edit">EDIT</string>
+    <string name="email">This.is.an@email</string>
+    <string name="Country">France</string>
+    <string name="description_profile">This is a wonderful description you can have in your profile page</string>
+    <string name="follow_button">Follow</string>
+    <string name="edit_button">EDIT</string>
     <string name="posts">Posts</string>
-    <string name="_145_followers">145 followers</string>
+    <string name="number_of_followers">145 followers</string>
+    <string name="username">Username</string>
+    <string name="logo">alt_Logo</string>
+    <string name="banner">banner_alt</string>
+    <string name="profile_picture">alt_pp</string>
 </resources>

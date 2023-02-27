@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ProfileActivity"
+    >
 
     <ImageView
-        android:id="@+id/login_background"
+        android:id="@+id/activity_profile_image_background"
+        android:theme="@style/Image_background"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:rotation="180"
         android:alpha="0.3"
-        android:scaleX="1.5"
-        android:scaleY="1.7"
-        android:translationY="180dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,6 +24,7 @@
         android:contentDescription="@string/background_image" />
 
     <ScrollView
+        android:layout_above="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -33,21 +32,21 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
             <include
-                android:id="@+id/header_profile"
+                android:id="@+id/activity_profile_header"
                 layout="@layout/component_headerprofile" />
 
             <include
-                android:id="@+id/photo"
+                android:id="@+id/activity_profile_banniere_and_pp"
                 layout="@layout/component_photo"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
             />
 
             <include
-                android:id="@+id/description_profile"
+                android:id="@+id/activity_profile_description_profile"
                 layout="@layout/component_description_profile"
                 android:layout_width="match_parent"
                 android:layout_height="250dp" />
@@ -56,11 +55,6 @@
             <include
                 layout="@layout/component_post_profile" />
 
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-            />
         </LinearLayout>
 
 
@@ -69,7 +63,12 @@
 
 
     <include
-        layout="@layout/component_bottom_navigation_menu" />
+        android:id="@+id/bottom_navigation"
+        android:layout_alignParentBottom="true"
+        layout="@layout/component_bottom_navigation_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
