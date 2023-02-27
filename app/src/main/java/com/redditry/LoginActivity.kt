@@ -1,5 +1,6 @@
 package com.redditry
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -77,8 +78,13 @@ class LoginActivity : AppCompatActivity() {
             val scope = BuildConfig.REDDIT_SCOPE
             val urlString = "https://www.reddit.com/api/v1/authorize.compact?client_id=" + BuildConfig.REDDIT_CLIENT_ID + "&response_type=code&state=%22random%22&redirect_uri=$redirectUri&duration=permanent&scope=$scope"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
-            intent.setPackage("com.android.chrome");
-            startActivity(intent)
+            try {
+                intent.setPackage("com.android.chrome");
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                intent.setPackage(null)
+                startActivity(intent)
+            }
         }
     }
 
