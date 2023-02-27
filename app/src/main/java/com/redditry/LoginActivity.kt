@@ -28,9 +28,9 @@ class LoginActivity : AppCompatActivity() {
     private val redirectUri = BuildConfig.REDDIT_REDIRECT_URI
     private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
     private val retrofit = Retrofit.Builder()
-            .baseUrl("https://www.reddit.com/api/v1/")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
+        .baseUrl("https://www.reddit.com/api/v1/")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     code = code!!,
                     redirect_uri = redirectUri
                 )
-                        .execute()
+                    .execute()
                 if (resp.isSuccessful) {
                     val myEdit = sharedPreferences.edit()
                     myEdit.putString("redditToken", resp.body()?.access_token)
@@ -79,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
             val urlString = "https://www.reddit.com/api/v1/authorize.compact?client_id=" + BuildConfig.REDDIT_CLIENT_ID + "&response_type=code&state=%22random%22&redirect_uri=$redirectUri&duration=permanent&scope=$scope"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
             try {
-                intent.setPackage("com.android.chrome");
+                intent.setPackage("com.android.chrome")
                 startActivity(intent)
             } catch (e: ActivityNotFoundException) {
                 intent.setPackage(null)
