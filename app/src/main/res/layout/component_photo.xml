@@ -1,38 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
     android:layout_gravity="start"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:contentDescription="@string/alt_banner"
         android:scaleX="1.1"
-        android:src="@drawable/banner"
-        android:contentDescription="@string/banner"
-        />
+        android:src="@drawable/banner" />
 
     <FrameLayout
-        android:id="@+id/container_profile_picture"
+        android:id="@+id/activity_profile_profile_picture"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/circular_background_profile"
-        >
+        android:background="@drawable/circular_background_profile">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/logo_64x64"
-        android:contentDescription="@string/profile_picture" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/alt_profile_picture"
+            android:src="@drawable/logo_64x64" />
 
     </FrameLayout>
-
-
-
 
 </RelativeLayout>
