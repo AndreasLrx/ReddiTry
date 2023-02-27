@@ -40,7 +40,7 @@
                 android:id="@+id/activity_subreddit_banniere_and_pp"
                 layout="@layout/component_photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="150dp" />
 
             <include
                 android:id="@+id/activity_subreddit_description"
