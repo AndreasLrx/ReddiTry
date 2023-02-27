@@ -45,7 +45,7 @@ In addition to those constraints, we aim to add some BONUSES:
 - Continuous integration
 - Tutoriel for use the app
 
-- <p align="right">(<a href="#readme-top">Back to the top</a>)</p>
+ <p align="right">(<a href="#readme-top">Back to the top</a>)</p>
 
 ---
 
