@@ -37,10 +37,10 @@
                 layout="@layout/component_headerprofile" />
 
             <include
-                android:id="@+id/activity_profile_banniere_and_pp"
+                android:id="@+id/activity_profile_banner_and_pp"
                 layout="@layout/component_photo"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="150dp" />
 
             <include
                 android:id="@+id/activity_profile_description_profile"
