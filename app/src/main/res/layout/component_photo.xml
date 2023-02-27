@@ -15,7 +15,7 @@
         android:src="@drawable/banner" />
 
     <FrameLayout
-        android:id="@+id/activity_profile_profile_picture"
+        android:id="@+id/component_photo_profile_picture"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_centerInParent="true"

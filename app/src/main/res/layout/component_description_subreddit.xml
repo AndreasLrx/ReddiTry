@@ -5,7 +5,7 @@
     android:layout_height="250dp"
     android:layout_gravity="start"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".SubredditActivity">
 
 
     <TextView
@@ -39,7 +39,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/activity_subreddit_button_subscribe"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
