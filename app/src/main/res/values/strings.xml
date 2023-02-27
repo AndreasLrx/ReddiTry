@@ -62,3 +62,19 @@
         <item>Oldest</item>
     </string-array>
 </resources>
+<string name="form_new_email">New email...</string>
+<string name="text_area_form_edit">Write something about you...</string>
+<string name="text_area_name_form">New Display name</string>
+<string name="title_edit_profile">Edit your profile</string>
+<string name="select_country">country</string>
+<string-array name="countryList">
+    <item>Mercury</item>
+    <item>Venus</item>
+    <item>Earth</item>
+    <item>Mars</item>
+    <item>Jupiter</item>
+    <item>Saturn</item>
+    <item>Uranus</item>
+    <item>Neptune</item>
+</string-array>
+</resources>

@@ -15,12 +15,11 @@ class MainActivity : AppCompatActivity() {
         var drawer = findViewById<DrawerLayout>(R.id.activity_main_drawer)
         findViewById<MainDrawerComponent>(R.id.activity_main_drawer_component).drawer = drawer
 
-        findViewById<ConstraintLayout>(R.id.activity_main_navigation).findViewById<BottomNavigationView>(
-            R.id.bottom_navigation
-        ).setOnItemSelectedListener { item ->
-            if (item.itemId == R.id.menu_icon)
-                drawer.open()
-            true
-        }
+        findViewById<ConstraintLayout>(R.id.activity_main_navigation)
+                .findViewById<BottomNavigationView>(R.id.bottom_navigation)
+                .setOnItemSelectedListener { item ->
+                    if (item.itemId == R.id.menu_icon) drawer.open()
+                    true
+                }
     }
 }
