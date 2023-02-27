@@ -55,4 +55,10 @@
         désinscrire de cette session si vous n\'êtes pas disponible au nouvel horaire Voir les
         autres inscrits ...</string>
     <string name="placeholder_subscribe">Subscribe</string>
+    <string name="sort_by">SORT BY:</string>
+    <string-array name="sort_by_choices">
+        <item>Popular</item>
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
 </resources>

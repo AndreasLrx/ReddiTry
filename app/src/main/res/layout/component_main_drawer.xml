@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/beige"
+        android:orientation="vertical"
+        android:paddingTop="50dp">
+
+
+        <RelativeLayout
+            android:id="@+id/component_main_drawer_layout_sort_by"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="30dp">
+
+            <TextView
+                android:id="@+id/component_main_drawer_text_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toStartOf="@id/component_main_drawer_spinner_container"
+                android:text="@string/sort_by"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <FrameLayout
+                android:id="@+id/component_main_drawer_spinner_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/rounded_corners"
+                android:paddingHorizontal="10dp">
+
+                <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/sort_by_choices"
+                    android:spinnerMode="dropdown" />
+            </FrameLayout>
+        </RelativeLayout>
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/component_main_drawer_divider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/component_main_drawer_layout_sort_by"
+            android:background="@color/orange" />
+
+        <ListView
+            android:id="@+id/component_main_drawer_list_subreddit"
+            android:layout_width="match_parent"
+            android:layout_height="621dp"
+            android:layout_below="@+id/component_main_drawer_divider"
+            android:layout_marginTop="4dp"
+            android:divider="@color/transparent"
+            android:dividerHeight="20dp"
+            android:listSelector="#40ffffff"
+            android:paddingHorizontal="20dp"
+            android:paddingTop="30dp" />
+    </RelativeLayout>
+
+
+</merge>
