@@ -37,7 +37,7 @@
                 layout="@layout/component_headerprofile" />
 
             <include
-                android:id="@+id/activity_subreddit_banniere_and_pp"
+                android:id="@+id/activity_subreddit_banner_and_pp"
                 layout="@layout/component_photo"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
