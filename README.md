@@ -3,8 +3,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/EpitechMscProPromo2025/T-JSF-600-NAN-6-1-IRCjavascript-lisa.bourdon">
-    <img src="front/public/logo_transparent.png" alt="Logo" width="350" height="auto">
+  <a href="https://github.com/EpitechMscProPromo2025/T-DEV-600-NAN-6-1-redditech-clement.chaban">
+    <img src="/app/src/main/res/drawable/redditry_logo.png" alt="Logo" width="350" height="auto">
   </a>
 
 <h3 align="center">ReddiTry</h3>
@@ -21,7 +21,7 @@
 
 ## About The Project
 
-![The app](https://github.com/EpitechMscProPromo2025/T-JSF-600-NAN-6-1-IRCjavascript-lisa.bourdon/blob/main/front/public/exemple.png)
+![The app](https://github.com/EpitechMscProPromo2025/T-DEV-600-NAN-6-1-redditech-clement.chaban/blob/master/app/src/main/res/drawable/profie_screen.png)
 
 Before starting the app, we have created a [Figma](https://www.figma.com/file/K4gPy3BvqKo7p3aJsLFL15/ReddiTRY?node-id=0%3A1&t=NvnjkBEVABEMaAPs-1ZQ) to have a global idea of the app.
 
@@ -41,6 +41,9 @@ We had some constraints:
 - Implement test and documentation
 
 In addition to those constraints, we aim to add some BONUSES:
+
+- Continuous integration
+- Tutoriel for use the app
 
 - <p align="right">(<a href="#readme-top">Back to the top</a>)</p>
 
@@ -65,8 +68,8 @@ Why ? Because we want to discover new technologies in that project
 
 You must install:
 
-- node
-- npm
+- gradle
+- kotlin
 
 ### Installation
 
@@ -135,8 +138,6 @@ On a `user` or a `subreddit` page you can sub. There post will be show on your h
 ---
 
 NOW YOU KNOW EVERYTHING ABOUT REDDITRY, FEEL FREE TO EXPLORE THE APP AND HAVE FUN WITH IT.
-
-# // DARK LOGO
 
 <p align="right">(<a href="#readme-top">Back to the top</a>)</p>
 
