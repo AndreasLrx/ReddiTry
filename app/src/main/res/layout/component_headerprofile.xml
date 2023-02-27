@@ -5,11 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_gravity="start"
-    android:paddingLeft="7dp"
-    tools:context=".MainActivity"
-
-    >
-
+    android:paddingStart="7dp"
+    tools:context=".ProfileActivity"
+    tools:ignore="RtlSymmetry">
 
     <Button
         android:id="@+id/editButton"
@@ -18,15 +16,14 @@
         android:layout_gravity="center"
         android:layout_marginStart="4dp"
         android:backgroundTint="@color/orange"
-        android:text="@string/edit"
+        android:text="@string/edit_button"
         android:textSize="10sp"
         android:translationX="2dp"
         android:translationY="2dp"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints,SmallSp" />
 
     <ImageButton
         android:id="@+id/logo"
@@ -41,6 +38,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.222" />
+        app:layout_constraintVertical_bias="0.222"
+        android:contentDescription="@string/logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

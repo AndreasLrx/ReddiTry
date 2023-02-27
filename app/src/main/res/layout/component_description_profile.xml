@@ -3,80 +3,54 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="270dp"
     android:layout_gravity="start"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".ProfileActivity">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Username"
+        android:text="@string/username"
         android:textSize="20sp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/_145_followers"
-        android:textSize="10sp" />
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        >
-
-        <ImageView
-            android:id="@+id/component_email"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@color/transparent"
-            android:src="@drawable/baseline_alternate_email_24"
-            app:layout_constraintVertical_bias="0.363" />
-
-        <TextView
-            android:layout_width="200dp"
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:text="@string/this_is_an_email" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:background="@color/transparent"
-            android:src="@drawable/baseline_flag_24" />
-
-        <TextView
-            android:layout_width="200dp"
-
-            android:layout_height="20dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:text="@string/france"
-
-            />
-
-    </LinearLayout>
+        android:text="@string/number_of_followers"
+        android:textSize="10sp"
+        tools:ignore="SmallSp"
+        android:layout_marginBottom="20dp"
+        />
 
     <TextView
-        android:layout_width="350dp"
-        android:layout_height="57dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/email"
+        app:drawableLeftCompat="@drawable/baseline_alternate_email_24"
+        android:layout_marginBottom="20dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        app:drawableLeftCompat="@drawable/baseline_flag_24"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:text="@string/Country"
+
+        />
+
+
+    <TextView
+        android:padding="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/this_is_a_wonderful_description_you_can_have_in_your_profile_page" />
+        android:text="@string/description_profile" />
 
     <Button
         android:id="@+id/button"
@@ -84,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:backgroundTint="@color/orange"
-        android:text="@string/follow" />
+        android:text="@string/follow_button" />
 
 
 </LinearLayout>
