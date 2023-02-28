@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.redditry.databinding.ActivityLoginBinding
@@ -28,15 +29,16 @@ class LoginActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("redditry", MODE_PRIVATE)
         API.loadFromPreferences(sharedPreferences)
         val uri = intent.data
+        Log.d("test", API.accessToken.toString())
         if (uri != null && API.accessToken == "") {
             startAnimation()
             val params = uri.encodedQuery
             val code = params?.split("=")?.get(2)
 
-            val reddit = API.createInstance()
+            val redditLogin = API.createInstanceLogin()
 
             GlobalScope.launch {
-                val resp = reddit.login(
+                val resp = redditLogin.login(
                     Credentials.basic(BuildConfig.REDDIT_CLIENT_ID, ""),
                     code = code!!,
                     redirect_uri = API.redirectUri
@@ -44,6 +46,7 @@ class LoginActivity : AppCompatActivity() {
                     .execute()
                 if (resp.isSuccessful) {
                     val myEdit = sharedPreferences.edit()
+                    Log.d("test", resp.body()?.access_token.toString())
                     myEdit.putString("redditToken", resp.body()?.access_token)
                     myEdit.putString("redditRefreshToken", resp.body()?.refresh_token)
                     myEdit.apply()
@@ -56,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         if (API.accessToken != "" && API.accessToken != null) {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, ProfileActivity::class.java)
             startActivity(intent)
         }
         binding.loginButton.setOnClickListener {

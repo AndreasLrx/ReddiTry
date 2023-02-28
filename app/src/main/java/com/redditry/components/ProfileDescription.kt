@@ -18,4 +18,24 @@ class ProfileDescription @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.component_description_profile, this, true)
         binding = ComponentDescriptionProfileBinding.bind(this)
     }
+
+    fun setUsername(username:String){
+        binding.profileUsername.text = username
+    }
+    fun setDescription(description:String){
+        binding.profileDescription.text = description
+    }
+    fun setEmail(email:String){
+        binding.profileEmail.text = email
+    }
+    fun setCountry(country:String){
+        binding.profileCountry.text = country
+    }
+    fun setFollowersNumber(followersNumber:String){
+        binding.profileFollowersNumber.text = followersNumber
+    }
+    fun desactivateButton(){
+        binding.followButton.isEnabled = false
+    }
+
 }
