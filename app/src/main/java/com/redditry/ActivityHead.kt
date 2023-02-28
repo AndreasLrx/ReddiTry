@@ -24,10 +24,15 @@ open class ActivityHead : AppCompatActivity() {
                 if (item.itemId == navBar.selectedItemId || item.itemId == navigationId)
                     return true
                 when (item.itemId) {
-                    R.id.redditry_icon -> finish()
+                    R.id.search_icon -> openActivity(
+                        SearchActivity::class.java
+                    )
+                    R.id.redditry_icon -> openActivity(
+                        MainActivity::class.java,
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP
+                    )
                     R.id.profil_icon -> openActivity(
-                        ProfileActivity::class.java,
-                        navBar.selectedItemId != R.id.redditry_icon
+                        ProfileActivity::class.java
                     )
                     else -> {
                         return false
@@ -47,9 +52,11 @@ open class ActivityHead : AppCompatActivity() {
         return false
     }
 
-    private fun openActivity(Activity: Class<*>, finishBefore: Boolean = true) {
-        if (finishBefore)
-            finish()
-        startActivity(Intent(this, Activity))
+    fun openActivity(Activity: Class<*>, flags: Int = 0, animate: Boolean = false) {
+        val i = Intent(this, Activity)
+        if (!animate)
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
+        i.addFlags(flags)
+        startActivity(i)
     }
 }

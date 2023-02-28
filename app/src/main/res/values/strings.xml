@@ -42,6 +42,7 @@
         your profile page</string>
     <string name="follow_button">Follow</string>
     <string name="edit_button">EDIT</string>
+    <string name="save_button">SAVE</string>
     <string name="posts">Posts</string>
     <string name="placeholder_number_of_followers">145 followers</string>
     <string name="placeholder_username">Username</string>

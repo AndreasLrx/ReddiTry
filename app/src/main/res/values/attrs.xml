@@ -1,5 +1,5 @@
 <resources>
-    <declare-styleable name="PostComponent">
+    <declare-styleable name="Post">
         <attr name="subreddit" format="string" />
         <attr name="sender" format="string" />
         <attr name="post_title" format="string" />
@@ -17,5 +17,10 @@
             <enum name="expanded" value="0" />
             <enum name="small" value="1" />
         </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ProfileHeader">
+        <attr name="read_only" format="boolean" />
+        <attr name="editing" format="boolean" />
     </declare-styleable>
 </resources>

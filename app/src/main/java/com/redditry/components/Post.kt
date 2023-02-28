@@ -27,43 +27,42 @@ class Post @JvmOverloads constructor(
         attrs?.let {
 
             val styledAttributes =
-                context.obtainStyledAttributes(it, R.styleable.PostComponent, 0, 0)
+                context.obtainStyledAttributes(it, R.styleable.Post, 0, 0)
 
             // Post format
-            val postFormat = styledAttributes.getInt(R.styleable.PostComponent_post_format, 0)
+            val postFormat = styledAttributes.getInt(R.styleable.Post_post_format, 0)
             // Small
             if (postFormat == 1) {
-                if (styledAttributes.hasValue(R.styleable.PostComponent_image))
+                if (styledAttributes.hasValue(R.styleable.Post_image))
                     binding.content.maxLines = 3
                 else
                     binding.content.maxLines = 8
             }
 
             // Background Color
-            val backgroundColorId = styledAttributes.getInt(R.styleable.PostComponent_post_color, 0)
-            if (backgroundColorId == 0)
-                setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
-            else if (backgroundColorId == 1)
-                setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
-            else if (backgroundColorId == 2)
-                setBackgroundColor(ContextCompat.getColor(context, R.color.semi_transparent))
+            val backgroundColorId = styledAttributes.getInt(R.styleable.Post_post_color, 0)
+            when (backgroundColorId) {
+                0 -> setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
+                1 -> setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
+                2 -> setBackgroundColor(ContextCompat.getColor(context, R.color.semi_transparent))
+            }
 
             // Subreddit icon
-            val icon = styledAttributes.getDrawable(R.styleable.PostComponent_subreddit_icon)
+            val icon = styledAttributes.getDrawable(R.styleable.Post_subreddit_icon)
             if (icon != null)
                 binding.subredditIcon.setImageDrawable(icon)
             // Subreddit name
             binding.subredditName.text =
-                styledAttributes.getString(R.styleable.PostComponent_subreddit)
+                styledAttributes.getString(R.styleable.Post_subreddit)
             // Sender name
             binding.userName.text =
-                styledAttributes.getString(R.styleable.PostComponent_sender)
+                styledAttributes.getString(R.styleable.Post_sender)
             // Post title
             binding.title.text =
-                styledAttributes.getString(R.styleable.PostComponent_post_title)
+                styledAttributes.getString(R.styleable.Post_post_title)
 
             // Post image (optional)
-            val image = styledAttributes.getDrawable(R.styleable.PostComponent_image)
+            val image = styledAttributes.getDrawable(R.styleable.Post_image)
             if (image != null) {
                 binding.image.visibility = View.VISIBLE
                 binding.image.setImageDrawable(image)
@@ -71,7 +70,7 @@ class Post @JvmOverloads constructor(
                 binding.image.visibility = View.GONE
 
             // Post content (optional)
-            val content = styledAttributes.getString(R.styleable.PostComponent_post_content)
+            val content = styledAttributes.getString(R.styleable.Post_post_content)
             if (content != null) {
                 binding.content.visibility = View.VISIBLE
                 binding.content.text = content
@@ -80,10 +79,10 @@ class Post @JvmOverloads constructor(
 
             // Post votes count
             binding.votes.text =
-                styledAttributes.getInt(R.styleable.PostComponent_votes_count, 0).toString()
+                styledAttributes.getInt(R.styleable.Post_votes_count, 0).toString()
             // Post comment count
             binding.comments.text =
-                styledAttributes.getInt(R.styleable.PostComponent_comments_count, 0).toString()
+                styledAttributes.getInt(R.styleable.Post_comments_count, 0).toString()
 
             binding.upvoteButton.setOnClickListener(
                 createButtonClickListener {
@@ -113,7 +112,7 @@ class Post @JvmOverloads constructor(
 
     private fun createButtonClickListener(onEndCallback: () -> Unit): View.OnClickListener {
         return View.OnClickListener {
-            var anim = AnimationUtils.loadAnimation(this.context, R.anim.button_click)
+            val anim = AnimationUtils.loadAnimation(this.context, R.anim.button_click)
 
             anim.interpolator = AccelerateInterpolator(0.7f)
             it.startAnimation(anim)
