@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="roundedImageViewRounded">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
     </style>
+
     <style name="Image_background">
         <item name="android:background">@drawable/wallpaper_android</item>
         <item name="android:scaleX">1.5</item>
         <item name="android:scaleY">1.7</item>
         <item name="android:translationY">180dp</item>
         <item name="android:rotation">180</item>
+    </style>
+
+    <style name="NavigationBar">
+        <item name="itemIconSize">40dp</item>
+        <item name="menu">@menu/bottom_navigation_menu</item>
+        <item name="labelVisibilityMode">unlabeled</item>
     </style>
 </resources>
