@@ -1,11 +1,11 @@
 package com.redditry
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.view.MenuItem
 import androidx.drawerlayout.widget.DrawerLayout
 import com.redditry.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ActivityHead() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var drawer: DrawerLayout
 
@@ -16,9 +16,16 @@ class MainActivity : AppCompatActivity() {
 
         drawer = binding.root
         binding.drawerComponent.drawer = drawer
-        binding.navBar.setOnItemSelectedListener { item ->
-            if (item.itemId == R.id.menu_icon) drawer.open()
-            true
+
+        // ActivityHead setup
+        navigationId = R.id.redditry_icon
+        navBar = binding.navBar
+    }
+
+    override fun onNavBarItem(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_icon) {
+            drawer.open()
         }
+        return super.onNavBarItem(item)
     }
 }
