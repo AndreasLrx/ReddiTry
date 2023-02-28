@@ -26,7 +26,7 @@
         tools:ignore="MissingConstraints,SmallSp" />
 
     <ImageButton
-        android:id="@+id/component_header_profile_logout"
+        android:id="@+id/arrow_return"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_gravity="center"

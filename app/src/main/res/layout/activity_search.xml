@@ -6,25 +6,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beige"
-    tools:context=".MainActivity">
-
+    tools:context=".SearchActivity">
 
     <ImageButton
-        android:id="@+id/component_header_profile_logout"
+        android:id="@+id/arrow_return"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/transparent"
-        android:contentDescription="@string/log_out"
+        android:contentDescription="@string/alt_back_arrow"
         android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="@+id/component_form_edit_profile_displayName"
-        app:layout_constraintEnd_toStartOf="@+id/component_form_edit_profile_displayName"
+        app:layout_constraintBottom_toBottomOf="@+id/input_search"
+        app:layout_constraintEnd_toStartOf="@+id/input_search"
         app:layout_constraintStart_toStartOf="parent"
         app:tint="@color/orange" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/component_form_edit_profile_displayName"
+        android:id="@+id/input_search"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -44,7 +43,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/text_explanation_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -53,22 +52,51 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/component_form_edit_profile_displayName" />
+        app:layout_constraintTop_toBottomOf="@+id/input_search" />
 
 
     <ImageButton
-        android:id="@+id/l"
+        android:id="@+id/arrow_rounded"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/transparent"
-        android:contentDescription="@string/log_out"
+        android:contentDescription="@string/alt_orangearrow"
         android:scaleType="fitCenter"
         android:scaleY="-1"
         android:src="@drawable/rounded_arrow"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/component_form_edit_profile_displayName"
+        app:layout_constraintStart_toEndOf="@+id/text_explanation_search"
+        app:layout_constraintTop_toBottomOf="@+id/input_search"
         app:tint="@color/orange" />
+
+    <ImageButton
+        android:id="@+id/rounded_arrow"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/alt_orangearrow"
+        android:scaleType="fitCenter"
+        android:scaleY="-1"
+        android:src="@drawable/rounded_arrow"
+        app:layout_constraintStart_toEndOf="@+id/text_explanation_search"
+        app:layout_constraintTop_toBottomOf="@+id/input_search"
+        app:tint="@color/orange" />
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/alt_logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/redditry_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_explanation_search" />
 
     <include
         android:id="@+id/activity_main_navigation"
