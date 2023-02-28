@@ -1,6 +1,7 @@
 package com.redditry.components
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import androidx.drawerlayout.widget.DrawerLayout
 import com.redditry.R
+import com.redditry.SubredditActivity
 import com.redditry.databinding.ComponentMainDrawerBinding
 
 class MainDrawer @JvmOverloads constructor(
@@ -36,7 +38,12 @@ class MainDrawer @JvmOverloads constructor(
         adapter = AdapterDrawerItem(context, arrayList)
         listView.adapter = adapter
         listView.onItemClickListener =
-            AdapterView.OnItemClickListener { _, _, _, _ -> drawer.close() }
+            AdapterView.OnItemClickListener { _, view, i, _ ->
+                drawer.close()
+                val intent = Intent(view.context, SubredditActivity::class.java)
+                intent.putExtra("subreddit_name", arrayList[i].first)
+                view.context.startActivity(intent)
+            }
 
         binding.sortBySpinner.onItemSelectedListener =
             object : OnItemSelectedListener {
