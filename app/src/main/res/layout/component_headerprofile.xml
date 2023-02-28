@@ -5,12 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="60dp"
     android:layout_gravity="start"
-    android:paddingStart="7dp"
-    tools:context=".ProfileActivity"
-    tools:ignore="RtlSymmetry">
-
+    android:layout_marginStart="7dp">
+        
     <Button
-        android:id="@+id/component_header_profile_edit_button"
+        android:id="@+id/edit_button"
         android:layout_width="69dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -26,7 +24,7 @@
         tools:ignore="MissingConstraints,SmallSp" />
 
     <ImageButton
-        android:id="@+id/arrow_return"
+        android:id="@+id/logout_button"
         android:layout_width="51dp"
         android:layout_height="51dp"
         android:layout_gravity="center"
@@ -40,5 +38,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.222" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

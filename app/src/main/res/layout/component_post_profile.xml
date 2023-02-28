@@ -1,63 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="start"
-    tools:context=".MainActivity"
     android:orientation="vertical">
 
     <RelativeLayout
-        android:background="@color/semi_transparent"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:background="@color/semi_transparent">
 
         <TextView
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/posts"
-        />
+            android:gravity="center"
+            android:text="@string/posts" />
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <com.redditry.components.PostComponent
-            android:layout_marginTop="5dp"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:subreddit="@string/placeholder_post_subreddit"
-            app:sender="@string/placeholder_post_user"
-            app:post_title="@string/placeholder_post_title"
-            app:votes_count="573"
-            app:comments_count="861"
-            app:subreddit_icon="@drawable/redditry_logo_256x256"
-            app:post_content="@string/placeholder_post_content"
-            app:post_color="semi_transparent"
-            app:post_format="small" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <com.redditry.components.PostComponent
-            android:layout_marginTop="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:subreddit="@string/placeholder_post_subreddit"
-            app:sender="@string/placeholder_post_user"
-            app:post_title="@string/placeholder_post_title"
-            app:votes_count="573"
-            app:comments_count="861"
-            app:subreddit_icon="@drawable/redditry_logo_256x256"
-            app:post_content="@string/placeholder_post_content"
-            app:post_color="semi_transparent"
-            app:post_format="small" />
-    </LinearLayout>
-</ScrollView>
+            <com.redditry.components.PostComponent
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:comments_count="861"
+                app:post_color="semi_transparent"
+                app:post_content="@string/placeholder_post_content"
+                app:post_format="small"
+                app:post_title="@string/placeholder_post_title"
+                app:sender="@string/placeholder_post_user"
+                app:subreddit="@string/placeholder_post_subreddit"
+                app:subreddit_icon="@drawable/redditry_logo_256x256"
+                app:votes_count="573" />
+
+            <com.redditry.components.PostComponent
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:comments_count="861"
+                app:post_color="semi_transparent"
+                app:post_content="@string/placeholder_post_content"
+                app:post_format="small"
+                app:post_title="@string/placeholder_post_title"
+                app:sender="@string/placeholder_post_user"
+                app:subreddit="@string/placeholder_post_subreddit"
+                app:subreddit_icon="@drawable/redditry_logo_256x256"
+                app:votes_count="573" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

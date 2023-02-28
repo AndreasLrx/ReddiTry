@@ -1,30 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditProfileActivity">
 
     <ImageView
-        android:id="@+id/activity_edit_profile_image_background"
+        android:id="@+id/background"
+        style="@style/Image_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.3"
-        android:contentDescription="@string/background_image"
-        android:theme="@style/Image_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/wallpaper_android" />
+        android:contentDescription="@string/background_image" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/activity_edit_profile_navigation"
+        android:layout_above="@+id/nav_bar"
         android:fillViewport="true">
 
         <LinearLayout
@@ -33,18 +25,18 @@
             android:orientation="vertical">
 
             <include
-                android:id="@+id/activity_edit_profile_header"
+                android:id="@+id/header"
                 layout="@layout/component_headerprofile" />
 
             <include
-                android:id="@+id/activity_profile_banner_and_pp"
+                android:id="@+id/banner_and_pp"
                 layout="@layout/component_photo"
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
 
 
             <include
-                android:id="@+id/activity_edit_profile_form"
+                android:id="@+id/form"
                 layout="@layout/component_form_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -56,7 +48,7 @@
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/activity_edit_profile_navigation"
+        android:id="@+id/nav_bar"
         style="@style/NavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
