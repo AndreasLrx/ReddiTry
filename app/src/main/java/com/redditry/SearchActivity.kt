@@ -2,10 +2,13 @@ package com.redditry
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.redditry.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySearchBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_subreddit)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
 }

@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.redditry.components.MainDrawerComponent
+    <com.redditry.components.MainDrawer
         android:id="@+id/drawer_component"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

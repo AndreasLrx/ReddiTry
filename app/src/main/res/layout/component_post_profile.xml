@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.redditry.components.PostComponent
+            <com.redditry.components.Post
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -41,7 +41,7 @@
                 app:subreddit_icon="@drawable/redditry_logo_256x256"
                 app:votes_count="573" />
 
-            <com.redditry.components.PostComponent
+            <com.redditry.components.Post
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

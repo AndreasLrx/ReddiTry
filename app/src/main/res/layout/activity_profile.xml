@@ -24,24 +24,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
+            <com.redditry.components.ProfileHeader
                 android:id="@+id/header"
-                layout="@layout/component_headerprofile" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <include
+            <com.redditry.components.ProfilePicture
                 android:id="@+id/banner_and_pp"
-                layout="@layout/component_photo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content" />
 
-            <include
+            <com.redditry.components.ProfileDescription
                 android:id="@+id/description"
-                layout="@layout/component_description_profile"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="wrap_content" />
 
-
-            <include layout="@layout/component_post_profile" />
+            <com.redditry.components.ProfilePosts
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
