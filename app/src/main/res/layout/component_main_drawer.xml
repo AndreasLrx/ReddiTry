@@ -15,22 +15,22 @@
 
 
         <RelativeLayout
-            android:id="@+id/component_main_drawer_layout_sort_by"
+            android:id="@+id/sort_by_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="30dp">
 
             <TextView
-                android:id="@+id/component_main_drawer_text_sort"
+                android:id="@+id/sort_by_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toStartOf="@id/component_main_drawer_spinner_container"
+                android:layout_toStartOf="@id/sort_by_spinner_container"
                 android:text="@string/sort_by"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
 
             <FrameLayout
-                android:id="@+id/component_main_drawer_spinner_container"
+                android:id="@+id/sort_by_spinner_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -39,7 +39,7 @@
                 android:paddingHorizontal="10dp">
 
                 <Spinner
-                    android:id="@+id/component_main_drawer_spinner"
+                    android:id="@+id/sort_by_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:entries="@array/sort_by_choices"
@@ -49,17 +49,17 @@
 
 
         <com.google.android.material.divider.MaterialDivider
-            android:id="@+id/component_main_drawer_divider"
+            android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/component_main_drawer_layout_sort_by"
+            android:layout_below="@id/sort_by_layout"
             android:background="@color/orange" />
 
         <ListView
-            android:id="@+id/component_main_drawer_list_subreddit"
+            android:id="@+id/subreddit_list"
             android:layout_width="match_parent"
             android:layout_height="621dp"
-            android:layout_below="@+id/component_main_drawer_divider"
+            android:layout_below="@+id/divider"
             android:layout_marginTop="4dp"
             android:divider="@color/transparent"
             android:dividerHeight="20dp"

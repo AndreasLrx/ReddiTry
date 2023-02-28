@@ -31,9 +31,10 @@ class AdapterDrawerItem(
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
         var adaptedView =
             LayoutInflater.from(context).inflate(R.layout.adapter_drawer_item, parent, false)
-        adaptedView.findViewById<TextView>(R.id.adapter_drawer_text).text =
+
+        adaptedView.findViewById<TextView>(R.id.text).text =
             arrayList[position].first
-        adaptedView.findViewById<ShapeableImageView>(R.id.adapter_drawer_icon)
+        adaptedView.findViewById<ShapeableImageView>(R.id.icon)
             .setImageDrawable(AppCompatResources.getDrawable(context, arrayList[position].second))
         return adaptedView
     }

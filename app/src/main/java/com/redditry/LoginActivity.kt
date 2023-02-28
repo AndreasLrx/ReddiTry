@@ -20,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.loginRegister.setOnClickListener {
+        binding.registerButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(API.registerURL))
             startActivity(intent)
         }
@@ -75,10 +75,10 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun startAnimation() {
-        binding.loginLogo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate))
+        binding.logo.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate))
     }
 
     private fun stopAnimation() {
-        binding.loginLogo.clearAnimation()
+        binding.logo.clearAnimation()
     }
 }

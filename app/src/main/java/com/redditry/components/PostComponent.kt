@@ -7,13 +7,10 @@ import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
-import android.widget.ImageButton
-import android.widget.ImageView
 import android.widget.RelativeLayout
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import com.google.android.material.imageview.ShapeableImageView
 import com.redditry.R
+import com.redditry.databinding.ComponentPostBinding
 
 class PostComponent @JvmOverloads constructor(
     context: Context,
@@ -21,12 +18,13 @@ class PostComponent @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
 
-    private val currentFractionDigit = 2
+    private var binding: ComponentPostBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post, this, true)
+        binding = ComponentPostBinding.bind(this)
+
         attrs?.let {
-            val postContentView = findViewById<TextView>(R.id.component_post_content)
 
             val styledAttributes =
                 context.obtainStyledAttributes(it, R.styleable.PostComponent, 0, 0)
@@ -36,9 +34,9 @@ class PostComponent @JvmOverloads constructor(
             // Small
             if (postFormat == 1) {
                 if (styledAttributes.hasValue(R.styleable.PostComponent_image))
-                    postContentView.maxLines = 3
+                    binding.content.maxLines = 3
                 else
-                    postContentView.maxLines = 8
+                    binding.content.maxLines = 8
             }
 
             // Background Color
@@ -53,58 +51,55 @@ class PostComponent @JvmOverloads constructor(
             // Subreddit icon
             val icon = styledAttributes.getDrawable(R.styleable.PostComponent_subreddit_icon)
             if (icon != null)
-                findViewById<ShapeableImageView>(R.id.component_post_subreddit_icon).setImageDrawable(
-                    icon
-                )
+                binding.subredditIcon.setImageDrawable(icon)
             // Subreddit name
-            findViewById<TextView>(R.id.component_post_text_subreddit).text =
+            binding.subredditName.text =
                 styledAttributes.getString(R.styleable.PostComponent_subreddit)
             // Sender name
-            findViewById<TextView>(R.id.component_post_text_user).text =
+            binding.userName.text =
                 styledAttributes.getString(R.styleable.PostComponent_sender)
             // Post title
-            findViewById<TextView>(R.id.component_post_text_title).text =
+            binding.title.text =
                 styledAttributes.getString(R.styleable.PostComponent_post_title)
 
             // Post image (optional)
             val image = styledAttributes.getDrawable(R.styleable.PostComponent_image)
-            val imageView = findViewById<ImageView>(R.id.component_post_image)
             if (image != null) {
-                imageView.visibility = View.VISIBLE
-                imageView.setImageDrawable(image)
+                binding.image.visibility = View.VISIBLE
+                binding.image.setImageDrawable(image)
             } else
-                imageView.visibility = View.GONE
+                binding.image.visibility = View.GONE
 
             // Post content (optional)
             val content = styledAttributes.getString(R.styleable.PostComponent_post_content)
             if (content != null) {
-                postContentView.visibility = View.VISIBLE
-                postContentView.text = content
+                binding.content.visibility = View.VISIBLE
+                binding.content.text = content
             } else
-                postContentView.visibility = View.GONE
+                binding.content.visibility = View.GONE
 
             // Post votes count
-            findViewById<TextView>(R.id.component_post_text_votes).text =
+            binding.votes.text =
                 styledAttributes.getInt(R.styleable.PostComponent_votes_count, 0).toString()
             // Post comment count
-            findViewById<TextView>(R.id.component_post_text_comments).text =
+            binding.comments.text =
                 styledAttributes.getInt(R.styleable.PostComponent_comments_count, 0).toString()
 
-            findViewById<ImageButton>(R.id.component_post_button_upvote).setOnClickListener(
+            binding.upvoteButton.setOnClickListener(
                 createButtonClickListener {
                     println(
                         "Up Vote clicked"
                     )
                 }
             )
-            findViewById<ImageButton>(R.id.component_post_button_down_vote).setOnClickListener(
+            binding.downVoteButton.setOnClickListener(
                 createButtonClickListener {
                     println(
                         "Down Vote clicked"
                     )
                 }
             )
-            findViewById<ImageButton>(R.id.component_post_button_comment).setOnClickListener(
+            binding.commentButton.setOnClickListener(
                 createButtonClickListener {
                     println(
                         "Comment clicked"
