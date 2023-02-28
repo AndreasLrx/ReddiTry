@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/component_main_drawer"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     tools:parentTag="android.widget.LinearLayout">
@@ -38,6 +39,7 @@
                 android:paddingHorizontal="10dp">
 
                 <Spinner
+                    android:id="@+id/component_main_drawer_spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:entries="@array/sort_by_choices"
