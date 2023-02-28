@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beige"
+    tools:context=".MainActivity">
+
+
+    <ImageButton
+        android:id="@+id/component_header_profile_logout"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/log_out"
+        android:src="@drawable/baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/component_form_edit_profile_displayName"
+        app:layout_constraintEnd_toStartOf="@+id/component_form_edit_profile_displayName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/orange" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/component_form_edit_profile_displayName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:hint="@string/search_input"
+        android:paddingTop="5dp"
+        android:textColorHint="@color/grey"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="@string/text_search"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/component_form_edit_profile_displayName" />
+
+
+    <ImageButton
+        android:id="@+id/l"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/transparent"
+        android:contentDescription="@string/log_out"
+        android:scaleType="fitCenter"
+        android:scaleY="-1"
+        android:src="@drawable/rounded_arrow"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/component_form_edit_profile_displayName"
+        app:tint="@color/orange" />
+
+    <include
+        android:id="@+id/activity_main_navigation"
+        layout="@layout/component_bottom_navigation_menu" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
