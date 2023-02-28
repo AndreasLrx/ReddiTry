@@ -1,5 +1,6 @@
 package com.redditry
 
+import android.content.Intent
 import android.os.Bundle
 import com.redditry.databinding.ActivityProfileBinding
 
@@ -16,5 +17,12 @@ class ProfileActivity : ActivityHead() {
         // ActivityHead setup
         navigationId = R.id.profil_icon
         navBar = binding.navBar
+
+        binding.header.binding.editButton.setOnClickListener {
+            openActivity(
+                EditProfileActivity::class.java,
+                Intent.FLAG_ACTIVITY_NO_HISTORY
+            )
+        }
     }
 }

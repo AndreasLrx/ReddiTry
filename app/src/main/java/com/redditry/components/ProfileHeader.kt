@@ -12,10 +12,28 @@ class ProfileHeader @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentHeaderprofileBinding
+    var binding: ComponentHeaderprofileBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_headerprofile, this, true)
         binding = ComponentHeaderprofileBinding.bind(this)
+
+        attrs?.let {
+
+            val styledAttributes =
+                context.obtainStyledAttributes(it, R.styleable.ProfileHeader, 0, 0)
+
+            if (styledAttributes.getBoolean(R.styleable.ProfileHeader_read_only, false))
+                visibility = GONE
+            else {
+                if (styledAttributes.getBoolean(R.styleable.ProfileHeader_editing, false)) {
+                    binding.editButton.text = context.getString(R.string.save_button)
+                    binding.logoutButton.visibility = GONE
+                } else
+                    binding.editButton.text = context.getString(R.string.edit_button)
+            }
+
+            styledAttributes.recycle()
+        }
     }
 }
