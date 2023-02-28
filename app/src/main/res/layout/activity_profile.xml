@@ -24,7 +24,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/activity_profile_bottom_navigation"
+        android:layout_above="@+id/activity_profile_navigation"
         android:fillViewport="true">
 
         <LinearLayout
@@ -57,12 +57,10 @@
     </ScrollView>
 
 
-    <include
-        android:id="@+id/activity_profile_bottom_navigation"
-        layout="@layout/component_bottom_navigation_menu"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/activity_profile_navigation"
+        style="@style/NavigationBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />
-
-
 </RelativeLayout>

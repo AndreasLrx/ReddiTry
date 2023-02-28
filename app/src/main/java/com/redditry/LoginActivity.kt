@@ -6,7 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.redditry.databinding.LoginBinding
+import com.redditry.databinding.ActivityLoginBinding
 import com.redditry.redditAPI.API
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -14,11 +14,11 @@ import okhttp3.Credentials
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: LoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = LoginBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.loginRegister.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(API.registerURL))
