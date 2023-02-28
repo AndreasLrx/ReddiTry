@@ -57,9 +57,10 @@
     <string name="placeholder_subscribe">Subscribe</string>
     <string name="sort_by">SORT BY:</string>
     <string-array name="sort_by_choices">
-    <item>Popular</item>
-    <item>Newest</item>
-    <item>Oldest</item>
+        <item>Popular</item>
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
     <string name="form_new_email">New email...</string>
     <string name="text_area_form_edit">Write something about you...</string>
     <string name="text_area_name_form">New Display name</string>
