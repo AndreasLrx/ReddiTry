@@ -50,8 +50,7 @@
     <string name="alt_profile_picture">profile_picture</string>
     <string name="placeholder_subreddit_name">Subreddit Name</string>
     <string name="placeholder_number_members">_254_543_members</string>
-    <string name="text_search" tools:ignore="ExtraTranslation">Search for your favorite \n subreddit
-        right here!</string>
+    <string name="text_search" tools:ignore="ExtraTranslation">Search for your favorite \n subreddit right here!</string>
     <string name="placeholder_description_subreddit">Cette session Bootstrap - Organizational theory
         de type Bootstrap a été déplacée du 20/02/2023, 15h00 au 20/02/2023, 14h30Pensez à vous
         désinscrire de cette session si vous n\'êtes pas disponible au nouvel horaire Voir les
@@ -70,6 +69,9 @@
         <item>Spain</item>
     </string-array>
     <string name="search_input">Search...</string>
+    <string name="alt_orangearrow">orangeArrow</string>
+    <string name="alt_back_arrow">back_arrow</string>
+    <string name="alt_logo">logo</string>
     <string-array name="sort_by_choices">
         <item>Popular</item>
         <item>Newest</item>

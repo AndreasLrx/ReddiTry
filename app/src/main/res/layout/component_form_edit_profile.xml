@@ -18,7 +18,7 @@
         android:textSize="30sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/component_form_edit_profile_displayName"
+        android:id="@+id/input_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/component_form_edit_profile_titleEdit"
@@ -38,7 +38,7 @@
         android:id="@+id/component_form_edit_profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/component_form_edit_profile_displayName"
+        android:layout_below="@+id/input_search"
         android:hint="@string/text_area_form_edit"
         android:paddingTop="20dp"
         android:textColorHint="@color/grey"
