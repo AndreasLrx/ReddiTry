@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat
 import com.redditry.R
 import com.redditry.databinding.ComponentPostBinding
 
-class PostComponent @JvmOverloads constructor(
+class Post @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

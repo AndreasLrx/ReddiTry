@@ -2,28 +2,27 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beige"
     tools:context=".SearchActivity">
 
     <ImageButton
-        android:id="@+id/arrow_return"
+        android:id="@+id/return_button"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
         android:backgroundTint="@color/transparent"
         android:contentDescription="@string/alt_back_arrow"
         android:src="@drawable/baseline_arrow_back_24"
-        app:layout_constraintBottom_toBottomOf="@+id/input_search"
-        app:layout_constraintEnd_toStartOf="@+id/input_search"
+        app:layout_constraintBottom_toBottomOf="@+id/search_input"
+        app:layout_constraintEnd_toStartOf="@+id/search_input"
         app:layout_constraintStart_toStartOf="parent"
         app:tint="@color/orange" />
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_search"
+        android:id="@+id/search_input"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
@@ -52,11 +51,9 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_search" />
-
+        app:layout_constraintTop_toBottomOf="@+id/search_input" />
 
     <ImageButton
-        android:id="@+id/arrow_rounded"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_gravity="center"
@@ -66,26 +63,11 @@
         android:scaleY="-1"
         android:src="@drawable/rounded_arrow"
         app:layout_constraintStart_toEndOf="@+id/text_explanation_search"
-        app:layout_constraintTop_toBottomOf="@+id/input_search"
-        app:tint="@color/orange" />
-
-    <ImageButton
-        android:id="@+id/rounded_arrow"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
-        android:layout_gravity="center"
-        android:backgroundTint="@color/transparent"
-        android:contentDescription="@string/alt_orangearrow"
-        android:scaleType="fitCenter"
-        android:scaleY="-1"
-        android:src="@drawable/rounded_arrow"
-        app:layout_constraintStart_toEndOf="@+id/text_explanation_search"
-        app:layout_constraintTop_toBottomOf="@+id/input_search"
+        app:layout_constraintTop_toBottomOf="@+id/search_input"
         app:tint="@color/orange" />
 
 
     <ImageView
-        android:id="@+id/logo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -98,9 +80,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_explanation_search" />
 
-    <include
-        android:id="@+id/activity_main_navigation"
-        layout="@layout/component_bottom_navigation_menu" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_bar"
+        style="@style/NavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

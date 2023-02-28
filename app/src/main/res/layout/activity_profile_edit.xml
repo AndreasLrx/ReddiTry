@@ -24,20 +24,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
+            <com.redditry.components.ProfileHeader
                 android:id="@+id/header"
-                layout="@layout/component_headerprofile" />
-
-            <include
-                android:id="@+id/banner_and_pp"
-                layout="@layout/component_photo"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="wrap_content" />
+
+            <com.redditry.components.ProfilePicture
+                android:id="@+id/banner_and_pp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
-            <include
+            <com.redditry.components.EditProfileForm
                 android:id="@+id/form"
-                layout="@layout/component_form_edit_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

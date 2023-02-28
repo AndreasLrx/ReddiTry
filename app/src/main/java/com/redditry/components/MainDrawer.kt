@@ -12,7 +12,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.redditry.R
 import com.redditry.databinding.ComponentMainDrawerBinding
 
-class MainDrawerComponent @JvmOverloads constructor(
+class MainDrawer @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
