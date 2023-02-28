@@ -12,7 +12,6 @@ import com.redditry.R
 
 typealias DrawerItemData = Pair<String, Int>
 
-
 class AdapterDrawerItem(
     private val context: Context,
     private val arrayList: java.util.ArrayList<DrawerItemData>
