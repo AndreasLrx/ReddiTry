@@ -12,7 +12,7 @@ class SubredditDescription @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentDescriptionSubredditBinding
+    var binding: ComponentDescriptionSubredditBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_description_subreddit, this, true)
