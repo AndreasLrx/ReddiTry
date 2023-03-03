@@ -14,9 +14,7 @@
     <string name="placeholder_post_user">u/loveIcon</string>
     <string name="placeholder_post_title">DISCOVER ALL THE WONDERFUL THINGS I\'VE CREATED IN MY
         FUCKING LIFE</string>
-    <string name="placeholder_post_content">Hey everyone!\n\n\As a programmer, I love to challenge
-        myself and learn new skills. Over the years, I\'ve created a variety of awesome projects
-        that I\'m really proud of, and I wanted to share them with you all.\n\n\First, I created a
+    <string name="placeholder_post_content">Hey everyone!\n\n\As a programmer, I love to challenge myself and learn new skills. Over the years, I\'ve created a variety of awesome projects that I\'m really proud of, and I wanted to share them with you all.\n\n\First, I created a
         web app that helps people track their water intake and reminds them to drink water
         throughout the day. It was a fun project that taught me a lot about web development and
         working with APIs.\n\n\I also created a game using Unity that has a retro aesthetic and a
