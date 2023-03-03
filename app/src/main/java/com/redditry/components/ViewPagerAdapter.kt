@@ -1,14 +1,12 @@
 package com.gtappdevelopers.kotlingfgproject
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.PagerAdapter
-import com.redditry.MainActivity
 import com.redditry.R
 import java.util.*
 
@@ -63,8 +61,7 @@ class ViewPagerAdapter(val context: Context, private val imageList: List<Int>) :
     // methode who call when the last slide is reached and the activity is finish
     override fun finishUpdate(container: ViewGroup) {
         super.finishUpdate(container)
-        val intent = Intent(context, MainActivity::class.java)
-        context.startActivity(intent)
+        //val intent = Intent(context, MainActivity::class.java)
+        //context.startActivity(intent)
     }
-
 }
