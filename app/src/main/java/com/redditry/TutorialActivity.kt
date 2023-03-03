@@ -27,6 +27,7 @@ class TutorialActivity : ActivityHead() {
         imageList = imageList + R.drawable.tutorial6
         imageList = imageList + R.drawable.tutorial7
         imageList = imageList + R.drawable.tutorial8
+        imageList = imageList + R.drawable.tutorial9
 
 
         viewPagerAdapter = ViewPagerAdapter(this@TutorialActivity, imageList)
@@ -35,10 +36,15 @@ class TutorialActivity : ActivityHead() {
             override fun onPageScrollStateChanged(state: Int) {
             }
 
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
             }
+
             override fun onPageSelected(position: Int) {
-                if (position == 7){
+                if (position == 8) {
                     val intent = Intent(this@TutorialActivity, MainActivity::class.java)
                     startActivity(intent)
                 }
