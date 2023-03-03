@@ -1,5 +1,6 @@
 package com.redditry
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import com.gtappdevelopers.kotlingfgproject.ViewPagerAdapter
@@ -30,7 +31,19 @@ class TutorialActivity : ActivityHead() {
 
         viewPagerAdapter = ViewPagerAdapter(this@TutorialActivity, imageList)
 
+        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+            override fun onPageScrollStateChanged(state: Int) {
+            }
 
+            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+            }
+            override fun onPageSelected(position: Int) {
+                if (position == 7){
+                    val intent = Intent(this@TutorialActivity, MainActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        })
         viewPager.adapter = viewPagerAdapter
     }
 }
