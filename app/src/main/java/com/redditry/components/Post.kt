@@ -2,6 +2,8 @@ package com.redditry.components
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
+import android.transition.Transition
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -9,10 +11,14 @@ import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.RelativeLayout
+import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
 import com.redditry.R
 import com.redditry.databinding.ComponentPostBinding
 import com.redditry.redditAPI.PostData
+
 
 class Post @JvmOverloads constructor(
     context: Context,
@@ -204,13 +210,25 @@ class Post @JvmOverloads constructor(
         subredditName = data.subreddit_name_prefixed
         title = data.title
         content = data.content
-        votes = data.voteUp /* - data.voteDown */
+        votes = data.voteUp - data.voteDown
         comments = data.numComments
         userName = "u/" + data.author
+        backgroundColor = backgroundColor
+        Glide.with(this)
+                .asDrawable()
+                .load(data.imageUrl)
+                .into(object : CustomTarget<Drawable?>() {
+                    override fun onResourceReady(
+                        resource: Drawable,
+                        transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
+                    ) {
+                        image = resource
+                    }
+                    override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+                })
 
         /*
         format
-        backgroundColor
         image
         icon
          */

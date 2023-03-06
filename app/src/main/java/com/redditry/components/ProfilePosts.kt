@@ -26,7 +26,11 @@ class ProfilePosts @JvmOverloads constructor(
         array.forEach {
             val post = Post(context, null)
             post.setData(it)
+            postList.add(post)
         }
 
+        postList.forEach {
+            binding.postContainer.addView(it)
+        }
     }
 }
