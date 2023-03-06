@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.redditry.R
 import com.redditry.databinding.ComponentPostProfileBinding
+import com.redditry.redditAPI.PostData
 
 class ProfilePosts @JvmOverloads constructor(
     context: Context,
@@ -17,5 +18,14 @@ class ProfilePosts @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_profile, this, true)
         binding = ComponentPostProfileBinding.bind(this)
+    }
+
+    fun setPost(array: Array<PostData>){
+        var postList: MutableList<Post> = ArrayList()
+
+        array.forEach {
+            val post = Post(context, null)
+        }
+
     }
 }
