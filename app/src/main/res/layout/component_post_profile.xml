@@ -19,27 +19,7 @@
 
 
     </RelativeLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/component_form_edit_profile_menu"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/select_country">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/beige">
-
-            <Spinner
-                android:id="@+id/country_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:entries="@array/sort_by_choices" />
-        </RelativeLayout>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
+    
     <com.redditry.components.PostList
         android:id="@+id/post_list"
         android:layout_width="match_parent"
