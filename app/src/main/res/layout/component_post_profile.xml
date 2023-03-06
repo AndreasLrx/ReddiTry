@@ -19,42 +19,11 @@
     </RelativeLayout>
 
     <ScrollView
+        android:id="@+id/postContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
-            <com.redditry.components.Post
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:comments_count="861"
-                app:post_color="semi_transparent"
-                app:post_content="@string/placeholder_post_content"
-                app:post_format="small"
-                app:post_title="@string/placeholder_post_title"
-                app:sender="@string/placeholder_post_user"
-                app:subreddit="@string/placeholder_post_subreddit"
-                app:subreddit_icon="@drawable/redditry_logo_256x256"
-                app:votes_count="573" />
-
-            <com.redditry.components.Post
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                app:comments_count="861"
-                app:post_color="semi_transparent"
-                app:post_content="@string/placeholder_post_content"
-                app:post_format="small"
-                app:post_title="@string/placeholder_post_title"
-                app:sender="@string/placeholder_post_user"
-                app:subreddit="@string/placeholder_post_subreddit"
-                app:subreddit_icon="@drawable/redditry_logo_256x256"
-                app:votes_count="573" />
-        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

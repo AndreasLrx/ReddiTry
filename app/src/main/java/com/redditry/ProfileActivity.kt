@@ -45,6 +45,8 @@ class ProfileActivity : ActivityHead() {
                     }
                 }
             }
+            val posts = userController.getMyPost()
+            binding.posts
         }
 
     }
