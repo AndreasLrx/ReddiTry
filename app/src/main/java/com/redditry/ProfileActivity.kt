@@ -5,8 +5,6 @@ import android.os.Bundle
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
 import com.redditry.redditAPI.PostData
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
@@ -30,26 +28,31 @@ class ProfileActivity : ActivityHead() {
             )
         }
 
-        GlobalScope.launch {
-            val profil = user.getMyProfil()
-            val posts = user.getMyPost()
+        Thread {
+            val profile = user.getMyProfil()
+
             runOnUiThread {
-                binding.description.setUsername(if (profil?.name != null) profil.name else "Username")
-                binding.description.setDescription(profil?.subreddit?.description.toString())
-                binding.description.setFollowersNumber(profil?.subreddit?.subscribers.toString())
-                profil?.icon_img?.let { binding.bannerAndPp.setImage(it) }
-                profil?.subreddit?.banner_img?.let { binding.bannerAndPp.setBanner(it) }
-                if (profil != null) {
-                    if (!profil.subreddit.isAcceptingFollowers) {
+                binding.description.setUsername(if (profile?.name != null) profile.name else "Username")
+                binding.description.setDescription(profile?.subreddit?.description.toString())
+                binding.description.setFollowersNumber(profile?.subreddit?.subscribers.toString())
+                profile?.icon_img?.let { binding.bannerAndPp.setImage(it) }
+                profile?.subreddit?.banner_img?.let { binding.bannerAndPp.setBanner(it) }
+                if (profile != null) {
+                    if (!profile.subreddit.isAcceptingFollowers) {
                         binding.description.desactivateButton()
                     }
                 }
+            }
+
+            // / Posts have a progress bar and can therefore be loaded later to speed up basic informations
+            val posts = user.getMyPost()
+            runOnUiThread {
                 val postsData = ArrayList<PostData>()
                 posts?.data?.children?.forEach {
                     postsData.add(it.data)
                 }
                 binding.posts.setPost(postsData)
             }
-        }
+        }.start()
     }
 }
