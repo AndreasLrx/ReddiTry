@@ -20,6 +20,7 @@ class ProfilePosts @JvmOverloads constructor(
         binding = ComponentPostProfileBinding.bind(this)
         // Load is made only one time through ProfileActivity
         binding.postList.adapter.color = AdapterPostList.Color.HalfTransparent
+        binding.postList.scrollable = false
     }
 
     fun setPost(array: ArrayList<PostData>) {

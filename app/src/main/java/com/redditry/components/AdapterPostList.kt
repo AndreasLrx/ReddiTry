@@ -64,7 +64,7 @@ class AdapterPostList(
     }
 
     fun addPosts(posts: ArrayList<PostData>) {
-        var start = postData.size
+        val start = postData.size
         postData.addAll(posts)
         loadPosts(start)
     }

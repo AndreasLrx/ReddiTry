@@ -3,7 +3,10 @@ package com.redditry.components
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.*
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import com.redditry.LazyLoader
 import com.redditry.R
 import com.redditry.databinding.ComponentPostListBinding
@@ -17,13 +20,20 @@ class PostList @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
     private var binding: ComponentPostListBinding
-    var listView: ListView
+    var listView: NonScrollListView
     val adapter: AdapterPostList = AdapterPostList(context, ArrayList())
     private var _onLoad: OnLoad? = null
     var onLoad: OnLoad?
         get() = _onLoad
         set(value) {
             _onLoad = value
+        }
+    private var _scrollable: Boolean = true
+    var scrollable: Boolean
+        get() = _scrollable
+        set(value) {
+            _scrollable = value
+            listView.scrollable = scrollable
         }
 
     init {
