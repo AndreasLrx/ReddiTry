@@ -18,6 +18,12 @@ class PostList @JvmOverloads constructor(
     private var binding: ComponentPostListBinding
     private var listView: ListView
     val adapter: AdapterPostList = AdapterPostList(context, ArrayList())
+    private var _onLoad: ((adapter: AdapterPostList, offset: Int) -> Unit)? = null
+    var onLoad: ((adapter: AdapterPostList, offset: Int) -> Unit)?
+        get() = _onLoad
+        set(value) {
+            _onLoad = value
+        }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_list, this, true)
@@ -31,6 +37,27 @@ class PostList @JvmOverloads constructor(
                     view.toggleExpand()
             }
         listView.addFooterView(ProgressBar(context))
+
+        onLoad = fun(adapter, start) {
+            Thread {
+                // Replace with api call
+                for (i in 0..9) {
+                    val post =
+                        PostData(
+                            "title " + (i + start).toString(),
+                            "this is a post content\na\na\na\na\na\na\na\na\na\na\na\na",
+                            "r/test",
+                            42,
+                            62,
+                            21,
+                            "u/me",
+                            null
+                        )
+                    adapter.postData.add(post)
+                }
+                adapter.loadPosts(start)
+            }.start()
+        }
         listView.setOnScrollListener(object : LazyLoader() {
             override fun loadMore(
                 view: AbsListView?,
@@ -38,37 +65,8 @@ class PostList @JvmOverloads constructor(
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {
-                Thread {
-                    // Replace with api call
-                    for (i in 0..9) {
-                        val post =
-                            PostData(
-                                "title " + (i + totalItemCount - 1).toString(),
-                                "this is a post content\na\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n" +
-                                        "a\n",
-                                "r/test",
-                                42,
-                                62,
-                                21,
-                                "u/me",
-                                null
-                            )
-
-                        adapter.postData.add(post)
-                    }
-                    adapter.loadPosts(totalItemCount - 1)
-                }.start()
+                if (onLoad != null)
+                    onLoad?.invoke(adapter, totalItemCount - 1)
             }
         })
     }
