@@ -1,9 +1,11 @@
 package com.redditry.components
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.redditry.LoginActivity
 import com.redditry.R
 import com.redditry.databinding.ComponentHeaderprofileBinding
 
@@ -22,6 +24,19 @@ class ProfileHeader @JvmOverloads constructor(
 
             val styledAttributes =
                 context.obtainStyledAttributes(it, R.styleable.ProfileHeader, 0, 0)
+            // remove token
+            binding.logoutButton.setOnClickListener {
+                println("logout")
+                val sharedPref = context.getSharedPreferences("redditry", Context.MODE_PRIVATE)
+                with(sharedPref.edit()) {
+                    // remove accessToken and refreshToken from API
+                    remove("redditToken")
+                    remove("redditRefreshToken")
+                    apply()
+                }
+                val intent = Intent(context, LoginActivity::class.java)
+                context.startActivity(intent)
+            }
 
             if (styledAttributes.getBoolean(R.styleable.ProfileHeader_read_only, false))
                 visibility = GONE
@@ -31,6 +46,7 @@ class ProfileHeader @JvmOverloads constructor(
                     binding.logoutButton.visibility = GONE
                 } else
                     binding.editButton.text = context.getString(R.string.edit_button)
+
             }
 
             styledAttributes.recycle()

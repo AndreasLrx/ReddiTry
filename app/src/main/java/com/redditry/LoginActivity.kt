@@ -34,24 +34,27 @@ class LoginActivity : AppCompatActivity() {
             val redditLogin = API.createInstanceLogin()
 
             Thread {
-                val resp = redditLogin.login(
-                    Credentials.basic(BuildConfig.REDDIT_CLIENT_ID, ""),
-                    code = code!!,
-                    redirect_uri = API.redirectUri
-                )
-                    .execute()
-                if (resp.isSuccessful) {
-                    val myEdit = sharedPreferences.edit()
-                    myEdit.putString("redditToken", resp.body()?.access_token)
-                    myEdit.putString("redditRefreshToken", resp.body()?.refresh_token)
-                    myEdit.apply()
-                    API.loadFromPreferences(sharedPreferences)
+                        val resp =
+                                redditLogin
+                                        .login(
+                                                Credentials.basic(BuildConfig.REDDIT_CLIENT_ID, ""),
+                                                code = code!!,
+                                                redirect_uri = API.redirectUri
+                                        )
+                                        .execute()
+                        if (resp.isSuccessful) {
+                            val myEdit = sharedPreferences.edit()
+                            myEdit.putString("redditToken", resp.body()?.access_token)
+                            myEdit.putString("redditRefreshToken", resp.body()?.refresh_token)
+                            myEdit.apply()
+                            API.loadFromPreferences(sharedPreferences)
 
-                    val intent = Intent(this@LoginActivity, TutorialActivity::class.java)
-                    startActivity(intent)
-                }
-                stopAnimation()
-            }.start()
+                            val intent = Intent(this@LoginActivity, TutorialActivity::class.java)
+                            startActivity(intent)
+                        }
+                        stopAnimation()
+                    }
+                    .start()
         }
         if (API.accessToken != "" && API.accessToken != null) {
             val intent = Intent(this, MainActivity::class.java)
@@ -60,7 +63,11 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val scope = BuildConfig.REDDIT_SCOPE
             val urlString =
-                "https://www.reddit.com/api/v1/authorize.compact?client_id=" + BuildConfig.REDDIT_CLIENT_ID + "&response_type=code&state=%22random%22&redirect_uri=" + API.redirectUri + "&duration=permanent&scope=$scope"
+                    "https://www.reddit.com/api/v1/authorize.compact?client_id=" +
+                            BuildConfig.REDDIT_CLIENT_ID +
+                            "&response_type=code&state=%22random%22&redirect_uri=" +
+                            API.redirectUri +
+                            "&duration=permanent&scope=$scope"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(urlString))
             try {
                 intent.setPackage("com.android.chrome")

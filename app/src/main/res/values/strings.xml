@@ -82,5 +82,6 @@
     <string name="placeholder_underage" tools:ignore="ExtraTranslation">-18</string>
     <string name="underage_text">Age: +18</string>
     <string name="button_save">Save</string>
+    <string name="followers">followers</string>
 
 </resources>
