@@ -10,10 +10,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <RelativeLayout
+            android:id="@+id/sort_by_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/beige_light"
+            android:elevation="40dp"
+            android:paddingVertical="10dp">
+
+            <FrameLayout
+                android:id="@+id/sort_by_spinner_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/rounded_corners"
+                android:paddingHorizontal="10dp">
+
+                <Spinner
+                    android:id="@+id/sort_by_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/sort_by_choices"
+                    android:spinnerMode="dropdown" />
+            </FrameLayout>
+        </RelativeLayout>
+
         <ListView
             android:id="@+id/post_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/sort_by_layout"
             android:divider="@color/transparent"
             android:dividerHeight="10dp"
             android:orientation="vertical"
