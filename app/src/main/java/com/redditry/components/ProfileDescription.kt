@@ -19,23 +19,22 @@ class ProfileDescription @JvmOverloads constructor(
         binding = ComponentDescriptionProfileBinding.bind(this)
     }
 
-    fun setUsername(username:String){
+    fun setUsername(username: String) {
         binding.profileUsername.text = username
     }
-    fun setDescription(description:String){
+    fun setDescription(description: String) {
         binding.profileDescription.text = description
     }
-    fun setEmail(email:String){
+    fun setEmail(email: String) {
         binding.profileEmail.text = email
     }
-    fun setCountry(country:String){
+    fun setCountry(country: String) {
         binding.profileCountry.text = country
     }
-    fun setFollowersNumber(followersNumber:String){
+    fun setFollowersNumber(followersNumber: String) {
         binding.profileFollowersNumber.text = followersNumber
     }
-    fun desactivateButton(){
+    fun desactivateButton() {
         binding.followButton.isEnabled = false
     }
-
 }

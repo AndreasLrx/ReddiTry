@@ -4,7 +4,7 @@ import com.redditry.redditAPI.API
 import com.redditry.redditAPI.MyPostResponse
 import com.redditry.redditAPI.MyProfilResponse
 
-class UserController {
+class User {
 
     val reddit = API.createInstance()
 
@@ -15,5 +15,4 @@ class UserController {
     fun getMyPost(): MyPostResponse? {
         return reddit.getMyPost().execute().body()
     }
-
 }

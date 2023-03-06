@@ -5,7 +5,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class MyPostResponse(
-    val data:MyPostDataResponse
+    val data: MyPostDataResponse
 )
 
 @JsonClass(generateAdapter = true)
@@ -25,13 +25,13 @@ data class PostData(
     val title: String,
     @Json(name = "selftext")
     val content: String,
-    val subreddit_name_prefixed:String,
+    val subreddit_name_prefixed: String,
     @Json(name = "ups")
     val voteUp: Int,
     @Json(name = "downs")
     val voteDown: Int,
     @Json(name = "num_comments")
-    val numComments:Int,
+    val numComments: Int,
     val author: String,
     @Json(name = "url_overridden_by_dest")
     val imageUrl: String?

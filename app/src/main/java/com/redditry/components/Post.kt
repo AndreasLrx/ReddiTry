@@ -2,7 +2,6 @@ package com.redditry.components
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.net.Uri
 import android.transition.Transition
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -19,7 +18,6 @@ import com.redditry.R
 import com.redditry.databinding.ComponentPostBinding
 import com.redditry.redditAPI.PostData
 
-
 class Post @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -34,7 +32,6 @@ class Post @JvmOverloads constructor(
         Purple, Orange, HalfTransparent
     }
 
-
     private var binding: ComponentPostBinding
     private var _format: Format = Format.Expanded
     private var _backgroundColor: Color = Color.Purple
@@ -46,7 +43,6 @@ class Post @JvmOverloads constructor(
     private var _content: String? = null
     private var _votes: Int = 0
     private var _comments: Int = 0
-
 
     var format: Format
         get() = _format
@@ -149,7 +145,6 @@ class Post @JvmOverloads constructor(
             binding.comments.text = comments.toString()
         }
 
-
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post, this, true)
         binding = ComponentPostBinding.bind(this)
@@ -215,17 +210,17 @@ class Post @JvmOverloads constructor(
         userName = "u/" + data.author
         backgroundColor = backgroundColor
         Glide.with(this)
-                .asDrawable()
-                .load(data.imageUrl)
-                .into(object : CustomTarget<Drawable?>() {
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
-                    ) {
-                        image = resource
-                    }
-                    override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
-                })
+            .asDrawable()
+            .load(data.imageUrl)
+            .into(object : CustomTarget<Drawable?>() {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
+                ) {
+                    image = resource
+                }
+                override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+            })
 
         /*
         format

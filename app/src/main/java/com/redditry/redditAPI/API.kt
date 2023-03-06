@@ -9,7 +9,6 @@ import okhttp3.Request
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-
 object API {
     const val redirectUri = BuildConfig.REDDIT_REDIRECT_URI
     const val registerURL = "https://www.reddit.com/register/"
@@ -19,7 +18,7 @@ object API {
         .baseUrl("https://www.reddit.com/api/v1/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
-    private lateinit var retrofit:Retrofit
+    private lateinit var retrofit: Retrofit
     var accessToken: String? = null
     var refreshToken: String? = null
 
@@ -27,28 +26,28 @@ object API {
     }
 
     @JvmName("set_access_token")
-    fun setAccessToken(accessToken:String?){
+    fun setAccessToken(accessToken: String?) {
         this.accessToken = accessToken
 
-        if (accessToken != null){
+        if (accessToken != null) {
             val httpClient = OkHttpClient.Builder()
             httpClient.addInterceptor {
                 val original: Request = it.request()
                 val originalHttpUrl = original.url()
                 val url = originalHttpUrl.newBuilder()
-                        .addQueryParameter("raw_json", "1")
-                        .build()
+                    .addQueryParameter("raw_json", "1")
+                    .build()
 
-                val request = original.newBuilder().url(url).header("Authorization" ,"Bearer "+ API.accessToken).method(original.method(), original.body())
-                        .build();
+                val request = original.newBuilder().url(url).header("Authorization", "Bearer " + API.accessToken).method(original.method(), original.body())
+                    .build()
                 return@addInterceptor it.proceed(request)
             }
 
             retrofit = Retrofit.Builder()
-                    .baseUrl("https://oauth.reddit.com/")
-                    .addConverterFactory(MoshiConverterFactory.create(moshi))
-                    .client(httpClient.build())
-                    .build()
+                .baseUrl("https://oauth.reddit.com/")
+                .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .client(httpClient.build())
+                .build()
         }
     }
 
