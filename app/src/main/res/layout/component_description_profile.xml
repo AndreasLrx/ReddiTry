@@ -28,11 +28,12 @@
     <TextView
         android:id="@+id/profile_email"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_vertical"
         android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
-        android:text="@string/placeholder_email"
-        app:drawableLeftCompat="@drawable/baseline_alternate_email_24" />
+        android:layout_marginBottom="20dp"
+        android:text="@string/underage_text"
+        app:drawableLeftCompat="@drawable/baseline_child_care_24" />
+
 
     <TextView
         android:id="@+id/profile_country"
