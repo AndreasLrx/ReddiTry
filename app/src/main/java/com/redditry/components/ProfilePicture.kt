@@ -21,10 +21,10 @@ class ProfilePicture @JvmOverloads constructor(
         binding = ComponentPhotoBinding.bind(this)
     }
 
-    fun setImage(imageUrl:String){
+    fun setImage(imageUrl: String) {
         Glide.with(this).load(Uri.parse(imageUrl)).into(binding.picture)
     }
-    fun setBanner(bannerUrl:String){
+    fun setBanner(bannerUrl: String) {
         Glide.with(this).load(Uri.parse(bannerUrl)).into(binding.banner)
     }
 }

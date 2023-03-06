@@ -19,15 +19,15 @@ interface RedditInterface {
     ): Call<TokenResponse>
 
     @GET("api/v1/me")
-    fun getMyProfil():Call<MyProfilResponse>
+    fun getMyProfil(): Call<MyProfilResponse>
 
     @GET("user/cley44/submitted")
-    fun getMyPost():Call<MyPostResponse>
+    fun getMyPost(): Call<MyPostResponse>
 
     @GET("r/{subredditName}/about/edit")
-    fun getSubreddit(@Path(value = "user_id", encoded = true) userId:String):Call<SubredditAboutResponse>
+    fun getSubreddit(@Path(value = "user_id", encoded = true) userId: String): Call<SubredditAboutResponse>
 
     @POST("api/site_admin?api_type=json")
     @FormUrlEncoded
-    fun updateSubreddit(subredditEditRequest: SubredditEditRequest):Call<Void>
+    fun updateSubreddit(subredditEditRequest: SubredditEditRequest): Call<Void>
 }

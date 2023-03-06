@@ -16,6 +16,6 @@ data class SubredditEditData(
     val link_type: String = "any",
     val type: String,
     val language: String,
-    val sr:String,
+    val sr: String,
     val subreddit_id: String
 )

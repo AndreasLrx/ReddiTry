@@ -7,7 +7,6 @@ data class SubredditAboutResponse(
     val data: SubredditAboutData
 )
 
-
 @JsonClass(generateAdapter = true)
 data class SubredditAboutData(
     val public_description: String,

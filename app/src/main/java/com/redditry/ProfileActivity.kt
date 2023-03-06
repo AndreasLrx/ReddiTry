@@ -2,7 +2,7 @@ package com.redditry
 
 import android.content.Intent
 import android.os.Bundle
-import com.redditry.controller.UserController
+import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
 import com.redditry.redditAPI.PostData
 import kotlinx.coroutines.GlobalScope
@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
-    private val userController = UserController()
+    private val user = User()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -31,8 +31,8 @@ class ProfileActivity : ActivityHead() {
         }
 
         GlobalScope.launch {
-            val profil = userController.getMyProfil()
-            val posts = userController.getMyPost()
+            val profil = user.getMyProfil()
+            val posts = user.getMyPost()
             runOnUiThread {
                 binding.description.setUsername(if (profil?.name != null) profil.name else "Username")
                 binding.description.setDescription(profil?.subreddit?.description.toString())
@@ -44,13 +44,12 @@ class ProfileActivity : ActivityHead() {
                         binding.description.desactivateButton()
                     }
                 }
-            val postsData = ArrayList<PostData>()
-            posts?.data?.children?.forEach {
-                postsData.add(it.data)
-            }
+                val postsData = ArrayList<PostData>()
+                posts?.data?.children?.forEach {
+                    postsData.add(it.data)
+                }
                 binding.posts.setPost(postsData.toTypedArray())
             }
-
         }
     }
 }
