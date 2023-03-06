@@ -22,5 +22,9 @@ data class Subreddit(
     @Json(name = "subscribers")
     val subscribers: Int,
     @Json(name = "public_description")
-    val description: String?
+    val description: String?,
+    @Json(name = "display_name_prefixed")
+    val displayName: String?,
+    @Json(name = "icon_img")
+    val icon_img: String?
 )
