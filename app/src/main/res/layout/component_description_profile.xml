@@ -22,7 +22,7 @@
         android:layout_marginBottom="20dp"
         android:layout_width="wrap_content"
         android:text="@string/placeholder_number_of_followers"
-        android:textSize="10sp"
+        android:textSize="15sp"
         tools:ignore="SmallSp" />
 
     <TextView

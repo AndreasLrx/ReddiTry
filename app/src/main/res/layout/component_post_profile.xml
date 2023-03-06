@@ -12,21 +12,77 @@
         android:background="@color/semi_transparent">
 
         <TextView
+            android:id="@+id/postTitle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="@string/posts" />
+
+
     </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/component_form_edit_profile_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/select_country">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/beige">
+
+            <Spinner
+                android:id="@+id/country_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:entries="@array/sort_by_choices" />
+        </RelativeLayout>
+    </com.google.android.material.textfield.TextInputLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:id="@+id/postContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+        <LinearLayout
+            android:id="@+id/postContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.redditry.components.Post
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:comments_count="861"
+                app:post_color="semi_transparent"
+                app:post_content="@string/placeholder_post_content"
+                app:post_format="small"
+                app:post_title="@string/placeholder_post_title"
+                app:sender="@string/placeholder_post_user"
+                app:subreddit="@string/placeholder_post_subreddit"
+                app:subreddit_icon="@drawable/redditry_logo_256x256"
+                app:votes_count="573" />
+
+            <com.redditry.components.Post
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:comments_count="861"
+                app:post_color="semi_transparent"
+                app:post_content="@string/placeholder_post_content"
+                app:post_format="small"
+                app:post_title="@string/placeholder_post_title"
+                app:sender="@string/placeholder_post_user"
+                app:subreddit="@string/placeholder_post_subreddit"
+                app:subreddit_icon="@drawable/redditry_logo_256x256"
+                app:votes_count="573" />
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
