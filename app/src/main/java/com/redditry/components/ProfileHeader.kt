@@ -27,7 +27,7 @@ class ProfileHeader @JvmOverloads constructor(
                 visibility = GONE
             else {
                 if (styledAttributes.getBoolean(R.styleable.ProfileHeader_editing, false)) {
-                    binding.editButton.text = context.getString(R.string.save_button)
+                    binding.editButton.text = context.getString(R.string.exit_button)
                     binding.logoutButton.visibility = GONE
                 } else
                     binding.editButton.text = context.getString(R.string.edit_button)

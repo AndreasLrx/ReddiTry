@@ -36,13 +36,12 @@
     <string name="down_vote">Down vote</string>
     <string name="comment">Comment</string>
     <string name="altname_post_image">Post Image</string>
-    <string name="placeholder_email">This.is.an@email</string>
     <string name="placeholder_country">France</string>
     <string name="placeholder_description_profile">This is a wonderful description you can have in
         your profile page</string>
     <string name="follow_button">Follow</string>
     <string name="edit_button">EDIT</string>
-    <string name="save_button">SAVE</string>
+    <string name="exit_button">EXIT</string>
     <string name="posts">Posts</string>
     <string name="placeholder_number_of_followers">145 followers</string>
     <string name="placeholder_username">Username</string>
@@ -81,4 +80,8 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="placeholder_underage" tools:ignore="ExtraTranslation">-18</string>
+    <string name="underage_text">Age: +18</string>
+    <string name="button_save">Save</string>
+
 </resources>
