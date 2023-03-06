@@ -32,6 +32,7 @@ class ProfileActivity : ActivityHead() {
 
         GlobalScope.launch {
             val profil = userController.getMyProfil()
+            val posts = userController.getMyPost()
             runOnUiThread {
                 binding.description.setUsername(if (profil?.name != null) profil.name else "Username")
                 binding.description.setDescription(profil?.subreddit?.description.toString())
@@ -43,11 +44,10 @@ class ProfileActivity : ActivityHead() {
                         binding.description.desactivateButton()
                     }
                 }
-            }
-            val posts = userController.getMyPost()
             val postsData = ArrayList<PostData>()
             posts?.data?.children?.forEach {
                 postsData.add(it.data)
+            }
                 binding.posts.setPost(postsData.toTypedArray())
             }
 

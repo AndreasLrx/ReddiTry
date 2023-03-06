@@ -28,7 +28,11 @@ data class PostData(
     val subreddit_name_prefixed:String,
     @Json(name = "ups")
     val voteUp: Int,
+    @Json(name = "downs")
+    val voteDown: Int,
     @Json(name = "num_comments")
     val numComments:Int,
-    val author: String
+    val author: String,
+    @Json(name = "url_overridden_by_dest")
+    val imageUrl: String?
 )
