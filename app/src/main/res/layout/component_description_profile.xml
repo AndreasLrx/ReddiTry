@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="270dp"
     android:layout_gravity="start"
@@ -9,24 +8,24 @@
 
     <TextView
         android:id="@+id/profile_username"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/placeholder_username"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/profile_followers_number"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
         android:text="@string/placeholder_number_of_followers"
-        android:textSize="15sp"
-        tools:ignore="SmallSp" />
+        android:textSize="15sp" />
 
     <TextView
         android:id="@+id/profile_email"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="20dp"
@@ -37,17 +36,17 @@
 
     <TextView
         android:id="@+id/profile_country"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
         android:text="@string/placeholder_country"
         app:drawableLeftCompat="@drawable/baseline_flag_24" />
 
     <TextView
         android:id="@+id/profile_description"
-        android:layout_gravity="center"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:padding="20dp"
         android:text="@string/placeholder_description_profile" />
 
