@@ -20,6 +20,7 @@ class MainActivity : ActivityHead() {
         // ActivityHead setup
         navigationId = R.id.redditry_icon
         navBar = binding.navBar
+        binding.postList.setLazyLoading()
     }
 
     override fun onNavBarItem(item: MenuItem): Boolean {
