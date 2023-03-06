@@ -20,11 +20,12 @@ class ProfilePosts @JvmOverloads constructor(
         binding = ComponentPostProfileBinding.bind(this)
     }
 
-    fun setPost(array: Array<PostData>){
+    fun setPost(array: Array<PostData>) {
         var postList: MutableList<Post> = ArrayList()
 
         array.forEach {
             val post = Post(context, null)
+            post.setData(it)
         }
 
     }

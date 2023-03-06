@@ -2,10 +2,9 @@ package com.redditry
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
 import com.redditry.controller.UserController
 import com.redditry.databinding.ActivityProfileBinding
+import com.redditry.redditAPI.PostData
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -30,7 +29,7 @@ class ProfileActivity : ActivityHead() {
                 Intent.FLAG_ACTIVITY_NO_HISTORY
             )
         }
-        
+
         GlobalScope.launch {
             val profil = userController.getMyProfil()
             runOnUiThread {
@@ -40,14 +39,18 @@ class ProfileActivity : ActivityHead() {
                 profil?.icon_img?.let { binding.bannerAndPp.setImage(it) }
                 profil?.subreddit?.banner_img?.let { binding.bannerAndPp.setBanner(it) }
                 if (profil != null) {
-                    if (!profil.subreddit.isAcceptingFollowers){
+                    if (!profil.subreddit.isAcceptingFollowers) {
                         binding.description.desactivateButton()
                     }
                 }
             }
             val posts = userController.getMyPost()
-            binding.posts
-        }
+            val postsData = ArrayList<PostData>()
+            posts?.data?.children?.forEach {
+                postsData.add(it.data)
+                binding.posts.setPost(postsData.toTypedArray())
+            }
 
+        }
     }
 }
