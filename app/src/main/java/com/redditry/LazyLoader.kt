@@ -9,8 +9,10 @@ abstract class LazyLoader constructor() : AbsListView.OnScrollListener {
 
     override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {}
     override fun onScroll(
-        view: AbsListView, firstVisibleItem: Int,
-        visibleItemCount: Int, totalItemCount: Int
+        view: AbsListView,
+        firstVisibleItem: Int,
+        visibleItemCount: Int,
+        totalItemCount: Int
     ) {
         if (loading) {
             if (totalItemCount > previousTotal) {
@@ -35,7 +37,9 @@ abstract class LazyLoader constructor() : AbsListView.OnScrollListener {
     // Called when the user is nearing the end of the ListView
     // and the ListView is ready to add more items.
     abstract fun loadMore(
-        view: AbsListView?, firstVisibleItem: Int,
-        visibleItemCount: Int, totalItemCount: Int
+        view: AbsListView?,
+        firstVisibleItem: Int,
+        visibleItemCount: Int,
+        totalItemCount: Int
     )
 }

@@ -35,6 +35,7 @@ class PostList @JvmOverloads constructor(
             _scrollable = value
             listView.scrollable = scrollable
         }
+    private var progressBar: ProgressBar? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_list, this, true)
@@ -49,8 +50,17 @@ class PostList @JvmOverloads constructor(
             }
     }
 
+    fun toggleProgressBar() {
+        if (progressBar != null)
+            listView.removeFooterView(progressBar)
+        else {
+            progressBar = ProgressBar(context)
+            listView.addFooterView(progressBar)
+        }
+    }
+
     fun setLazyLoading(loadingFct: OnLoad? = null) {
-        listView.addFooterView(ProgressBar(context))
+        toggleProgressBar()
 
         if (loadingFct != null)
             onLoad = loadingFct
