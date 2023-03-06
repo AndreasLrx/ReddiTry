@@ -48,12 +48,13 @@ class Post @JvmOverloads constructor(
         get() = _format
         set(value) {
             _format = value
-            if (_format == Format.Expanded) {
+            if (_format == Format.Small) {
                 if (image != null)
                     binding.content.maxLines = 3
                 else
                     binding.content.maxLines = 8
-            }
+            } else
+                binding.content.maxLines = -1
         }
     var backgroundColor: Color
         get() = _backgroundColor
@@ -209,24 +210,34 @@ class Post @JvmOverloads constructor(
         comments = data.numComments
         userName = "u/" + data.author
         backgroundColor = backgroundColor
-        Glide.with(this)
-            .asDrawable()
-            .load(data.imageUrl)
-            .into(object : CustomTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
-                ) {
-                    image = resource
-                }
-                override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
-            })
+        format = Format.Small
+        if (data.imageUrl != null)
+            Glide.with(this)
+                .asDrawable()
+                .load(data.imageUrl)
+                .into(object : CustomTarget<Drawable?>() {
+                    override fun onResourceReady(
+                        resource: Drawable,
+                        transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
+                    ) {
+                        image = resource
+                    }
+
+                    override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+                })
 
         /*
         format
         image
         icon
          */
+    }
+
+    fun toggleExpand() {
+        format = if (format == Format.Expanded)
+            Format.Small
+        else
+            Format.Expanded
     }
 
     private fun createButtonClickListener(onEndCallback: () -> Unit): View.OnClickListener {
