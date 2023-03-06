@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import android.widget.ListView
 
-
 class NonScrollListView constructor(
     context: Context,
     attrs: AttributeSet? = null

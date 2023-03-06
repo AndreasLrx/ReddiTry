@@ -21,9 +21,11 @@ class ProfilePosts @JvmOverloads constructor(
         // Load is made only one time through ProfileActivity
         binding.postList.adapter.color = AdapterPostList.Color.HalfTransparent
         binding.postList.scrollable = false
+        binding.postList.toggleProgressBar()
     }
 
     fun setPost(array: ArrayList<PostData>) {
         binding.postList.adapter.postData = array
+        binding.postList.toggleProgressBar()
     }
 }
