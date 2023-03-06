@@ -48,7 +48,7 @@ class ProfileActivity : ActivityHead() {
                 posts?.data?.children?.forEach {
                     postsData.add(it.data)
                 }
-                binding.posts.setPost(postsData.toTypedArray())
+                binding.posts.setPost(postsData)
             }
         }
     }

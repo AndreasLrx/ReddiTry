@@ -9,6 +9,7 @@ import com.redditry.R
 import com.redditry.databinding.ComponentPostListBinding
 import com.redditry.redditAPI.PostData
 
+typealias OnLoad = (adapter: AdapterPostList, start: Int) -> Unit
 
 class PostList @JvmOverloads constructor(
     context: Context,
@@ -16,10 +17,10 @@ class PostList @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
     private var binding: ComponentPostListBinding
-    private var listView: ListView
+    var listView: ListView
     val adapter: AdapterPostList = AdapterPostList(context, ArrayList())
-    private var _onLoad: ((adapter: AdapterPostList, offset: Int) -> Unit)? = null
-    var onLoad: ((adapter: AdapterPostList, offset: Int) -> Unit)?
+    private var _onLoad: OnLoad? = null
+    var onLoad: OnLoad?
         get() = _onLoad
         set(value) {
             _onLoad = value
@@ -36,28 +37,34 @@ class PostList @JvmOverloads constructor(
                 if (view is Post)
                     view.toggleExpand()
             }
+    }
+
+    fun setLazyLoading(loadingFct: OnLoad? = null) {
         listView.addFooterView(ProgressBar(context))
 
-        onLoad = fun(adapter, start) {
-            Thread {
-                // Replace with api call
-                for (i in 0..9) {
-                    val post =
-                        PostData(
-                            "title " + (i + start).toString(),
-                            "this is a post content\na\na\na\na\na\na\na\na\na\na\na\na",
-                            "r/test",
-                            42,
-                            62,
-                            21,
-                            "u/me",
-                            null
-                        )
-                    adapter.postData.add(post)
-                }
-                adapter.loadPosts(start)
-            }.start()
-        }
+        if (loadingFct != null)
+            onLoad = loadingFct
+        else
+            onLoad = fun(adapter, start) {
+                Thread {
+                    // Replace with api call
+                    for (i in 0..9) {
+                        val post =
+                            PostData(
+                                "title " + (i + start).toString(),
+                                "this is a post content\na\na\na\na\na\na\na\na\na\na\na\na",
+                                "r/test",
+                                42,
+                                62,
+                                21,
+                                "u/me",
+                                null
+                            )
+                        adapter.postData.add(post)
+                    }
+                    adapter.loadPosts(start)
+                }.start()
+            }
         listView.setOnScrollListener(object : LazyLoader() {
             override fun loadMore(
                 view: AbsListView?,

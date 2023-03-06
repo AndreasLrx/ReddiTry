@@ -18,19 +18,11 @@ class ProfilePosts @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_profile, this, true)
         binding = ComponentPostProfileBinding.bind(this)
+        // Load is made only one time through ProfileActivity
+        binding.postList.adapter.color = AdapterPostList.Color.HalfTransparent
     }
 
-    fun setPost(array: Array<PostData>) {
-        var postList: MutableList<Post> = ArrayList()
-
-        array.forEach {
-            val post = Post(context, null)
-            post.setData(it)
-            postList.add(post)
-        }
-
-        postList.forEach {
-            binding.postContainer.addView(it)
-        }
+    fun setPost(array: ArrayList<PostData>) {
+        binding.postList.adapter.postData = array
     }
 }

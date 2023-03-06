@@ -60,15 +60,7 @@ class AdapterPostList(
                 postViews[i] = post
         }
         val mainHandler = Handler(context.mainLooper)
-
         mainHandler.post { notifyDataSetChanged() }
-
-        /*Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {....} // This is your code
-        };
-        mainHandler.post(myRunnable);
-        runOnUiThread { notifyDataSetChanged() }*/
     }
 
     fun addPosts(posts: ArrayList<PostData>) {
