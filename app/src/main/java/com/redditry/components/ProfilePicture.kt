@@ -24,7 +24,7 @@ class ProfilePicture @JvmOverloads constructor(
             val styledAttributes =
                 context.obtainStyledAttributes(it, R.styleable.ProfilePicture, 0, 0)
             // if profilePicture_read_only is true, the button is not visible
-            if (styledAttributes.getBoolean(R.styleable.ProfilePicture_bla, false)) {
+            if (styledAttributes.getBoolean(R.styleable.ProfilePicture_editable, false)) {
                 binding.editButtonRound.visibility = VISIBLE
                 binding.editButtonRoundBanner.visibility = VISIBLE
             }
