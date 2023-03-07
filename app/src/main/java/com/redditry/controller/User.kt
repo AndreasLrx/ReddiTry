@@ -1,9 +1,9 @@
 package com.redditry.controller
 
 import com.redditry.redditAPI.API
-import com.redditry.redditAPI.MyPostResponse
 import com.redditry.redditAPI.MyProfilResponse
 import com.redditry.redditAPI.MySubredditsResponse
+import com.redditry.redditAPI.PostList
 
 class User {
 
@@ -13,7 +13,7 @@ class User {
         return reddit.getMyProfil().execute().body()
     }
 
-    fun getMyPost(): MyPostResponse? {
+    fun getMyPost(): PostList? {
         return reddit.getMyPost().execute().body()
     }
 

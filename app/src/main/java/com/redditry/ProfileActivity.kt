@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
-import com.redditry.redditAPI.PostData
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
@@ -47,7 +46,7 @@ class ProfileActivity : ActivityHead() {
             // / Posts have a progress bar and can therefore be loaded later to speed up basic informations
             val posts = user.getMyPost()
             runOnUiThread {
-                val postsData = ArrayList<PostData>()
+                val postsData = ArrayList<com.redditry.redditAPI.Post>()
                 posts?.data?.children?.forEach {
                     postsData.add(it.data)
                 }

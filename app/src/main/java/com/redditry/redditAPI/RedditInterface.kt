@@ -22,7 +22,7 @@ interface RedditInterface {
     fun getMyProfil(): Call<MyProfilResponse>
 
     @GET("user/cley44/submitted")
-    fun getMyPost(): Call<MyPostResponse>
+    fun getMyPost(): Call<PostList>
 
     @GET("subreddits/mine/subscriber")
     fun getMySubreddits(): Call<MySubredditsResponse>
