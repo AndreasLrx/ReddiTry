@@ -47,6 +47,4 @@ class ProfilePicture @JvmOverloads constructor(
     fun setBanner(bannerUrl: String) {
         Glide.with(this).load(Uri.parse(bannerUrl)).into(binding.banner)
     }
-
-
 }
