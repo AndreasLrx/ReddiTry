@@ -8,8 +8,6 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import com.redditry.databinding.ActivityLoginBinding
 import com.redditry.redditAPI.API
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import okhttp3.Credentials
 
 class LoginActivity : AppCompatActivity() {
@@ -35,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
             val redditLogin = API.createInstanceLogin()
 
-            GlobalScope.launch {
+            Thread {
                 val resp = redditLogin.login(
                     Credentials.basic(BuildConfig.REDDIT_CLIENT_ID, ""),
                     code = code!!,
@@ -49,14 +47,14 @@ class LoginActivity : AppCompatActivity() {
                     myEdit.apply()
                     API.loadFromPreferences(sharedPreferences)
 
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    val intent = Intent(this@LoginActivity, TutorialActivity::class.java)
                     startActivity(intent)
                 }
                 stopAnimation()
-            }
+            }.start()
         }
         if (API.accessToken != "" && API.accessToken != null) {
-            val intent = Intent(this, ProfileActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
         binding.loginButton.setOnClickListener {
