@@ -10,5 +10,4 @@ class Subreddit {
 
         return res?.data
     }
-
 }

@@ -19,11 +19,11 @@ class ProfilePosts @JvmOverloads constructor(
         binding = ComponentPostProfileBinding.bind(this)
         // Load is made only one time through ProfileActivity
         binding.postList.adapter.color = AdapterPostList.Color.HalfTransparent
-        binding.postList.toggleProgressBar()
+        binding.postList.setProgressBar(true)
     }
 
     fun setPost(array: ArrayList<com.redditry.redditAPI.Post>) {
         binding.postList.adapter.postData = array
-        binding.postList.toggleProgressBar()
+        binding.postList.setProgressBar(false)
     }
 }

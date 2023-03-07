@@ -3,9 +3,9 @@ package com.redditry
 import android.widget.AbsListView
 
 abstract class LazyLoader constructor() : AbsListView.OnScrollListener {
-    var loading = true
-    var previousTotal = 0
-    private var threshold = 0
+    @Volatile
+    private var loading = false
+    private var threshold = 1
 
     override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {}
     override fun onScroll(
@@ -14,24 +14,19 @@ abstract class LazyLoader constructor() : AbsListView.OnScrollListener {
         visibleItemCount: Int,
         totalItemCount: Int
     ) {
-        if (loading) {
-            if (totalItemCount > previousTotal) {
-                // the loading has finished
-                loading = false
-                previousTotal = totalItemCount
-            }
-        }
-
         // check if the List needs more data
         if (!loading && (firstVisibleItem + visibleItemCount) >= (totalItemCount - threshold)) {
             loading = true
-
             // List needs more data. Go fetch !!
             loadMore(
                 view, firstVisibleItem,
                 visibleItemCount, totalItemCount
             )
         }
+    }
+
+    fun notifyEndLoading() {
+        loading = false
     }
 
     // Called when the user is nearing the end of the ListView

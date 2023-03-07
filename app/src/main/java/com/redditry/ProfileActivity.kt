@@ -32,16 +32,17 @@ class ProfileActivity : ActivityHead() {
             )
         }
 
-        binding.posts.binding.postList.listView.setOnTouchListener(View.OnTouchListener { v, event ->
-            binding.scrollView.requestDisallowInterceptTouchEvent(true)
-            when (event.actionMasked) {
-                MotionEvent.ACTION_UP -> binding.scrollView.requestDisallowInterceptTouchEvent(
-                    false
-                )
+        binding.posts.binding.postList.listView.setOnTouchListener(
+            View.OnTouchListener { _, event ->
+                binding.scrollView.requestDisallowInterceptTouchEvent(true)
+                when (event.actionMasked) {
+                    MotionEvent.ACTION_UP -> binding.scrollView.requestDisallowInterceptTouchEvent(
+                        false
+                    )
+                }
+                false
             }
-            false
-        })
-
+        )
 
         Thread {
             val profile = user.getMyProfil()
