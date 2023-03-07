@@ -44,6 +44,10 @@ class AdapterPostList(
         postData = postData
     }
 
+    fun clear() {
+        postData = ArrayList()
+    }
+
     fun loadPosts(start: Int = 0) {
         if (postViews.size < start)
             throw java.lang.IndexOutOfBoundsException("Try to load posts from " + start.toString() + " where list have only " + postViews.size + " elements.")
@@ -60,6 +64,11 @@ class AdapterPostList(
         }
         val mainHandler = Handler(context.mainLooper)
         mainHandler.post { notifyDataSetChanged() }
+    }
+
+    fun addPosts(posts: ArrayList<com.redditry.redditAPI.Post>) {
+        postData.addAll(posts)
+        loadPosts(postData.size - posts.size)
     }
 
     private fun postColorAt(position: Int): Post.Color {
