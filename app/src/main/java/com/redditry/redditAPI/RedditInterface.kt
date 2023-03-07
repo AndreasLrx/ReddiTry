@@ -22,8 +22,15 @@ interface RedditInterface {
     @GET("api/v1/me")
     fun getMyProfil(): Call<MyProfilResponse>
 
-    @GET("user/cley44/submitted")
-    fun getMyPost(): Call<PostList>
+    @GET("user/{username}/submitted")
+    fun getMyPost(
+        @Path(
+            value = "username",
+            encoded = true
+        ) username: String,
+        @Query("after") after: String = "",
+        @Query("limit") limit: Int = 25
+    ): Call<PostList>
 
     @GET("subreddits/mine/subscriber")
     fun getMySubreddits(): Call<MySubredditsResponse>
