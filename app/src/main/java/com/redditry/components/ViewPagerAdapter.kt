@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import androidx.viewpager.widget.PagerAdapter
 import com.redditry.R
-import java.util.*
+import java.util.Objects
 
 class ViewPagerAdapter(val context: Context, private val imageList: List<Int>) : PagerAdapter() {
     // on below line we are creating a method
@@ -57,11 +57,10 @@ class ViewPagerAdapter(val context: Context, private val imageList: List<Int>) :
         container.removeView(`object` as RelativeLayout)
     }
 
-
     // methode who call when the last slide is reached and the activity is finish
     override fun finishUpdate(container: ViewGroup) {
         super.finishUpdate(container)
-        //val intent = Intent(context, MainActivity::class.java)
-        //context.startActivity(intent)
+        // val intent = Intent(context, MainActivity::class.java)
+        // context.startActivity(intent)
     }
 }
