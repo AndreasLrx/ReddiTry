@@ -15,7 +15,6 @@ class TutorialActivity : ActivityHead() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
 
-
         viewPager = findViewById(R.id.idViewPager)
 
         imageList = ArrayList<Int>()
@@ -28,7 +27,6 @@ class TutorialActivity : ActivityHead() {
         imageList = imageList + R.drawable.tutorial7
         imageList = imageList + R.drawable.tutorial8
         imageList = imageList + R.drawable.tutorial9
-
 
         viewPagerAdapter = ViewPagerAdapter(this@TutorialActivity, imageList)
 
