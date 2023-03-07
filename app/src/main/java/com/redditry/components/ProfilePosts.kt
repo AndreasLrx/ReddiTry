@@ -12,14 +12,13 @@ class ProfilePosts @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentPostProfileBinding
+    var binding: ComponentPostProfileBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_profile, this, true)
         binding = ComponentPostProfileBinding.bind(this)
         // Load is made only one time through ProfileActivity
         binding.postList.adapter.color = AdapterPostList.Color.HalfTransparent
-        binding.postList.scrollable = false
         binding.postList.toggleProgressBar()
     }
 

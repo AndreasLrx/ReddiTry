@@ -1,13 +1,18 @@
 package com.redditry
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
     private val user = User()
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileBinding.inflate(layoutInflater)
@@ -26,6 +31,17 @@ class ProfileActivity : ActivityHead() {
                 Intent.FLAG_ACTIVITY_NO_HISTORY
             )
         }
+
+        binding.posts.binding.postList.listView.setOnTouchListener(View.OnTouchListener { v, event ->
+            binding.scrollView.requestDisallowInterceptTouchEvent(true)
+            when (event.actionMasked) {
+                MotionEvent.ACTION_UP -> binding.scrollView.requestDisallowInterceptTouchEvent(
+                    false
+                )
+            }
+            false
+        })
+
 
         Thread {
             val profile = user.getMyProfil()

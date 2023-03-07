@@ -30,7 +30,7 @@
             </RelativeLayout>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.redditry.components.NonScrollListView
+        <ListView
             android:id="@+id/post_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
