@@ -12,7 +12,6 @@ class SearchActivity : ActivityHead() {
 
         binding.returnButton.setOnClickListener { finish() }
 
-
         // Activity Head
         navigationId = R.id.search_icon
         navBar = binding.navBar
