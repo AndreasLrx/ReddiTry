@@ -72,8 +72,8 @@
     <string name="alt_back_arrow">back_arrow</string>
     <string name="alt_logo">logo</string>
     <string-array name="sort_by_choices">
-        <item>Popular</item>
         <item>Newest</item>
+        <item>Popular</item>
         <item>Hot</item>
         <item>Best</item>
     </string-array>
@@ -86,4 +86,5 @@
     <string name="search_button">search button</string>
     <string name="edit_profile_picture">edit profile picture</string>
     <string name="members">%d members</string>
+    <string name="end_of_posts">No posts left</string>
 </resources>

@@ -12,4 +12,3 @@ data class MyProfilResponse(
     @Json(name = "subreddit")
     val subreddit: Subreddit
 )
-

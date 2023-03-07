@@ -1,14 +1,21 @@
 package com.redditry.components
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.*
+import android.view.View
+import android.widget.AbsListView
+import android.widget.AdapterView
+import android.widget.ListView
+import android.widget.ProgressBar
+import android.widget.RelativeLayout
 import com.redditry.LazyLoader
 import com.redditry.R
 import com.redditry.databinding.ComponentPostListBinding
+import java.io.InterruptedIOException
 
-typealias OnLoad = (adapter: AdapterPostList, start: Int) -> Unit
+typealias OnLoad = (sortBy: com.redditry.controller.Post.SortBy, after: String) -> Pair<ArrayList<com.redditry.redditAPI.Post>, String?>
 
 class PostList @JvmOverloads constructor(
     context: Context,
@@ -18,14 +25,14 @@ class PostList @JvmOverloads constructor(
     var binding: ComponentPostListBinding
     var listView: ListView
     val adapter: AdapterPostList = AdapterPostList(context, ArrayList())
-    private var _onLoad: OnLoad? = null
-    var onLoad: OnLoad?
-        get() = _onLoad
-        set(value) {
-            _onLoad = value
-        }
     private var progressBar: ProgressBar? = null
+
+    // Lazy loading
     var lazyLoader: LazyLoader? = null
+    private var after: String? = ""
+    private var loadingThread: Thread? = null
+    private var sortBy: com.redditry.controller.Post.SortBy =
+        com.redditry.controller.Post.SortBy.values()[0]
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_list, this, true)
@@ -41,9 +48,10 @@ class PostList @JvmOverloads constructor(
     }
 
     fun toggleProgressBar() {
-        if (progressBar != null)
+        if (progressBar != null) {
             listView.removeFooterView(progressBar)
-        else {
+            progressBar = null
+        } else {
             progressBar = ProgressBar(context)
             listView.addFooterView(progressBar)
         }
@@ -54,32 +62,9 @@ class PostList @JvmOverloads constructor(
             toggleProgressBar()
     }
 
-    fun setLazyLoading(loadingFct: OnLoad? = null) {
-        toggleProgressBar()
+    fun setLazyLoading(loadingFct: OnLoad) {
+        setProgressBar(true)
 
-        if (loadingFct != null)
-            onLoad = loadingFct
-        else
-            onLoad = fun(adapter, start) {
-                Thread {
-                    // Replace with api call
-                    for (i in 0..9) {
-                        val post =
-                            com.redditry.redditAPI.Post(
-                                "title " + (i + start).toString(),
-                                "this is a post content\na\na\na\na\na\na\na\na\na\na\na\na",
-                                "r/test",
-                                42,
-                                62,
-                                21,
-                                "u/me",
-                                null
-                            )
-                        adapter.postData.add(post)
-                    }
-                    adapter.loadPosts(start)
-                }.start()
-            }
         lazyLoader = object : LazyLoader() {
             override fun loadMore(
                 view: AbsListView?,
@@ -87,10 +72,49 @@ class PostList @JvmOverloads constructor(
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {
-                if (onLoad != null)
-                    onLoad?.invoke(adapter, totalItemCount - 1)
+                loadingThread =
+                    Thread {
+                        try {
+                            if (after != null) {
+                                val res =
+                                    loadingFct(sortBy, after!!) // posts.getPosts(sortBy, after)
+                                if (res.first.size != 0)
+                                    adapter.addPosts(res.first)
+                                after = res.second
+                                // No more posts
+                                if (after == null)
+                                    Handler(context.mainLooper).post { setProgressBar(false) }
+                                lazyLoader?.notifyEndLoading()
+                            }
+                        } catch (_: InterruptedIOException) {
+                        }
+                    }
+                loadingThread!!.start()
             }
         }
         listView.setOnScrollListener(lazyLoader)
+
+        binding.sortBySpinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                if (p2 == sortBy.ordinal)
+                    return
+                if (loadingThread != null) {
+                    loadingThread!!.interrupt()
+                    loadingThread = null
+                }
+                lazyLoader?.notifyEndLoading()
+                sortBy = com.redditry.controller.Post.SortBy.values()[p2]
+                after = ""
+                invalidate()
+                adapter.clear()
+                setProgressBar(true)
+                // Force reload
+                listView.scrollBy(0, 0)
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
     }
 }

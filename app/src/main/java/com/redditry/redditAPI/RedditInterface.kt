@@ -38,6 +38,20 @@ interface RedditInterface {
         @Query("limit") limit: Int = 25
     ): Call<PostList>
 
+    @GET("{subreddit}/{sort_by}")
+    fun getPostsFrom(
+        @Path(
+            value = "subreddit",
+            encoded = true
+        ) subreddit: String,
+        @Path(
+            value = "sort_by",
+            encoded = true
+        ) sort_by: String,
+        @Query("after") after: String = "",
+        @Query("limit") limit: Int = 25
+    ): Call<PostList>
+
     @GET("{subredditName}/about")
     fun getSubreddit(
         @Path(
