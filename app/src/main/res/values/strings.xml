@@ -74,7 +74,8 @@
     <string-array name="sort_by_choices">
         <item>Popular</item>
         <item>Newest</item>
-        <item>Oldest</item>
+        <item>Hot</item>
+        <item>Best</item>
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

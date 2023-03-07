@@ -7,6 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface RedditInterface {
     @POST("access_token")
@@ -27,8 +28,23 @@ interface RedditInterface {
     @GET("subreddits/mine/subscriber")
     fun getMySubreddits(): Call<MySubredditsResponse>
 
+    @GET("{sort_by}")
+    fun getPosts(
+        @Path(
+            value = "sort_by",
+            encoded = true
+        ) sort_by: String,
+        @Query("after") after: String = "",
+        @Query("limit") limit: Int = 25
+    ): Call<PostList>
+
     @GET("r/{subredditName}/about/edit")
-    fun getSubreddit(@Path(value = "user_id", encoded = true) userId: String): Call<SubredditAboutResponse>
+    fun getSubreddit(
+        @Path(
+            value = "user_id",
+            encoded = true
+        ) userId: String
+    ): Call<SubredditAboutResponse>
 
     @POST("api/site_admin?api_type=json")
     @FormUrlEncoded

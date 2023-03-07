@@ -10,6 +10,7 @@ data class PostList(
 
 @JsonClass(generateAdapter = true)
 data class PostListData(
+    val after: String?,
     @Json(name = "dist")
     val numberOfPost: Int,
     val children: Array<PostData>

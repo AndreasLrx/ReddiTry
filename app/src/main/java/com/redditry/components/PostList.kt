@@ -18,7 +18,7 @@ class PostList @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentPostListBinding
+    var binding: ComponentPostListBinding
     var listView: NonScrollListView
     val adapter: AdapterPostList = AdapterPostList(context, ArrayList())
     private var _onLoad: OnLoad? = null
@@ -35,6 +35,7 @@ class PostList @JvmOverloads constructor(
             listView.scrollable = scrollable
         }
     private var progressBar: ProgressBar? = null
+    var lazyLoader: LazyLoader? = null
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_list, this, true)
@@ -56,6 +57,11 @@ class PostList @JvmOverloads constructor(
             progressBar = ProgressBar(context)
             listView.addFooterView(progressBar)
         }
+    }
+
+    fun setProgressBar(visible: Boolean = true) {
+        if ((visible && progressBar == null) || (!visible && progressBar != null))
+            toggleProgressBar()
     }
 
     fun setLazyLoading(loadingFct: OnLoad? = null) {
@@ -84,7 +90,7 @@ class PostList @JvmOverloads constructor(
                     adapter.loadPosts(start)
                 }.start()
             }
-        listView.setOnScrollListener(object : LazyLoader() {
+        lazyLoader = object : LazyLoader() {
             override fun loadMore(
                 view: AbsListView?,
                 firstVisibleItem: Int,
@@ -94,6 +100,7 @@ class PostList @JvmOverloads constructor(
                 if (onLoad != null)
                     onLoad?.invoke(adapter, totalItemCount - 1)
             }
-        })
+        }
+        listView.setOnScrollListener(lazyLoader)
     }
 }

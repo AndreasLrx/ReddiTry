@@ -3,8 +3,8 @@ package com.redditry
 import android.widget.AbsListView
 
 abstract class LazyLoader constructor() : AbsListView.OnScrollListener {
-    private var loading = true
-    private var previousTotal = 0
+    var loading = true
+    var previousTotal = 0
     private var threshold = 0
 
     override fun onScrollStateChanged(view: AbsListView, scrollState: Int) {}
