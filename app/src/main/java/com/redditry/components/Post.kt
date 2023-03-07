@@ -2,7 +2,6 @@ package com.redditry.components
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.transition.Transition
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.redditry.R
 import com.redditry.databinding.ComponentPostBinding
-import com.redditry.redditAPI.PostData
 
 class Post @JvmOverloads constructor(
     context: Context,
@@ -202,7 +200,7 @@ class Post @JvmOverloads constructor(
         )
     }
 
-    fun setData(data: PostData) {
+    fun setData(data: com.redditry.redditAPI.Post) {
         subredditName = data.subreddit_name_prefixed
         title = data.title
         content = data.content

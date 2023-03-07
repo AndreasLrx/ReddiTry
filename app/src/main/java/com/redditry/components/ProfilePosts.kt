@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.redditry.R
 import com.redditry.databinding.ComponentPostProfileBinding
-import com.redditry.redditAPI.PostData
 
 class ProfilePosts @JvmOverloads constructor(
     context: Context,
@@ -24,7 +23,7 @@ class ProfilePosts @JvmOverloads constructor(
         binding.postList.toggleProgressBar()
     }
 
-    fun setPost(array: ArrayList<PostData>) {
+    fun setPost(array: ArrayList<com.redditry.redditAPI.Post>) {
         binding.postList.adapter.postData = array
         binding.postList.toggleProgressBar()
     }

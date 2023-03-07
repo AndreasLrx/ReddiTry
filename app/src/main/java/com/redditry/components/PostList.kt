@@ -10,7 +10,6 @@ import android.widget.RelativeLayout
 import com.redditry.LazyLoader
 import com.redditry.R
 import com.redditry.databinding.ComponentPostListBinding
-import com.redditry.redditAPI.PostData
 
 typealias OnLoad = (adapter: AdapterPostList, start: Int) -> Unit
 
@@ -70,7 +69,7 @@ class PostList @JvmOverloads constructor(
                     // Replace with api call
                     for (i in 0..9) {
                         val post =
-                            PostData(
+                            com.redditry.redditAPI.Post(
                                 "title " + (i + start).toString(),
                                 "this is a post content\na\na\na\na\na\na\na\na\na\na\na\na",
                                 "r/test",

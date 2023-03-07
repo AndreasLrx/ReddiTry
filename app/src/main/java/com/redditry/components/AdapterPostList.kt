@@ -5,21 +5,20 @@ import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import com.redditry.redditAPI.PostData
 
 class AdapterPostList(
     private val context: Context,
-    posts: ArrayList<PostData>
+    posts: ArrayList<com.redditry.redditAPI.Post>
 ) : BaseAdapter() {
     enum class Color {
         Alternate, HalfTransparent
     }
 
     private lateinit var postViews: ArrayList<Post>
-    private lateinit var _postData: ArrayList<PostData>
+    private lateinit var _postData: ArrayList<com.redditry.redditAPI.Post>
     private var _color: Color = Color.Alternate
 
-    var postData: ArrayList<PostData>
+    var postData: ArrayList<com.redditry.redditAPI.Post>
         get() = _postData
         set(value) {
             _postData = value
@@ -61,12 +60,6 @@ class AdapterPostList(
         }
         val mainHandler = Handler(context.mainLooper)
         mainHandler.post { notifyDataSetChanged() }
-    }
-
-    fun addPosts(posts: ArrayList<PostData>) {
-        val start = postData.size
-        postData.addAll(posts)
-        loadPosts(start)
     }
 
     private fun postColorAt(position: Int): Post.Color {
