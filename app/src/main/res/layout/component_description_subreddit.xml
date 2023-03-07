@@ -8,21 +8,38 @@
 
 
     <TextView
-        android:id="@+id/subreddit_name"
+        android:id="@+id/subreddit_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/placeholder_subreddit_name"
+        android:text="@string/placeholder_subreddit_title"
         android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/members"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/placeholder_number_members"
-        android:textSize="15sp" />
+        android:layout_gravity="center">
+
+        <TextView
+            android:id="@+id/subreddit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingHorizontal="5dp"
+            android:text="@string/placeholder_subreddit_name"
+            android:textColor="@color/orange"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingHorizontal="5dp"
+            android:text="@string/placeholder_number_members"
+            android:textSize="15sp" />
+    </LinearLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout

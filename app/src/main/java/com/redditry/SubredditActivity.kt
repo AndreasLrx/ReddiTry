@@ -13,16 +13,21 @@ class SubredditActivity : ActivityHead() {
     private val subreddit: Subreddit = Subreddit()
     private val posts: Post = Post()
 
-    private lateinit var _title: String
+    private lateinit var _name: String
+    private var _title: String = ""
     private var _members: Int = 0
-    private var after: String? = ""
-    private var sortBy: Post.SortBy = Post.SortBy.rising
 
+    private var name: String
+        get() = _name
+        set(value) {
+            _name = value
+            binding.description.binding.subredditName.text = name
+        }
     private var title: String
         get() = _title
         set(value) {
             _title = value
-            binding.description.binding.subredditName.text = title
+            binding.description.binding.subredditTitle.text = title
         }
     private var members: Int
         get() = _members
@@ -55,12 +60,12 @@ class SubredditActivity : ActivityHead() {
 
         val extras = intent.extras
         if (extras != null) {
-            val name = extras.getString("subreddit_name", "r/Android")
-            title = name
+            name = extras.getString("subreddit_name", "r/Android")
             Thread {
                 val res = subreddit.getSubreddit(name) ?: return@Thread
 
                 runOnUiThread {
+                    title = res.title
                     members = res.subscribers
                     binding.description.binding.description.text = res.description
                     res.icon_img?.let { binding.bannerAndPp.setImage(it) }
