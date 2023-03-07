@@ -1,7 +1,6 @@
 package com.redditry
 
 import android.os.Bundle
-import com.redditry.components.SearchComponent
 import com.redditry.databinding.ActivitySearchBinding
 
 class SearchActivity : ActivityHead() {
@@ -28,7 +27,6 @@ class SearchActivity : ActivityHead() {
 //            binding.searchButton.performClick()
 //            true
 //        }
-
 
         // Activity Head
         navigationId = R.id.search_icon

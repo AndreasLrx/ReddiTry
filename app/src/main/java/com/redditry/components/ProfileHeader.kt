@@ -46,7 +46,6 @@ class ProfileHeader @JvmOverloads constructor(
                     binding.logoutButton.visibility = GONE
                 } else
                     binding.editButton.text = context.getString(R.string.edit_button)
-
             }
 
             styledAttributes.recycle()

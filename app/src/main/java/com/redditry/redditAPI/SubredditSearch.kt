@@ -2,12 +2,10 @@ package com.redditry.redditAPI
 
 import com.squareup.moshi.JsonClass
 
-
 @JsonClass(generateAdapter = true)
 data class SearchSubredditResponse(
     val data: SubredditNames
 )
-
 
 @JsonClass(generateAdapter = true)
 data class SubredditNames(
