@@ -67,6 +67,12 @@ interface RedditInterface {
         ) subreddit: String
     ): Call<SubredditAboutResponse>
 
+    @GET("subreddits/search")
+    fun searchSubreddit(
+        @Query(value = "q") query: String,
+        @Query(value = "show_users") showUsers: Boolean = false
+    ): Call<MySubredditsResponse>
+
     @POST("api/site_admin?api_type=json")
     @FormUrlEncoded
     fun updateSubreddit(subredditEditRequest: SubredditEditRequest): Call<Void>
