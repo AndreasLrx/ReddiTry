@@ -17,26 +17,11 @@
             android:gravity="center"
             android:text="@string/posts" />
 
-
     </RelativeLayout>
 
     <com.redditry.components.PostList
         android:id="@+id/post_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/postContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-
-
-    </ScrollView>
 
 </LinearLayout>

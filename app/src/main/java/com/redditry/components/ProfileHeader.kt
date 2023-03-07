@@ -26,7 +26,6 @@ class ProfileHeader @JvmOverloads constructor(
                 context.obtainStyledAttributes(it, R.styleable.ProfileHeader, 0, 0)
             // remove token redirect to login
             binding.logoutButton.setOnClickListener {
-                println("logout")
                 val sharedPref = context.getSharedPreferences("redditry", Context.MODE_PRIVATE)
                 with(sharedPref.edit()) {
                     // remove accessToken and refreshToken from API
