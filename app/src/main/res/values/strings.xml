@@ -46,7 +46,8 @@
     <string name="log_out">log_out</string>
     <string name="alt_banner">banner</string>
     <string name="alt_profile_picture">profile_picture</string>
-    <string name="placeholder_subreddit_name">Subreddit Name</string>
+    <string name="placeholder_subreddit_name">r/Subreddit</string>
+    <string name="placeholder_subreddit_title">Subreddit Title</string>
     <string name="placeholder_number_members">_254_543_members</string>
     <string name="text_search" tools:ignore="ExtraTranslation">Search for your favorite \n subreddit right here!</string>
     <string name="placeholder_description_subreddit">Cette session Bootstrap - Organizational theory
