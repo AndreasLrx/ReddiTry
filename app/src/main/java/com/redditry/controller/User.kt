@@ -3,7 +3,7 @@ package com.redditry.controller
 import com.redditry.redditAPI.API
 import com.redditry.redditAPI.MyProfilResponse
 import com.redditry.redditAPI.MySubredditsResponse
-import com.redditry.redditAPI.PostList
+import com.redditry.redditAPI.Post
 
 class User {
 
@@ -13,8 +13,18 @@ class User {
         return reddit.getMyProfil().execute().body()
     }
 
-    fun getMyPost(): PostList? {
-        return reddit.getMyPost().execute().body()
+    fun getMyPost(
+        username: String,
+        after: String = "",
+        limit: Int = 10
+    ): Pair<ArrayList<Post>, String?> {
+        val posts = reddit.getMyPost(username, after ?: "", limit).execute().body()
+
+        val res = ArrayList<com.redditry.redditAPI.Post>()
+        posts?.data?.children?.forEach {
+            res.add(it.data)
+        }
+        return Pair(res, posts?.data?.after)
     }
 
     fun getMySubscribedSubreddits(): MySubredditsResponse? {

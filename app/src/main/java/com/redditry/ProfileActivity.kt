@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import com.redditry.controller.Post
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
 
@@ -43,6 +44,7 @@ class ProfileActivity : ActivityHead() {
                 false
             }
         )
+        binding.posts.binding.postList.binding.sortBySpinner.visibility = View.GONE
 
         Thread {
             val profile = user.getMyProfil()
@@ -60,15 +62,14 @@ class ProfileActivity : ActivityHead() {
                 }
             }
 
-            // / Posts have a progress bar and can therefore be loaded later to speed up basic informations
-            val posts = user.getMyPost()
-            runOnUiThread {
-                val postsData = ArrayList<com.redditry.redditAPI.Post>()
-                posts?.data?.children?.forEach {
-                    postsData.add(it.data)
+            binding.posts.binding.postList.setLazyLoading(
+                fun(
+                    _: Post.SortBy,
+                    after: String
+                ): Pair<ArrayList<com.redditry.redditAPI.Post>, String?> {
+                    return user.getMyPost(profile?.name!!, after)
                 }
-                binding.posts.setPost(postsData)
-            }
+            )
         }.start()
     }
 }
