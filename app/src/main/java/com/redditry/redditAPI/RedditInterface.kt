@@ -49,4 +49,12 @@ interface RedditInterface {
     @POST("api/site_admin?api_type=json")
     @FormUrlEncoded
     fun updateSubreddit(subredditEditRequest: SubredditEditRequest): Call<Void>
+
+    @GET("api/search_reddit_names")
+    fun searchSubreddit(
+        @Query("query") query: String,
+        @Query("exact") exact: Boolean = false,
+        @Query("include_over_18") include_over_18: Boolean = true,
+        @Query("include_unadvertisable") include_unadvertisable: Boolean = true
+    ): Call<SearchSubredditResponse>
 }

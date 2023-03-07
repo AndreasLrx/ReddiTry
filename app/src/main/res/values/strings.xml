@@ -83,5 +83,7 @@
     <string name="underage_text">Age: +18</string>
     <string name="button_save">Save</string>
     <string name="followers">followers</string>
+    <string name="search_button">search button</string>
+    <string name="edit_profile_picture">edit profile picture</string>
 
 </resources>

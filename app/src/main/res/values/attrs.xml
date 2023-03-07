@@ -23,4 +23,7 @@
         <attr name="read_only" format="boolean" />
         <attr name="editing" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="ProfilePicture">
+        <attr name="bla" format="boolean" />
+    </declare-styleable>
 </resources>

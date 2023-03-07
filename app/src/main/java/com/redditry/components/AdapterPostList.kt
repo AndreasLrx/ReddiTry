@@ -82,7 +82,7 @@ class AdapterPostList(
     }
 
     override fun getCount(): Int {
-        return postData.size
+        return postViews.size
     }
 
     override fun getItem(position: Int): Any {
