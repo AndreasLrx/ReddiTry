@@ -38,12 +38,12 @@ interface RedditInterface {
         @Query("limit") limit: Int = 25
     ): Call<PostList>
 
-    @GET("r/{subredditName}/about/edit")
+    @GET("{subredditName}/about")
     fun getSubreddit(
         @Path(
-            value = "user_id",
-            encoded = true
-        ) userId: String
+            value = "subredditName",
+            encoded = false
+        ) subreddit: String
     ): Call<SubredditAboutResponse>
 
     @POST("api/site_admin?api_type=json")

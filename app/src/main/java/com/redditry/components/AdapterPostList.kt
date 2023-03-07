@@ -93,9 +93,7 @@ class AdapterPostList(
         return position.toLong()
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View? {
-        if (position > postViews.size)
-            return null
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return postViews[position]
     }
 }
