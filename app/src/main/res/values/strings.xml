@@ -85,5 +85,5 @@
     <string name="followers">followers</string>
     <string name="search_button">search button</string>
     <string name="edit_profile_picture">edit profile picture</string>
-
+    <string name="members">%d members</string>
 </resources>

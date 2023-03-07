@@ -13,18 +13,3 @@ data class MyProfilResponse(
     val subreddit: Subreddit
 )
 
-@JsonClass(generateAdapter = true)
-data class Subreddit(
-    @Json(name = "banner_img")
-    val banner_img: String?,
-    @Json(name = "accept_followers")
-    val isAcceptingFollowers: Boolean,
-    @Json(name = "subscribers")
-    val subscribers: Int,
-    @Json(name = "public_description")
-    val description: String?,
-    @Json(name = "display_name_prefixed")
-    val displayName: String?,
-    @Json(name = "icon_img")
-    val icon_img: String?
-)
