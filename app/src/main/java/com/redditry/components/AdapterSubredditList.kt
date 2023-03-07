@@ -36,7 +36,7 @@ class AdapterSubredditList(
     }
 
     override fun getCount(): Int {
-        return data.size
+        return views.size
     }
 
     override fun getItem(position: Int): Any {

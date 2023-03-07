@@ -5,7 +5,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import com.redditry.R
 import com.redditry.databinding.ComponentDescriptionProfileBinding
+import com.redditry.databinding.ComponentPhotoBinding
 
 
 class ProfileDescription @JvmOverloads constructor(
@@ -19,6 +21,7 @@ class ProfileDescription @JvmOverloads constructor(
         LayoutInflater.from(context)
             .inflate(com.redditry.R.layout.component_description_profile, this, true)
         binding = ComponentDescriptionProfileBinding.bind(this)
+        
     }
 
     fun setUsername(username: String) {

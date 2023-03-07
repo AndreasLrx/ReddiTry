@@ -24,7 +24,7 @@ class ProfileHeader @JvmOverloads constructor(
 
             val styledAttributes =
                 context.obtainStyledAttributes(it, R.styleable.ProfileHeader, 0, 0)
-            // remove token
+            // remove token redirect to login
             binding.logoutButton.setOnClickListener {
                 println("logout")
                 val sharedPref = context.getSharedPreferences("redditry", Context.MODE_PRIVATE)

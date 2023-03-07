@@ -38,7 +38,9 @@ object API {
                     .addQueryParameter("raw_json", "1")
                     .build()
 
-                val request = original.newBuilder().url(url).header("Authorization", "Bearer " + API.accessToken).method(original.method(), original.body())
+                val request = original.newBuilder().url(url)
+                    .header("Authorization", "Bearer " + API.accessToken)
+                    .method(original.method(), original.body())
                     .build()
                 return@addInterceptor it.proceed(request)
             }

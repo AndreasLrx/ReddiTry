@@ -6,12 +6,56 @@
     android:orientation="vertical">
 
     <ImageView
-        android:contentDescription="@string/alt_banner"
         android:id="@+id/banner"
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/alt_banner"
         android:scaleX="1.1"
         android:src="@drawable/banner" />
+
+    <FrameLayout
+        android:id="@+id/edit_button_round_banner"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/banner"
+        android:layout_alignBottom="@+id/banner"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circular_background_profile"
+        android:backgroundTint="@color/purple"
+        android:translationZ="1dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/edit_button_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/edit_profile_picture"
+            android:src="@drawable/baseline_search_24" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/edit_button_round"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignEnd="@+id/picture_container"
+        android:layout_alignBottom="@+id/picture_container"
+        android:layout_centerInParent="true"
+        android:background="@drawable/circular_background_profile"
+        android:backgroundTint="@color/purple"
+        android:translationZ="1dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/edit_button_pp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:contentDescription="@string/edit_profile_picture"
+            android:src="@drawable/baseline_search_24" />
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/picture_container"
@@ -26,7 +70,7 @@
             android:layout_height="match_parent"
             android:contentDescription="@string/alt_profile_picture"
             android:src="@drawable/logo_64x64" />
-
     </FrameLayout>
+
 
 </RelativeLayout>
