@@ -84,4 +84,19 @@ interface RedditInterface {
         @Query("include_over_18") include_over_18: Boolean = true,
         @Query("include_unadvertisable") include_unadvertisable: Boolean = true
     ): Call<SearchSubredditResponse>
+
+    @POST("api/subscribe")
+    @FormUrlEncoded
+    fun subscribe(
+        @Field("action") action: String,
+        @Field("sr") sr: String,
+        @Field("skip_initial_defaults") skip_initial_defaults: Boolean = true
+    ): Call<Void>
+
+    @POST("api/subscribe")
+    @FormUrlEncoded
+    fun unsubscribe(
+        @Field("action") action: String,
+        @Field("sr") sr: String,
+    ): Call<Void>
 }

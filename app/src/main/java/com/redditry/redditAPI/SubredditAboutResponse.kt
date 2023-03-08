@@ -24,6 +24,8 @@ data class Subreddit(
     val displayName: String?,
     @Json(name = "icon_img")
     val icon_img: String?,
+    @Json(name = "user_is_subscriber")
+    val isSubscriber: Boolean?,
     val over18: Boolean?,
     val over_18: Boolean?,
     val title: String,
