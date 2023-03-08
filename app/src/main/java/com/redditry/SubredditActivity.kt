@@ -58,6 +58,44 @@ class SubredditActivity : ActivityHead() {
             }
         )
 
+        binding.description.binding.subscribeButton.setOnClickListener {
+            Thread {
+                val srInfo = subreddit.getSubreddit(name)
+                if (srInfo?.id == null) {
+                    runOnUiThread {
+                        binding.description.binding.subscribeButton.text = "Subscribe"
+                    }
+                    return@Thread
+                }
+
+                val srFullname = "t5_${srInfo.id}"
+
+                if (srInfo.isSubscriber == true) {
+                    val res = subreddit.unsubscribe(srFullname)
+                    if (res.isSuccessful) {
+                        runOnUiThread {
+                            binding.description.binding.subscribeButton.text = "Subscribe"
+                        }
+                    } else {
+                        runOnUiThread {
+                            binding.description.binding.subscribeButton.text = "Error"
+                        }
+                    }
+                } else {
+                    val res = subreddit.subscribe(srFullname)
+                    if (res.isSuccessful) {
+                        runOnUiThread {
+                            binding.description.binding.subscribeButton.text = "Unsubscribe"
+                        }
+                    } else {
+                        runOnUiThread {
+                            binding.description.binding.subscribeButton.text = "Error"
+                        }
+                    }
+                }
+            }.start()
+        }
+
         val extras = intent.extras
         if (extras != null) {
             name = extras.getString("subreddit_name", "r/Android")
@@ -68,6 +106,8 @@ class SubredditActivity : ActivityHead() {
                     title = res.title
                     members = res.subscribers
                     binding.description.binding.description.text = res.description
+                    binding.description.binding.subscribeButton.text =
+                        if (res.isSubscriber == true) "Unsubscribe" else "Subscribe"
                     res.icon_img?.let { binding.bannerAndPp.setImage(it) }
                     res.mobile_banner_img?.let { binding.bannerAndPp.setBanner(it) }
                 }
