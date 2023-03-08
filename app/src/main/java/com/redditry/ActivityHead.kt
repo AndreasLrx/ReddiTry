@@ -52,11 +52,19 @@ open class ActivityHead : AppCompatActivity() {
         return false
     }
 
-    fun openActivity(Activity: Class<*>, flags: Int = 0, animate: Boolean = false) {
+    fun openActivity(
+        Activity: Class<*>,
+        flags: Int = 0,
+        animate: Boolean = false,
+        beforeStart: ((Intent) -> Unit)? = null
+    ) {
         val i = Intent(this, Activity)
         if (!animate)
             i.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
         i.addFlags(flags)
+        if (beforeStart != null)
+            beforeStart(i)
+
         startActivity(i)
     }
 }

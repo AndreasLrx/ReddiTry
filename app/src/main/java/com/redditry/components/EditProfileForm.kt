@@ -12,7 +12,7 @@ class EditProfileForm @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentFormEditProfileBinding
+    var binding: ComponentFormEditProfileBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_form_edit_profile, this, true)

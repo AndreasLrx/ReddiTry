@@ -1,8 +1,6 @@
 package com.redditry.controller
 
-import com.redditry.redditAPI.API
-import com.redditry.redditAPI.MyProfilResponse
-import com.redditry.redditAPI.MySubredditsResponse
+import com.redditry.redditAPI.*
 import com.redditry.redditAPI.Post
 
 class User {
@@ -18,7 +16,7 @@ class User {
         after: String = "",
         limit: Int = 10
     ): Pair<ArrayList<Post>, String?> {
-        val posts = reddit.getMyPost(username, after ?: "", limit).execute().body()
+        val posts = reddit.getMyPost(username, after, limit).execute().body()
 
         val res = ArrayList<com.redditry.redditAPI.Post>()
         posts?.data?.children?.forEach {
@@ -33,5 +31,28 @@ class User {
 
     fun getUser(username: String): MyProfilResponse? {
         return reddit.getUser(username).execute().body()?.data
+    }
+    fun getPref(): Pref? {
+        return reddit.getCountry().execute().body()
+    }
+
+    fun setCountry(pref: Pref): Pref? {
+        return reddit.setCountry(pref).execute().body()
+    }
+
+    fun getEditSubreddit(subredditName: String): SubredditAboutResponse? {
+        return reddit.getEditSubreddit(subredditName).execute().body()
+    }
+
+    fun updateSubreddit(subredditEditData: SubredditEditData) {
+        reddit.updateSubreddit(
+            subredditEditData.public_description,
+            subredditEditData.over_18.toString(),
+            subredditEditData.link_type,
+            subredditEditData.type,
+            subredditEditData.sr,
+            subredditEditData.subreddit_id,
+            subredditEditData.title
+        ).execute().body()
     }
 }

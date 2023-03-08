@@ -1,10 +1,13 @@
 package com.redditry.redditAPI
 
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.Field
+import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -114,4 +117,30 @@ interface RedditInterface {
         @Field("dir") dir: Int,
         @Field("id") id: String
     ): Call<Void>
+    
+    @GET("r/{subredditName}/about/edit")
+    fun getEditSubreddit(
+        @Path(
+            value = "user_id",
+            encoded = true
+        ) userId: String
+    ): Call<SubredditAboutResponse>
+
+    @POST("api/site_admin?api_type=json")
+    @FormUrlEncoded
+    fun updateSubreddit(
+        @Field(value = "public_description") public_description: String,
+        @Field(value = "over_18") over_18: String,
+        @Field(value = "link_type") link_type: String,
+        @Field(value = "type") type: String,
+        @Field(value = "sr") sr: String,
+        @Field(value = "subreddit_id") subreddit_id: String,
+        @Field(value = "title") title: String
+    ): Call<Void>
+
+    @GET("api/v1/me/prefs")
+    fun getCountry(): Call<Pref>
+
+    @PATCH("api/v1/me/prefs")
+    fun setCountry(@Body pref: Pref): Call<Pref>
 }
