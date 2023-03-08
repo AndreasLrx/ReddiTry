@@ -29,5 +29,4 @@ class JSONObjectAdapter {
             writer.value(null as String?)
         }
     }
-
 }

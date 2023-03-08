@@ -2,12 +2,14 @@ package com.redditry.components
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.MediaController
 import android.widget.RelativeLayout
 import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
@@ -38,6 +40,7 @@ class Post @JvmOverloads constructor(
     private var _userName: String? = null
     private var _title: String? = null
     private var _image: Drawable? = null
+    private var _videoUrl: String? = null
     private var _content: String? = null
     private var _votes: Int = 0
     private var _comments: Int = 0
@@ -114,9 +117,26 @@ class Post @JvmOverloads constructor(
             format = format
             if (image != null) {
                 binding.image.visibility = View.VISIBLE
+                binding.video.visibility = View.GONE
                 binding.image.setImageDrawable(image)
             } else
                 binding.image.visibility = View.GONE
+        }
+    var videoUrl: String?
+        get() = _videoUrl
+        set(value) {
+            _videoUrl = value
+            if (videoUrl != null) {
+
+                val uri = Uri.parse(videoUrl)
+                if (uri != null) {
+                    binding.image.visibility = View.GONE
+                    binding.video.visibility = View.VISIBLE
+                    binding.video.setVideoURI(uri)
+                }
+            } else {
+                binding.video.visibility = View.GONE
+            }
         }
     var content: String?
         get() = _content
@@ -147,6 +167,19 @@ class Post @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post, this, true)
         binding = ComponentPostBinding.bind(this)
+
+        val mediaController = MediaController(context)
+        mediaController.setAnchorView(binding.video)
+        binding.video.setMediaController(mediaController)
+        binding.video.setOnPreparedListener {
+            it.isLooping = true
+            binding.video.start()
+            binding.video.layoutParams = LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                LayoutParams.WRAP_CONTENT
+            )
+            binding.video.invalidate()
+        }
 
         attrs?.let {
 
@@ -218,6 +251,7 @@ class Post @JvmOverloads constructor(
                     id?.let { data.media_metadata?.getJSONObject(it)?.getString("m") }
                 imageUrl = "https://i.redd.it/$id" + "." + imageType!!.substring(6)
             } else if (data.is_video == true) {
+                videoUrl = data.media?.getJSONObject("reddit_video")?.getString("fallback_url")
             } else {
                 imageUrl = data.contentUrl
             }
@@ -235,7 +269,6 @@ class Post @JvmOverloads constructor(
 
                         override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
                     })
-
         }
     }
 
