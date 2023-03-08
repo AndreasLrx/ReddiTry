@@ -52,7 +52,7 @@ class Post @JvmOverloads constructor(
                 else
                     binding.content.maxLines = 8
             } else
-                binding.content.maxLines = -1
+                binding.content.maxLines = Int.MAX_VALUE
         }
     var backgroundColor: Color
         get() = _backgroundColor
