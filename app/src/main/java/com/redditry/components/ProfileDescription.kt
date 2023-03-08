@@ -25,16 +25,37 @@ class ProfileDescription @JvmOverloads constructor(
         binding.profileUsername.text = username
     }
 
+    fun getUsername(): String {
+        return binding.profileUsername.text.toString()
+    }
+
     fun setDescription(description: String) {
         binding.profileDescription.text = description
     }
 
-    fun setEmail(email: String) {
-        binding.profileEmail.text = email
+    fun getDescription(): String {
+        return binding.profileDescription.text.toString()
+    }
+
+    fun setUnderage(value: Boolean) {
+        if (value) {
+            binding.profileUnderage.text = "Age: +18"
+        } else {
+            binding.profileUnderage.text = "Age: -18"
+        }
+    }
+
+    fun getUnderage(): Boolean {
+        return binding.profileUnderage.text == "Age: +18"
     }
 
     fun setCountry(country: String) {
         binding.profileCountry.text = country
+    }
+
+    
+    fun getCountry():String {
+        return binding.profileCountry.text.toString()
     }
 
     @SuppressLint("SetTextI18n")

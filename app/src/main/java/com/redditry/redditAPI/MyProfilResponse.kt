@@ -10,5 +10,6 @@ data class MyProfilResponse(
     @Json(name = "icon_img")
     val icon_img: String?,
     @Json(name = "subreddit")
-    val subreddit: Subreddit
+    val subreddit: Subreddit,
+    val over_18: Boolean?
 )

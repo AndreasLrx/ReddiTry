@@ -30,5 +30,6 @@ data class Subreddit(
     val over_18: Boolean?,
     val title: String,
     val lang: String?,
+    val name: String?,
     val id: String?
 )

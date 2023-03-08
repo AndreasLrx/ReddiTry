@@ -8,6 +8,8 @@ import android.view.View
 import com.redditry.controller.Post
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
+import java.util.*
+
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
@@ -33,12 +35,28 @@ class ProfileActivity : ActivityHead() {
             if (username != null)
                 binding.header.visibility = View.GONE
         }
+        var subredditId = ""
 
         binding.header.binding.editButton.setOnClickListener {
             openActivity(
                 EditProfileActivity::class.java,
-                Intent.FLAG_ACTIVITY_NO_HISTORY
-            )
+                Intent.FLAG_ACTIVITY_NO_HISTORY,
+                false,
+                fun(intent: Intent) {
+                    intent.putExtra(
+                        "username",
+                        binding.description.getUsername()
+                    );intent.putExtra(
+                        "description",
+                        binding.description.getDescription()
+                    );intent.putExtra(
+                        "underage",
+                        binding.description.getUnderage()
+                    );intent.putExtra(
+                        "country",
+                        binding.description.getCountry()
+                    );intent.putExtra("id", subredditId)
+                })
         }
 
         binding.posts.binding.postList.listView.setOnTouchListener(
@@ -61,11 +79,24 @@ class ProfileActivity : ActivityHead() {
                 user.getUser(username!!)
 
             username = profile?.name
+            
+            val pref = user.getPref()
+
+            subredditId = profile?.subreddit?.name.toString()
 
             runOnUiThread {
-                binding.description.setUsername(if (username != null) username!! else "Username")
+                binding.description.setUsername(
+                    (if (profile?.subreddit?.title != "") profile?.subreddit?.title else profile.name)
+                        ?: "Username"
+                )
                 binding.description.setDescription(profile?.subreddit?.description.toString())
                 binding.description.setFollowersNumber(profile?.subreddit?.subscribers.toString())
+                binding.description.setUnderage(profile?.over_18 == true)
+                val loc = Locale(
+                    "",
+                    if (pref?.country_code != null) pref.country_code else "Country"
+                )
+                binding.description.setCountry(loc.displayCountry)
                 profile?.icon_img?.let { binding.bannerAndPp.setImage(it) }
                 profile?.subreddit?.banner_img?.let { binding.bannerAndPp.setBanner(it) }
                 if (profile != null) {
