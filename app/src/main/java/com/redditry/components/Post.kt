@@ -209,26 +209,34 @@ class Post @JvmOverloads constructor(
         userName = "u/" + data.author
         backgroundColor = backgroundColor
         format = Format.Small
-        if (data.imageUrl != null)
-            Glide.with(this)
-                .asDrawable()
-                .load(data.imageUrl)
-                .into(object : CustomTarget<Drawable?>() {
-                    override fun onResourceReady(
-                        resource: Drawable,
-                        transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
-                    ) {
-                        image = resource
-                    }
 
-                    override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
-                })
+        var imageUrl: String? = null
+        if (data.contentUrl != null) {
+            if (data.is_gallery == true) {
+                val id = data.gallery_data?.items?.get(0)?.media_id
+                val imageType =
+                    id?.let { data.media_metadata?.getJSONObject(it)?.getString("m") }
+                imageUrl = "https://i.redd.it/$id" + "." + imageType!!.substring(6)
+            } else if (data.is_video == true) {
+            } else {
+                imageUrl = data.contentUrl
+            }
+            if (imageUrl != null)
+                Glide.with(this)
+                    .asDrawable()
+                    .load(imageUrl)
+                    .into(object : CustomTarget<Drawable?>() {
+                        override fun onResourceReady(
+                            resource: Drawable,
+                            transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
+                        ) {
+                            image = resource
+                        }
 
-        /*
-        format
-        image
-        icon
-         */
+                        override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
+                    })
+
+        }
     }
 
     fun toggleExpand() {

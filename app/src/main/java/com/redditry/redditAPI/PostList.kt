@@ -2,6 +2,7 @@ package com.redditry.redditAPI
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import org.json.JSONObject
 
 @JsonClass(generateAdapter = true)
 data class PostList(
@@ -35,5 +36,9 @@ data class Post(
     val numComments: Int,
     val author: String,
     @Json(name = "url_overridden_by_dest")
-    val imageUrl: String?
+    val contentUrl: String?,
+    val is_gallery: Boolean?,
+    val is_video: Boolean?,
+    val gallery_data: Gallery?,
+    val media_metadata: JSONObject?
 )

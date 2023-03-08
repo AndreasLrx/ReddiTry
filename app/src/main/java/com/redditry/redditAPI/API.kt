@@ -1,5 +1,6 @@
 package com.redditry.redditAPI
 
+import JSONObjectAdapter
 import android.content.SharedPreferences
 import com.redditry.BuildConfig
 import com.squareup.moshi.Moshi
@@ -13,7 +14,8 @@ object API {
     const val redirectUri = BuildConfig.REDDIT_REDIRECT_URI
     const val registerURL = "https://www.reddit.com/register/"
 
-    private val moshi = Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
+    private val moshi =
+        Moshi.Builder().addLast(KotlinJsonAdapterFactory()).add(JSONObjectAdapter()).build()
     private val retrofitLogin = Retrofit.Builder()
         .baseUrl("https://www.reddit.com/api/v1/")
         .addConverterFactory(MoshiConverterFactory.create(moshi))
