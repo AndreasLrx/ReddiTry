@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/transparent"
             android:contentDescription="@string/edit_profile_picture"
-            android:src="@drawable/baseline_search_24" />
+            android:src="@drawable/baseline_edit_24" />
 
     </FrameLayout>
 
@@ -53,7 +53,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/transparent"
             android:contentDescription="@string/edit_profile_picture"
-            android:src="@drawable/baseline_search_24" />
+            android:src="@drawable/baseline_edit_24" />
 
     </FrameLayout>
 
