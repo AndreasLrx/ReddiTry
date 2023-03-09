@@ -60,18 +60,15 @@ class SubredditActivity : ActivityHead() {
             }
         )
 
-
         val extras = intent.extras
         if (extras != null) {
             name = extras.getString("subreddit_name", "r/Android")
-
 
             binding.description.binding.subscribeButton.setOnClickListener {
 
                 Thread {
 
-
-                    val srFullname = "t5_${id}"
+                    val srFullname = "t5_$id"
 
                     if (isSubscriber) {
                         val result = subreddit.unsubscribe(srFullname)
@@ -98,7 +95,6 @@ class SubredditActivity : ActivityHead() {
                     }
                 }.start()
             }
-
 
             Thread {
                 val res = subreddit.getSubreddit(name) ?: return@Thread
