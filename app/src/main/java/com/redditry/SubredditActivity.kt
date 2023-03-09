@@ -16,6 +16,8 @@ class SubredditActivity : ActivityHead() {
     private lateinit var _name: String
     private var _title: String = ""
     private var _members: Int = 0
+    private var id = ""
+    private var isSubscriber: Boolean = false
 
     private var name: String
         get() = _name
@@ -37,7 +39,7 @@ class SubredditActivity : ActivityHead() {
                 String.format(resources.getString(R.string.members), members)
         }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySubredditBinding.inflate(layoutInflater)
@@ -58,49 +60,51 @@ class SubredditActivity : ActivityHead() {
             }
         )
 
-        binding.description.binding.subscribeButton.setOnClickListener {
-            Thread {
-                val srInfo = subreddit.getSubreddit(name)
-                if (srInfo?.id == null) {
-                    runOnUiThread {
-                        binding.description.binding.subscribeButton.text = "Subscribe"
-                    }
-                    return@Thread
-                }
-
-                val srFullname = "t5_${srInfo.id}"
-
-                if (srInfo.isSubscriber == true) {
-                    val res = subreddit.unsubscribe(srFullname)
-                    if (res.isSuccessful) {
-                        runOnUiThread {
-                            binding.description.binding.subscribeButton.text = "Subscribe"
-                        }
-                    } else {
-                        runOnUiThread {
-                            binding.description.binding.subscribeButton.text = "Error"
-                        }
-                    }
-                } else {
-                    val res = subreddit.subscribe(srFullname)
-                    if (res.isSuccessful) {
-                        runOnUiThread {
-                            binding.description.binding.subscribeButton.text = "Unsubscribe"
-                        }
-                    } else {
-                        runOnUiThread {
-                            binding.description.binding.subscribeButton.text = "Error"
-                        }
-                    }
-                }
-            }.start()
-        }
 
         val extras = intent.extras
         if (extras != null) {
             name = extras.getString("subreddit_name", "r/Android")
+
+
+            binding.description.binding.subscribeButton.setOnClickListener {
+
+                Thread {
+
+
+                    val srFullname = "t5_${id}"
+
+                    if (isSubscriber) {
+                        val result = subreddit.unsubscribe(srFullname)
+                        if (result.isSuccessful) {
+                            runOnUiThread {
+                                binding.description.binding.subscribeButton.text = "Subscribe"
+                            }
+                        } else {
+                            runOnUiThread {
+                                binding.description.binding.subscribeButton.text = "Error"
+                            }
+                        }
+                    } else {
+                        val result = subreddit.subscribe(srFullname)
+                        if (result.isSuccessful) {
+                            runOnUiThread {
+                                binding.description.binding.subscribeButton.text = "Unsubscribe"
+                            }
+                        } else {
+                            runOnUiThread {
+                                binding.description.binding.subscribeButton.text = "Error"
+                            }
+                        }
+                    }
+                }.start()
+            }
+
+
             Thread {
                 val res = subreddit.getSubreddit(name) ?: return@Thread
+
+                id = res.id ?: ""
+                isSubscriber = res.isSubscriber == true
 
                 runOnUiThread {
                     title = res.title
