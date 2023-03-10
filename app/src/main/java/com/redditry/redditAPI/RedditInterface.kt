@@ -107,4 +107,11 @@ interface RedditInterface {
         @Field("action") action: String,
         @Field("sr") sr: String,
     ): Call<Void>
+
+    @POST("api/vote")
+    @FormUrlEncoded
+    fun vote(
+        @Field("dir") dir: Int,
+        @Field("id") id: String
+    ): Call<Void>
 }

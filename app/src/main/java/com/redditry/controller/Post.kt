@@ -1,6 +1,7 @@
 package com.redditry.controller
 
 import com.redditry.redditAPI.API
+import retrofit2.Response
 
 class Post {
     enum class SortBy {
@@ -34,5 +35,9 @@ class Post {
             res.add(it.data)
         }
         return Pair(res, posts?.data?.after)
+    }
+
+    fun vote(id: String, dir: Int): Response<Void> {
+        return reddit.vote(dir, id).execute()
     }
 }

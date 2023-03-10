@@ -6,12 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 
-class AdapterPostList(
-    private val context: Context,
-    posts: ArrayList<com.redditry.redditAPI.Post>
-) : BaseAdapter() {
+class AdapterPostList(private val context: Context, posts: ArrayList<com.redditry.redditAPI.Post>) :
+        BaseAdapter() {
     enum class Color {
-        Alternate, HalfTransparent
+        Alternate,
+        HalfTransparent
     }
 
     private lateinit var postViews: ArrayList<Post>
@@ -30,9 +29,7 @@ class AdapterPostList(
         set(value) {
             _color = value
             var index = 0
-            postViews.forEach {
-                it.backgroundColor = postColorAt(index++)
-            }
+            postViews.forEach { it.backgroundColor = postColorAt(index++) }
         }
 
     init {
@@ -50,17 +47,21 @@ class AdapterPostList(
 
     fun loadPosts(start: Int = 0) {
         if (postViews.size < start)
-            throw java.lang.IndexOutOfBoundsException("Try to load posts from " + start.toString() + " where list have only " + postViews.size + " elements.")
+                throw java.lang.IndexOutOfBoundsException(
+                        "Try to load posts from " +
+                                start.toString() +
+                                " where list have only " +
+                                postViews.size +
+                                " elements."
+                )
 
         postViews.ensureCapacity(postData.size)
         for (i in start until postData.size) {
             val post = Post(context, null)
+            post.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
             post.setData(postData[i])
             post.backgroundColor = postColorAt(i)
-            if (i >= postViews.size)
-                postViews.add(post)
-            else
-                postViews[i] = post
+            if (i >= postViews.size) postViews.add(post) else postViews[i] = post
         }
         val mainHandler = Handler(context.mainLooper)
         mainHandler.post { notifyDataSetChanged() }
@@ -73,12 +74,8 @@ class AdapterPostList(
 
     private fun postColorAt(position: Int): Post.Color {
         return if (color == Color.Alternate) {
-            if (position % 2 == 0)
-                Post.Color.Purple
-            else
-                Post.Color.Orange
-        } else
-            Post.Color.HalfTransparent
+            if (position % 2 == 0) Post.Color.Purple else Post.Color.Orange
+        } else Post.Color.HalfTransparent
     }
 
     override fun getCount(): Int {
