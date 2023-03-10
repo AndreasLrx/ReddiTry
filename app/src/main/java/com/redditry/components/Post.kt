@@ -21,13 +21,13 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.redditry.ProfileActivity
 import com.redditry.R
 import com.redditry.SubredditActivity
-import com.redditry.databinding.ComponentPostBinding
 import com.redditry.controller.Post as PostController
+import com.redditry.databinding.ComponentPostBinding
 
 class Post
 @JvmOverloads
 constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
-    RelativeLayout(context, attrs, defStyleAttr) {
+        RelativeLayout(context, attrs, defStyleAttr) {
 
     enum class Format {
         Expanded,
@@ -76,13 +76,13 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             _backgroundColor = value
             when (_backgroundColor) {
                 Color.Purple ->
-                    setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
+                        setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
                 Color.Orange ->
-                    setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
+                        setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
                 Color.HalfTransparent ->
-                    setBackgroundColor(
-                        ContextCompat.getColor(context, R.color.semi_transparent)
-                    )
+                        setBackgroundColor(
+                                ContextCompat.getColor(context, R.color.semi_transparent)
+                        )
             }
         }
     var icon: Drawable?
@@ -186,7 +186,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             it.isLooping = true
             binding.video.start()
             binding.video.layoutParams =
-                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             binding.video.invalidate()
         }
 
@@ -210,7 +210,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             format = Format.values()[styledAttributes.getInt(R.styleable.Post_post_format, 0)]
             // Background Color
             backgroundColor =
-                Color.values()[styledAttributes.getInt(R.styleable.Post_post_color, 0)]
+                    Color.values()[styledAttributes.getInt(R.styleable.Post_post_color, 0)]
             // Subreddit icon
             icon = styledAttributes.getDrawable(R.styleable.Post_subreddit_icon)
             // Subreddit name
@@ -232,48 +232,48 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
         binding.upvoteButton.setOnClickListener {
             Thread {
-                val res = postController.vote(name, 1)
-                val mainHandler = Handler(context.mainLooper)
+                        val res = postController.vote(name, 1)
+                        val mainHandler = Handler(context.mainLooper)
 
-                if (res.isSuccessful) {
-                    mainHandler.post {
-                        votes++
-                        binding.votes.text = votes.toString()
-                        binding.upvoteButton.foregroundTintList =
-                            ColorStateList.valueOf(
-                                ContextCompat.getColor(context, R.color.orange)
-                            )
+                        if (res.isSuccessful) {
+                            mainHandler.post {
+                                votes++
+                                binding.votes.text = votes.toString()
+                                binding.upvoteButton.foregroundTintList =
+                                        ColorStateList.valueOf(
+                                                ContextCompat.getColor(context, R.color.purple)
+                                        )
+                            }
+                        } else {
+                            println("Error: ${res.code()}")
+                        }
                     }
-                } else {
-                    println("Error: ${res.code()}")
-                }
-            }
-                .start()
+                    .start()
         }
 
         binding.downVoteButton.setOnClickListener {
             Thread {
-                val res = postController.vote(name, -1)
-                val mainHandler = Handler(context.mainLooper)
+                        val res = postController.vote(name, -1)
+                        val mainHandler = Handler(context.mainLooper)
 
-                if (res.isSuccessful) {
-                    mainHandler.post {
-                        votes--
-                        binding.votes.text = votes.toString()
-                        binding.downVoteButton.foregroundTintList =
-                            ColorStateList.valueOf(
-                                ContextCompat.getColor(context, R.color.purple)
-                            )
+                        if (res.isSuccessful) {
+                            mainHandler.post {
+                                votes--
+                                binding.votes.text = votes.toString()
+                                binding.upvoteButton.foregroundTintList =
+                                        ColorStateList.valueOf(
+                                                ContextCompat.getColor(context, R.color.purple)
+                                        )
+                            }
+                        } else {
+                            println("Error: ${res.code()}")
+                        }
                     }
-                } else {
-                    println("Error: ${res.code()}")
-                }
-            }
-                .start()
+                    .start()
         }
 
         binding.commentButton.setOnClickListener(
-            createButtonClickListener { println("Comment clicked") }
+                createButtonClickListener { println("Comment clicked") }
         )
     }
 
@@ -301,25 +301,25 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                 imageUrl = data.contentUrl
             }
             if (imageUrl != null)
-                Glide.with(this)
-                    .asDrawable()
-                    .load(imageUrl)
-                    .into(
-                        object : CustomTarget<Drawable?>() {
-                            override fun onResourceReady(
-                                resource: Drawable,
-                                transition:
-                                    com.bumptech.glide.request.transition.Transition<
-                                        in Drawable?>?
-                            ) {
-                                image = resource
-                            }
+                    Glide.with(this)
+                            .asDrawable()
+                            .load(imageUrl)
+                            .into(
+                                    object : CustomTarget<Drawable?>() {
+                                        override fun onResourceReady(
+                                                resource: Drawable,
+                                                transition:
+                                                        com.bumptech.glide.request.transition.Transition<
+                                                                in Drawable?>?
+                                        ) {
+                                            image = resource
+                                        }
 
-                            override fun onLoadCleared(
-                                @Nullable placeholder: Drawable?
-                            ) {}
-                        }
-                    )
+                                        override fun onLoadCleared(
+                                                @Nullable placeholder: Drawable?
+                                        ) {}
+                                    }
+                            )
         }
     }
 
@@ -334,15 +334,15 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             anim.interpolator = AccelerateInterpolator(0.7f)
             it.startAnimation(anim)
             anim.setAnimationListener(
-                object : Animation.AnimationListener {
-                    override fun onAnimationStart(p0: Animation?) {}
+                    object : Animation.AnimationListener {
+                        override fun onAnimationStart(p0: Animation?) {}
 
-                    override fun onAnimationEnd(p0: Animation?) {
-                        onEndCallback()
+                        override fun onAnimationEnd(p0: Animation?) {
+                            onEndCallback()
+                        }
+
+                        override fun onAnimationRepeat(p0: Animation?) {}
                     }
-
-                    override fun onAnimationRepeat(p0: Animation?) {}
-                }
             )
         }
     }
