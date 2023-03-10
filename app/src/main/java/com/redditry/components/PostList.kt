@@ -40,11 +40,6 @@ class PostList @JvmOverloads constructor(
 
         listView = binding.postList
         listView.adapter = adapter
-        listView.onItemClickListener =
-            AdapterView.OnItemClickListener { _, view, _, _ ->
-                if (view is Post)
-                    view.toggleExpand()
-            }
     }
 
     fun toggleProgressBar() {

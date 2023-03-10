@@ -181,6 +181,8 @@ class Post @JvmOverloads constructor(
             binding.video.invalidate()
         }
 
+        binding.contentLayout.setOnClickListener { toggleExpand() }
+
         attrs?.let {
 
             val styledAttributes =
