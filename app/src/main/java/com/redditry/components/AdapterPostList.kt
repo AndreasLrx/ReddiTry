@@ -55,7 +55,6 @@ class AdapterPostList(
         postViews.ensureCapacity(postData.size)
         for (i in start until postData.size) {
             val post = Post(context, null)
-            post.descendantFocusability = ViewGroup.FOCUS_BLOCK_DESCENDANTS
             post.setData(postData[i])
             post.backgroundColor = postColorAt(i)
             if (i >= postViews.size)

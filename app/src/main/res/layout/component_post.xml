@@ -61,55 +61,62 @@
                 android:textSize="11sp" />
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/header"
-            android:layout_marginTop="10dp"
-            android:text="@string/placeholder_post_title"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
-
         <RelativeLayout
-            android:id="@+id/media_container"
+            android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/title"
-            android:layout_marginTop="10dp">
+            android:layout_below="@id/header">
 
-            <ImageView
-                android:id="@+id/image"
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/placeholder_post_title"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:id="@+id/media_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/altname_post_image"
-                android:scaleType="centerInside" />
+                android:layout_below="@id/title"
+                android:layout_marginTop="10dp">
 
-            <VideoView
-                android:id="@+id/video"
+                <ImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/altname_post_image"
+                    android:scaleType="centerInside" />
+
+                <VideoView
+                    android:id="@+id/video"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/content"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_centerInParent="true"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/media_container"
                 android:layout_marginTop="10dp"
-                android:visibility="gone" />
-        </RelativeLayout>
+                android:ellipsize="end"
+                android:text="@string/placeholder_post_content"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/media_container"
-            android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:text="@string/placeholder_post_content"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="18dp"
-            android:layout_below="@+id/content"
+            android:layout_below="@+id/content_layout"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
