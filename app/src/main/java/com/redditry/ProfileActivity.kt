@@ -12,6 +12,7 @@ import com.redditry.databinding.ActivityProfileBinding
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
     private val user = User()
+    private var username: String? = null
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,13 @@ class ProfileActivity : ActivityHead() {
         // ActivityHead setup
         navigationId = R.id.profil_icon
         navBar = binding.navBar
+
+        val extras = intent.extras
+        if (extras != null) {
+            username = extras.getString("user_name")
+            if (username != null)
+                binding.header.visibility = View.GONE
+        }
 
         binding.header.binding.editButton.setOnClickListener {
             openActivity(
@@ -47,10 +55,15 @@ class ProfileActivity : ActivityHead() {
         binding.posts.binding.postList.binding.sortBySpinner.visibility = View.GONE
 
         Thread {
-            val profile = user.getMyProfil()
+            val profile = if (username == null)
+                user.getMyProfil()
+            else
+                user.getUser(username!!)
+
+            username = profile?.name
 
             runOnUiThread {
-                binding.description.setUsername(if (profile?.name != null) profile.name else "Username")
+                binding.description.setUsername(if (username != null) username!! else "Username")
                 binding.description.setDescription(profile?.subreddit?.description.toString())
                 binding.description.setFollowersNumber(profile?.subreddit?.subscribers.toString())
                 profile?.icon_img?.let { binding.bannerAndPp.setImage(it) }
@@ -67,7 +80,10 @@ class ProfileActivity : ActivityHead() {
                     _: Post.SortBy,
                     after: String
                 ): Pair<ArrayList<com.redditry.redditAPI.Post>, String?> {
-                    return user.getMyPost(profile?.name!!, after)
+                    return if (username == null)
+                        Pair(ArrayList(), null)
+                    else
+                        user.getMyPost(username!!, after)
                 }
             )
         }.start()

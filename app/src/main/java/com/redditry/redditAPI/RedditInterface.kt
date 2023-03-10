@@ -35,6 +35,14 @@ interface RedditInterface {
     @GET("subreddits/mine/subscriber")
     fun getMySubreddits(): Call<MySubredditsResponse>
 
+    @GET("user/{username}/about")
+    fun getUser(
+        @Path(
+            value = "username",
+            encoded = true
+        ) username: String
+    ): Call<UserAboutResponse>
+
     @GET("{sort_by}")
     fun getPosts(
         @Path(

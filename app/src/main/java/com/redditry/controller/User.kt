@@ -30,4 +30,8 @@ class User {
     fun getMySubscribedSubreddits(): MySubredditsResponse? {
         return reddit.getMySubreddits().execute().body()
     }
+
+    fun getUser(username: String): MyProfilResponse? {
+        return reddit.getUser(username).execute().body()?.data
+    }
 }

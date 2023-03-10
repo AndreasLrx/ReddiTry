@@ -45,6 +45,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_toEndOf="@+id/subreddit_icon_container"
+                android:clickable="true"
                 android:text="@string/placeholder_post_subreddit"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
@@ -56,6 +57,7 @@
                 android:layout_alignStart="@id/subreddit_name"
                 android:layout_alignBottom="@id/subreddit_icon_container"
                 android:layout_marginBottom="6dp"
+                android:clickable="true"
                 android:text="@string/placeholder_post_user"
                 android:textColor="@color/grey"
                 android:textSize="11sp" />
