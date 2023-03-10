@@ -1,6 +1,7 @@
 package com.redditry.components
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.AttributeSet
@@ -15,7 +16,9 @@ import androidx.annotation.Nullable
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
+import com.redditry.ProfileActivity
 import com.redditry.R
+import com.redditry.SubredditActivity
 import com.redditry.databinding.ComponentPostBinding
 
 class Post @JvmOverloads constructor(
@@ -182,6 +185,17 @@ class Post @JvmOverloads constructor(
         }
 
         binding.contentLayout.setOnClickListener { toggleExpand() }
+        binding.subredditName.setOnClickListener {
+            val intent = Intent(context, SubredditActivity::class.java)
+            intent.putExtra("subreddit_name", binding.subredditName.text)
+            context.startActivity(intent)
+        }
+        binding.userName.setOnClickListener {
+            val intent = Intent(context, ProfileActivity::class.java)
+            // User name is without 'u/'
+            intent.putExtra("user_name", binding.userName.text.substring(2))
+            context.startActivity(intent)
+        }
 
         attrs?.let {
 
