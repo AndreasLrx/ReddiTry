@@ -18,7 +18,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "REDDIT_CLIENT_ID", '"s-w2UUr5ZeLMbnI7lOMmwg"')
         buildConfigField("String", "REDDIT_REDIRECT_URI", '"redditry://login"')
-        buildConfigField("String", "REDDIT_SCOPE", '"identity history mysubreddits modconfig read subscribe"')
+        buildConfigField("String", "REDDIT_SCOPE", '"identity history mysubreddits modconfig read subscribe vote"')
     }
 
     buildTypes {

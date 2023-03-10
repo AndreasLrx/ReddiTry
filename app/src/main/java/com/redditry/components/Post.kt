@@ -2,8 +2,10 @@ package com.redditry.components
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -19,22 +21,26 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.redditry.ProfileActivity
 import com.redditry.R
 import com.redditry.SubredditActivity
+import com.redditry.controller.Post as PostController
 import com.redditry.databinding.ComponentPostBinding
 
-class Post @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : RelativeLayout(context, attrs, defStyleAttr) {
+class Post
+@JvmOverloads
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+        RelativeLayout(context, attrs, defStyleAttr) {
 
     enum class Format {
-        Expanded, Small
+        Expanded,
+        Small
     }
 
     enum class Color {
-        Purple, Orange, HalfTransparent
+        Purple,
+        Orange,
+        HalfTransparent
     }
 
+    private val postController: PostController = PostController()
     private var binding: ComponentPostBinding
     private var _format: Format = Format.Expanded
     private var _backgroundColor: Color = Color.Purple
@@ -47,42 +53,35 @@ class Post @JvmOverloads constructor(
     private var _content: String? = null
     private var _votes: Int = 0
     private var _comments: Int = 0
+    private var _name = ""
+
+    var name: String
+        get() = _name
+        set(value) {
+            _name = value
+        }
 
     var format: Format
         get() = _format
         set(value) {
             _format = value
             if (_format == Format.Small) {
-                if (image != null)
-                    binding.content.maxLines = 3
-                else
-                    binding.content.maxLines = 8
-            } else
-                binding.content.maxLines = Int.MAX_VALUE
+                if (image != null) binding.content.maxLines = 3 else binding.content.maxLines = 8
+            } else binding.content.maxLines = Int.MAX_VALUE
         }
     var backgroundColor: Color
         get() = _backgroundColor
         set(value) {
             _backgroundColor = value
             when (_backgroundColor) {
-                Color.Purple -> setBackgroundColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.purple_light
-                    )
-                )
-                Color.Orange -> setBackgroundColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.beige_light
-                    )
-                )
-                Color.HalfTransparent -> setBackgroundColor(
-                    ContextCompat.getColor(
-                        context,
-                        R.color.semi_transparent
-                    )
-                )
+                Color.Purple ->
+                        setBackgroundColor(ContextCompat.getColor(context, R.color.purple_light))
+                Color.Orange ->
+                        setBackgroundColor(ContextCompat.getColor(context, R.color.beige_light))
+                Color.HalfTransparent ->
+                        setBackgroundColor(
+                                ContextCompat.getColor(context, R.color.semi_transparent)
+                        )
             }
         }
     var icon: Drawable?
@@ -94,10 +93,7 @@ class Post @JvmOverloads constructor(
     var subredditName: String?
         get() = _subredditName
         set(value) {
-            _subredditName = if (value == "")
-                null
-            else
-                value
+            _subredditName = if (value == "") null else value
             binding.subredditName.text = _subredditName
         }
     var userName: String?
@@ -122,8 +118,7 @@ class Post @JvmOverloads constructor(
                 binding.image.visibility = View.VISIBLE
                 binding.video.visibility = View.GONE
                 binding.image.setImageDrawable(image)
-            } else
-                binding.image.visibility = View.GONE
+            } else binding.image.visibility = View.GONE
         }
     var videoUrl: String?
         get() = _videoUrl
@@ -144,15 +139,11 @@ class Post @JvmOverloads constructor(
     var content: String?
         get() = _content
         set(value) {
-            _content = if (value == "")
-                null
-            else
-                value
+            _content = if (value == "") null else value
             if (content != null) {
                 binding.content.visibility = View.VISIBLE
                 binding.content.text = content
-            } else
-                binding.content.visibility = View.GONE
+            } else binding.content.visibility = View.GONE
         }
     var votes: Int
         get() = _votes
@@ -177,10 +168,8 @@ class Post @JvmOverloads constructor(
         binding.video.setOnPreparedListener {
             it.isLooping = true
             binding.video.start()
-            binding.video.layoutParams = LayoutParams(
-                LayoutParams.MATCH_PARENT,
-                LayoutParams.WRAP_CONTENT
-            )
+            binding.video.layoutParams =
+                    LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
             binding.video.invalidate()
         }
 
@@ -198,15 +187,13 @@ class Post @JvmOverloads constructor(
         }
 
         attrs?.let {
-
-            val styledAttributes =
-                context.obtainStyledAttributes(it, R.styleable.Post, 0, 0)
+            val styledAttributes = context.obtainStyledAttributes(it, R.styleable.Post, 0, 0)
 
             // Post format
             format = Format.values()[styledAttributes.getInt(R.styleable.Post_post_format, 0)]
             // Background Color
             backgroundColor =
-                Color.values()[styledAttributes.getInt(R.styleable.Post_post_color, 0)]
+                    Color.values()[styledAttributes.getInt(R.styleable.Post_post_color, 0)]
             // Subreddit icon
             icon = styledAttributes.getDrawable(R.styleable.Post_subreddit_icon)
             // Subreddit name
@@ -226,26 +213,50 @@ class Post @JvmOverloads constructor(
             styledAttributes.recycle()
         }
 
-        binding.upvoteButton.setOnClickListener(
-            createButtonClickListener {
-                println(
-                    "Up Vote clicked"
-                )
-            }
-        )
-        binding.downVoteButton.setOnClickListener(
-            createButtonClickListener {
-                println(
-                    "Down Vote clicked"
-                )
-            }
-        )
+        binding.upvoteButton.setOnClickListener {
+            Thread {
+                        val res = postController.vote(name, 1)
+                        val mainHandler = Handler(context.mainLooper)
+
+                        if (res.isSuccessful) {
+                            mainHandler.post {
+                                votes++
+                                binding.votes.text = votes.toString()
+                                binding.upvoteButton.foregroundTintList =
+                                        ColorStateList.valueOf(
+                                                ContextCompat.getColor(context, R.color.purple)
+                                        )
+                            }
+                        } else {
+                            println("Error: ${res.code()}")
+                        }
+                    }
+                    .start()
+        }
+
+        binding.downVoteButton.setOnClickListener {
+            Thread {
+                        val res = postController.vote(name, -1)
+                        val mainHandler = Handler(context.mainLooper)
+
+                        if (res.isSuccessful) {
+                            mainHandler.post {
+                                votes--
+                                binding.votes.text = votes.toString()
+                                binding.upvoteButton.foregroundTintList =
+                                        ColorStateList.valueOf(
+                                                ContextCompat.getColor(context, R.color.purple)
+                                        )
+                            }
+                        } else {
+                            println("Error: ${res.code()}")
+                        }
+                    }
+                    .start()
+        }
+
         binding.commentButton.setOnClickListener(
-            createButtonClickListener {
-                println(
-                    "Comment clicked"
-                )
-            }
+                createButtonClickListener { println("Comment clicked") }
         )
     }
 
@@ -258,13 +269,13 @@ class Post @JvmOverloads constructor(
         userName = "u/" + data.author
         backgroundColor = backgroundColor
         format = Format.Small
+        name = data.name
 
         var imageUrl: String? = null
         if (data.contentUrl != null) {
             if (data.is_gallery == true) {
                 val id = data.gallery_data?.items?.get(0)?.media_id
-                val imageType =
-                    id?.let { data.media_metadata?.getJSONObject(it)?.getString("m") }
+                val imageType = id?.let { data.media_metadata?.getJSONObject(it)?.getString("m") }
                 imageUrl = "https://i.redd.it/$id" + "." + imageType!!.substring(6)
             } else if (data.is_video == true) {
                 videoUrl = data.media?.getJSONObject("reddit_video")?.getString("fallback_url")
@@ -272,27 +283,30 @@ class Post @JvmOverloads constructor(
                 imageUrl = data.contentUrl
             }
             if (imageUrl != null)
-                Glide.with(this)
-                    .asDrawable()
-                    .load(imageUrl)
-                    .into(object : CustomTarget<Drawable?>() {
-                        override fun onResourceReady(
-                            resource: Drawable,
-                            transition: com.bumptech.glide.request.transition.Transition<in Drawable?>?
-                        ) {
-                            image = resource
-                        }
+                    Glide.with(this)
+                            .asDrawable()
+                            .load(imageUrl)
+                            .into(
+                                    object : CustomTarget<Drawable?>() {
+                                        override fun onResourceReady(
+                                                resource: Drawable,
+                                                transition:
+                                                        com.bumptech.glide.request.transition.Transition<
+                                                                in Drawable?>?
+                                        ) {
+                                            image = resource
+                                        }
 
-                        override fun onLoadCleared(@Nullable placeholder: Drawable?) {}
-                    })
+                                        override fun onLoadCleared(
+                                                @Nullable placeholder: Drawable?
+                                        ) {}
+                                    }
+                            )
         }
     }
 
     fun toggleExpand() {
-        format = if (format == Format.Expanded)
-            Format.Small
-        else
-            Format.Expanded
+        format = if (format == Format.Expanded) Format.Small else Format.Expanded
     }
 
     private fun createButtonClickListener(onEndCallback: () -> Unit): View.OnClickListener {
@@ -301,17 +315,17 @@ class Post @JvmOverloads constructor(
 
             anim.interpolator = AccelerateInterpolator(0.7f)
             it.startAnimation(anim)
-            anim.setAnimationListener(object : Animation.AnimationListener {
-                override fun onAnimationStart(p0: Animation?) {
-                }
+            anim.setAnimationListener(
+                    object : Animation.AnimationListener {
+                        override fun onAnimationStart(p0: Animation?) {}
 
-                override fun onAnimationEnd(p0: Animation?) {
-                    onEndCallback()
-                }
+                        override fun onAnimationEnd(p0: Animation?) {
+                            onEndCallback()
+                        }
 
-                override fun onAnimationRepeat(p0: Animation?) {
-                }
-            })
+                        override fun onAnimationRepeat(p0: Animation?) {}
+                    }
+            )
         }
     }
 }
