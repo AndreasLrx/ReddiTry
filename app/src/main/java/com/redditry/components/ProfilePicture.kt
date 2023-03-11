@@ -14,7 +14,7 @@ class ProfilePicture @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : RelativeLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentPhotoBinding
+    var binding: ComponentPhotoBinding
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_photo, this, true)
@@ -29,10 +29,6 @@ class ProfilePicture @JvmOverloads constructor(
                 binding.editButtonRoundBanner.visibility = VISIBLE
             }
             styledAttributes.recycle()
-        }
-
-        binding.editButtonBanner.setOnClickListener {
-            println("editButtonRound clicked")
         }
 
         binding.editButtonPp.setOnClickListener {

@@ -22,6 +22,8 @@ data class Subreddit(
     val description: String?,
     @Json(name = "display_name_prefixed")
     val displayName: String?,
+    @Json(name = "display_name")
+    val displayNameId: String?,
     @Json(name = "icon_img")
     val icon_img: String?,
     @Json(name = "user_is_subscriber")

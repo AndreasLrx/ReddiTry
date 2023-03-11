@@ -53,8 +53,7 @@ class ProfileDescription @JvmOverloads constructor(
         binding.profileCountry.text = country
     }
 
-    
-    fun getCountry():String {
+    fun getCountry(): String {
         return binding.profileCountry.text.toString()
     }
 

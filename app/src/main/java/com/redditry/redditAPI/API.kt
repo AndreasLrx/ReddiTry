@@ -3,6 +3,7 @@ package com.redditry.redditAPI
 import JSONObjectAdapter
 import android.content.SharedPreferences
 import com.redditry.BuildConfig
+import com.redditry.utils.ToStringConverterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
@@ -18,6 +19,11 @@ object API {
         Moshi.Builder().addLast(KotlinJsonAdapterFactory()).add(JSONObjectAdapter()).build()
     private val retrofitLogin = Retrofit.Builder()
         .baseUrl("https://www.reddit.com/api/v1/")
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .build()
+    private val retrofitS3 = Retrofit.Builder()
+        .baseUrl("https://www.reddit.com")
+        .addConverterFactory(ToStringConverterFactory())
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
     private lateinit var retrofit: Retrofit
@@ -66,5 +72,9 @@ object API {
 
     fun createInstanceLogin(): RedditInterface {
         return retrofitLogin.create(RedditInterface::class.java)
+    }
+
+    fun createS3Instance(): RedditInterface {
+        return retrofitS3.create(RedditInterface::class.java)
     }
 }
