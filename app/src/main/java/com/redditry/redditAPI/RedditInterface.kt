@@ -122,7 +122,7 @@ interface RedditInterface {
         @Field("dir") dir: Int,
         @Field("id") id: String
     ): Call<Void>
-    
+
     @GET("r/{subredditName}/about/edit")
     fun getEditSubreddit(
         @Path(
