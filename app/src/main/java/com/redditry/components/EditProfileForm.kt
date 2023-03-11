@@ -14,6 +14,7 @@ class EditProfileForm @JvmOverloads constructor(
 ) : RelativeLayout(context, attrs, defStyleAttr) {
     var binding: ComponentFormEditProfileBinding
 
+    // inflate the component form edit profile layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_form_edit_profile, this, true)
         binding = ComponentFormEditProfileBinding.bind(this)

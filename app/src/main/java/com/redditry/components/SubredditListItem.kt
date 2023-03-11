@@ -33,10 +33,14 @@ class SubredditListItem constructor(
             binding.text.text = title
         }
 
+    // inflate the component subreddit list item layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_subreddit_list_item, this, true)
         binding = ComponentSubredditListItemBinding.bind(this)
     }
+
+    // set the data of the subreddit list item
+    // if the subreddit has an icon, load it
 
     fun setData(data: Subreddit) {
         title = data.displayName

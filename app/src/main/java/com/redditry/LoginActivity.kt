@@ -14,6 +14,7 @@ class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
+    // on create inflate the layout and set the register button to open the register page
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -23,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        // If the user is not logged in, try to login
         val sharedPreferences = getSharedPreferences("redditry", MODE_PRIVATE)
         API.loadFromPreferences(sharedPreferences)
         val uri = intent.data
@@ -33,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
             val redditLogin = API.createInstanceLogin()
 
+            // Login to reddit and save the token in the shared preferences
             Thread {
                 val resp =
                     redditLogin
@@ -56,10 +59,12 @@ class LoginActivity : AppCompatActivity() {
             }
                 .start()
         }
+        // If the user is already logged in, open the main activity
         if (API.accessToken != "" && API.accessToken != null) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
         binding.loginButton.setOnClickListener {
             val scope = BuildConfig.REDDIT_SCOPE
             val urlString =

@@ -31,6 +31,8 @@ class MainDrawer @JvmOverloads constructor(
         listView = binding.subredditList
         // Placeholders here
         listView.adapter = adapter
+
+        // Set the drawer to close when a subreddit is clicked and open the subreddit activity selected
         listView.onItemClickListener =
             AdapterView.OnItemClickListener { _, view, i, _ ->
                 drawer.close()
@@ -38,7 +40,7 @@ class MainDrawer @JvmOverloads constructor(
                 intent.putExtra("subreddit_name", adapter.data[i].displayName)
                 view.context.startActivity(intent)
             }
-
+        // Set the drawer to close when the sort by spinner is clicked
         binding.sortBySpinner.onItemSelectedListener =
             object : OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

@@ -33,6 +33,7 @@ object API {
     init {
     }
 
+    // set the access token and add the authorization header to the retrofit client
     @JvmName("set_access_token")
     fun setAccessToken(accessToken: String?) {
         this.accessToken = accessToken
@@ -52,7 +53,7 @@ object API {
                     .build()
                 return@addInterceptor it.proceed(request)
             }
-
+            // create the retrofit client
             retrofit = Retrofit.Builder()
                 .baseUrl("https://oauth.reddit.com/")
                 .addConverterFactory(MoshiConverterFactory.create(moshi))

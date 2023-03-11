@@ -15,7 +15,9 @@ open class ActivityHead : AppCompatActivity() {
             _navBar.setOnItemSelectedListener(onNavBarItemSelected)
         }
 
+    // This is used to prevent the navigation bar from changing the selected item when the activity is resumed
     protected var navigationId: Int? = null
+
     private val onNavBarItemSelected =
         object : NavigationBarView.OnItemSelectedListener {
             override fun onNavigationItemSelected(item: MenuItem): Boolean {

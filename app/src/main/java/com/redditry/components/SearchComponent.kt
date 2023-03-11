@@ -15,6 +15,7 @@ class SearchComponent @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     var binding: ComponentListSearchBinding
 
+    // inflate the component list search layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_list_search, this, true)
         binding = ComponentListSearchBinding.bind(this)
