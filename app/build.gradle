@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.redditry"
         minSdk 29
-        targetSdk 23
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
