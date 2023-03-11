@@ -11,12 +11,12 @@ data class SubredditEditRequest(
 data class SubredditEditData(
     val title: String,
     val public_description: String,
-    //val accept_followers: Boolean,
+    // val accept_followers: Boolean,
     val over_18: Boolean,
-    //val title: String,
+    // val title: String,
     val link_type: String = "any",
     val type: String,
-    //val language: String,
+    // val language: String,
     val sr: String,
     val subreddit_id: String
 )

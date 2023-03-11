@@ -8,8 +8,7 @@ import android.view.View
 import com.redditry.controller.Post
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
-import java.util.*
-
+import java.util.Locale
 
 class ProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileBinding
@@ -36,27 +35,30 @@ class ProfileActivity : ActivityHead() {
                 binding.header.visibility = View.GONE
         }
         var subredditId = ""
+        var profilId = ""
 
         binding.header.binding.editButton.setOnClickListener {
             openActivity(
                 EditProfileActivity::class.java,
-                Intent.FLAG_ACTIVITY_NO_HISTORY,
+                0, // Intent.FLAG_ACTIVITY_NO_HISTORY,
                 false,
                 fun(intent: Intent) {
                     intent.putExtra(
                         "username",
                         binding.description.getUsername()
-                    );intent.putExtra(
+                    ); intent.putExtra(
                         "description",
                         binding.description.getDescription()
-                    );intent.putExtra(
+                    ); intent.putExtra(
                         "underage",
                         binding.description.getUnderage()
-                    );intent.putExtra(
+                    ); intent.putExtra(
                         "country",
                         binding.description.getCountry()
-                    );intent.putExtra("id", subredditId)
-                })
+                    ); intent.putExtra("id", subredditId)
+                    intent.putExtra("profilId", profilId)
+                }
+            )
         }
 
         binding.posts.binding.postList.listView.setOnTouchListener(
@@ -79,10 +81,11 @@ class ProfileActivity : ActivityHead() {
                 user.getUser(username!!)
 
             username = profile?.name
-            
+
             val pref = user.getPref()
 
             subredditId = profile?.subreddit?.name.toString()
+            profilId = profile?.subreddit?.displayNameId.toString()
 
             runOnUiThread {
                 binding.description.setUsername(

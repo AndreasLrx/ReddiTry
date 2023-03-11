@@ -1,16 +1,21 @@
 package com.redditry.redditAPI
 
+import okhttp3.MultipartBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.Field
-import retrofit2.http.FieldMap
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Multipart
 import retrofit2.http.PATCH
 import retrofit2.http.POST
+import retrofit2.http.Part
+import retrofit2.http.PartMap
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface RedditInterface {
     @POST("access_token")
@@ -143,4 +148,44 @@ interface RedditInterface {
 
     @PATCH("api/v1/me/prefs")
     fun setCountry(@Body pref: Pref): Call<Pref>
+
+    @POST("api/v1/style_asset_upload_s3/{profilname}?raw_json=1&gilding_detail=1")
+    @FormUrlEncoded
+    fun getS3Bucket(
+        @Path(
+            value = "profilname",
+            encoded = true
+        ) profilname: String,
+        @Field(value = "filepath") filepath: String,
+        @Field(value = "imagetype") imagetype: String,
+        @Field(value = "mimetype") mimetype: String,
+    ): Call<S3Response>
+
+    @PATCH("api/v1/structured_styles/{profilname}?raw_json=1&gilding_detail=1")
+    @FormUrlEncoded
+    fun changeProfileBanner(
+        @Path(
+            value = "profilname",
+            encoded = true
+        ) profilname: String,
+        @Field(value = "profileBanner", encoded = true) profileBanner: String
+    ): Call<ResponseBody>
+
+    @PATCH("api/v1/structured_styles/{profilname}?raw_json=1&gilding_detail=1")
+    @FormUrlEncoded
+    fun changeProfileIcon(
+        @Path(
+            value = "profilname",
+            encoded = true
+        ) profilname: String,
+        @Field(value = "profileIcon", encoded = true) profileIcon: String
+    ): Call<ResponseBody>
+
+    @POST
+    @Multipart
+    fun uploadToS3(
+        @Url url: String,
+        @PartMap parameters: Map<String, String>,
+        @Part file: MultipartBody.Part
+    ): Call<ResponseBody>
 }
