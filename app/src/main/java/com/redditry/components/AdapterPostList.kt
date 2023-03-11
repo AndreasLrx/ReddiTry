@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 
 class AdapterPostList(private val context: Context, posts: ArrayList<com.redditry.redditAPI.Post>) :
-        BaseAdapter() {
+    BaseAdapter() {
     enum class Color {
         Alternate,
         HalfTransparent
@@ -47,13 +47,13 @@ class AdapterPostList(private val context: Context, posts: ArrayList<com.redditr
 
     fun loadPosts(start: Int = 0) {
         if (postViews.size < start)
-                throw java.lang.IndexOutOfBoundsException(
-                        "Try to load posts from " +
-                                start.toString() +
-                                " where list have only " +
-                                postViews.size +
-                                " elements."
-                )
+            throw java.lang.IndexOutOfBoundsException(
+                "Try to load posts from " +
+                    start.toString() +
+                    " where list have only " +
+                    postViews.size +
+                    " elements."
+            )
 
         postViews.ensureCapacity(postData.size)
         for (i in start until postData.size) {
