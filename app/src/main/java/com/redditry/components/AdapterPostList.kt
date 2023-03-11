@@ -45,6 +45,9 @@ class AdapterPostList(private val context: Context, posts: ArrayList<com.redditr
         postData = ArrayList()
     }
 
+    // load the posts, starting from the given index, to the end of the list
+    // add new posts to the list if needed
+    // set the post background color
     fun loadPosts(start: Int = 0) {
         if (postViews.size < start)
             throw java.lang.IndexOutOfBoundsException(
@@ -67,11 +70,13 @@ class AdapterPostList(private val context: Context, posts: ArrayList<com.redditr
         mainHandler.post { notifyDataSetChanged() }
     }
 
+    // add new posts to the list
     fun addPosts(posts: ArrayList<com.redditry.redditAPI.Post>) {
         postData.addAll(posts)
         loadPosts(postData.size - posts.size)
     }
 
+    // the color is determined by it's position in the list
     private fun postColorAt(position: Int): Post.Color {
         return if (color == Color.Alternate) {
             if (position % 2 == 0) Post.Color.Purple else Post.Color.Orange
