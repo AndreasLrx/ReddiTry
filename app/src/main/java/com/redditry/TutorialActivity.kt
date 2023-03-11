@@ -29,7 +29,6 @@ class TutorialActivity : ActivityHead() {
         imageList = imageList + R.drawable.tutorial9
         imageList = imageList + R.drawable.tutorial10
 
-
         viewPagerAdapter = ViewPagerAdapter(this@TutorialActivity, imageList)
 
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
