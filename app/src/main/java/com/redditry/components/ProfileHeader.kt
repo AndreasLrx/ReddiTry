@@ -16,6 +16,7 @@ class ProfileHeader @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
     var binding: ComponentHeaderprofileBinding
 
+    // inflate the component header profile layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_headerprofile, this, true)
         binding = ComponentHeaderprofileBinding.bind(this)
@@ -36,7 +37,7 @@ class ProfileHeader @JvmOverloads constructor(
                 val intent = Intent(context, LoginActivity::class.java)
                 context.startActivity(intent)
             }
-
+            // change the text in the button if we are in the edit view
             if (styledAttributes.getBoolean(R.styleable.ProfileHeader_read_only, false))
                 visibility = GONE
             else {

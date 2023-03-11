@@ -11,12 +11,14 @@ class TutorialActivity : ActivityHead() {
     private lateinit var viewPagerAdapter: ViewPagerAdapter
     private lateinit var imageList: List<Int>
 
+    // on create set the view pager adapter and set the listener to change the activity when the last page is reached
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_tutorial)
 
         viewPager = findViewById(R.id.idViewPager)
 
+        // Add all the images to the list
         imageList = ArrayList<Int>()
         imageList = imageList + R.drawable.tutorial1
         imageList = imageList + R.drawable.tutorial2
@@ -42,6 +44,7 @@ class TutorialActivity : ActivityHead() {
             ) {
             }
 
+            // When the last page is reached, change the activity to the main activity
             override fun onPageSelected(position: Int) {
                 if (position == 9) {
                     val intent = Intent(this@TutorialActivity, MainActivity::class.java)

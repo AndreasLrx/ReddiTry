@@ -28,6 +28,8 @@ class EditProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileEditBinding
     private val user = User()
     private var type: String = ""
+
+    // On create inflate the layout and set the edit button to finish the activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityProfileEditBinding.inflate(layoutInflater)

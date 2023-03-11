@@ -34,6 +34,7 @@ class PostList @JvmOverloads constructor(
     private var sortBy: com.redditry.controller.Post.SortBy =
         com.redditry.controller.Post.SortBy.values()[0]
 
+    // inflate the component post list layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post_list, this, true)
         binding = ComponentPostListBinding.bind(this)
@@ -42,6 +43,7 @@ class PostList @JvmOverloads constructor(
         listView.adapter = adapter
     }
 
+    // set the visibility of the progress bar
     fun toggleProgressBar() {
         if (progressBar != null) {
             listView.removeFooterView(progressBar)
@@ -57,6 +59,9 @@ class PostList @JvmOverloads constructor(
             toggleProgressBar()
     }
 
+    // set up lazy loading mechanism
+    // detect when the user scrolls to the bottom of the list
+    // and load more posts
     fun setLazyLoading(loadingFct: OnLoad) {
         setProgressBar(true)
 
@@ -67,6 +72,7 @@ class PostList @JvmOverloads constructor(
                 visibleItemCount: Int,
                 totalItemCount: Int
             ) {
+                // If already loading, do nothing
                 loadingThread =
                     Thread {
                         try {
@@ -89,6 +95,7 @@ class PostList @JvmOverloads constructor(
         }
         listView.setOnScrollListener(lazyLoader)
 
+        // allow the user to change the sorting order
         binding.sortBySpinner.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {

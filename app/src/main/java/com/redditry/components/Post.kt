@@ -175,10 +175,14 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             }
         }
 
+    // inflate the post component layout and bind it to the binding variable
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post, this, true)
         binding = ComponentPostBinding.bind(this)
 
+        // initialize the media controller for the video
+        // start and loop the video when it's prepared
+        // set the video layout params
         val mediaController = MediaController(context)
         mediaController.setAnchorView(binding.video)
         binding.video.setMediaController(mediaController)
@@ -191,11 +195,15 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         }
 
         binding.contentLayout.setOnClickListener { toggleExpand() }
+        // set the click listeners for the subreddit and user name
+        // open the subreddit activity selected by the user
         binding.subredditName.setOnClickListener {
             val intent = Intent(context, SubredditActivity::class.java)
             intent.putExtra("subreddit_name", binding.subredditName.text)
             context.startActivity(intent)
         }
+
+        // open the user activity selected by the user
         binding.userName.setOnClickListener {
             val intent = Intent(context, ProfileActivity::class.java)
             // User name is without 'u/'
@@ -229,12 +237,15 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             comments = styledAttributes.getInt(R.styleable.Post_comments_count, 0)
             styledAttributes.recycle()
         }
-
+        // set the click listeners for the upvote and downvote buttons
         binding.upvoteButton.setOnClickListener {
             Thread {
                 val res = postController.vote(name, 1)
                 val mainHandler = Handler(context.mainLooper)
-
+                // update the UI in the main thread
+                // if the vote was successful, update the votes count
+                // if not, print the error code
+                // change the upvote button color to purple
                 if (res.isSuccessful) {
                     mainHandler.post {
                         votes++
@@ -250,7 +261,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             }
                 .start()
         }
-
         binding.downVoteButton.setOnClickListener {
             Thread {
                 val res = postController.vote(name, -1)
@@ -260,7 +270,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                     mainHandler.post {
                         votes--
                         binding.votes.text = votes.toString()
-                        binding.upvoteButton.foregroundTintList =
+                        binding.downVoteButton.foregroundTintList =
                             ColorStateList.valueOf(
                                 ContextCompat.getColor(context, R.color.purple)
                             )
@@ -271,10 +281,6 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             }
                 .start()
         }
-
-        binding.commentButton.setOnClickListener(
-            createButtonClickListener { println("Comment clicked") }
-        )
     }
 
     fun setData(data: com.redditry.redditAPI.Post) {
@@ -290,6 +296,9 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         voteButton = data.likes
 
         var imageUrl: String? = null
+        // check if the post is a gallery or a video
+        // if it is, get the image/video url
+        // if not, get the image url
         if (data.contentUrl != null) {
             if (data.is_gallery == true) {
                 val id = data.gallery_data?.items?.get(0)?.media_id
@@ -317,17 +326,20 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 
                             override fun onLoadCleared(
                                 @Nullable placeholder: Drawable?
-                            ) {}
+                            ) {
+                            }
                         }
                     )
         }
     }
 
+    // set the post format
     fun toggleExpand() {
         format = if (format == Format.Expanded) Format.Small else Format.Expanded
     }
 
     private fun createButtonClickListener(onEndCallback: () -> Unit): View.OnClickListener {
+        // loading animation
         return View.OnClickListener {
             val anim = AnimationUtils.loadAnimation(this.context, R.anim.button_click)
 

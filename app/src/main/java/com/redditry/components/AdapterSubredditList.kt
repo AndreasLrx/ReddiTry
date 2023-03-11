@@ -25,6 +25,8 @@ class AdapterSubredditList(
         data = subreddits
     }
 
+    // load the post and display them
+    // each item data are set and added to the list
     private fun loadViews() {
         for (i in 0 until data.size) {
             val view = SubredditListItem(context, null)

@@ -13,6 +13,7 @@ class SearchActivity : ActivityHead() {
     lateinit var adapter: AdapterSubredditList
     private var subreddit: Subreddit = Subreddit()
 
+    // on create inflate the layout and set the return button to finish the activity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
@@ -24,6 +25,7 @@ class SearchActivity : ActivityHead() {
         navigationId = R.id.search_icon
         navBar = binding.navBar
 
+        // Search
         adapter = AdapterSubredditList(this)
         binding.searchResults.adapter = adapter
         binding.searchButton.setOnClickListener {
@@ -46,6 +48,7 @@ class SearchActivity : ActivityHead() {
                 showHint()
         }
 
+        // On click on a subreddit open the subreddit activity
         binding.searchResults.onItemClickListener =
             AdapterView.OnItemClickListener { _, view, i, _ ->
                 val intent = Intent(view.context, SubredditActivity::class.java)
@@ -54,6 +57,7 @@ class SearchActivity : ActivityHead() {
             }
     }
 
+    // Show the hint if there is no result
     fun showHint(hintVisible: Boolean = true) {
         if (hintVisible) {
             binding.searchHint.visibility = View.VISIBLE

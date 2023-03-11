@@ -16,6 +16,7 @@ class ProfileActivity : ActivityHead() {
     private val user = User()
     private var username: String? = null
 
+    // On create inflate the layout and set the edit button to open the edit profile activity
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,7 @@ class ProfileActivity : ActivityHead() {
         var subredditId = ""
         var profilId = ""
 
+        // on click on the edit button open the edit profile activity
         binding.header.binding.editButton.setOnClickListener {
             openActivity(
                 EditProfileActivity::class.java,
@@ -61,7 +63,7 @@ class ProfileActivity : ActivityHead() {
                 }
             )
         }
-
+        // on touch on the post list disable the scroll view to scroll
         binding.posts.binding.postList.listView.setOnTouchListener(
             View.OnTouchListener { _, event ->
                 binding.scrollView.requestDisallowInterceptTouchEvent(true)
@@ -73,8 +75,10 @@ class ProfileActivity : ActivityHead() {
                 false
             }
         )
+
         binding.posts.binding.postList.binding.sortBySpinner.visibility = View.GONE
 
+        // get the user profile and set the view
         Thread {
             val profile = if (username == null)
                 user.getMyProfil()
@@ -91,6 +95,7 @@ class ProfileActivity : ActivityHead() {
             subredditId = profile?.subreddit?.name.toString()
             profilId = profile?.subreddit?.displayNameId.toString()
 
+            // set the view
             runOnUiThread {
                 binding.description.setUsername(
                     (if (profile?.subreddit?.title != "") profile?.subreddit?.title else profile.name)
@@ -118,6 +123,7 @@ class ProfileActivity : ActivityHead() {
                 }
             }
 
+            // set the lazy loading for the post list
             binding.posts.binding.postList.setLazyLoading(
                 fun(
                     _: Post.SortBy,

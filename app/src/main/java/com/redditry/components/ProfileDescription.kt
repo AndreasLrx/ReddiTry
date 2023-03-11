@@ -15,6 +15,7 @@ class ProfileDescription @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     var binding: ComponentDescriptionProfileBinding
 
+    // inflate the component description profile layout
     init {
         LayoutInflater.from(context)
             .inflate(com.redditry.R.layout.component_description_profile, this, true)

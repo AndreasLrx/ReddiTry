@@ -14,6 +14,7 @@ class SubredditDescription @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
     var binding: ComponentDescriptionSubredditBinding
 
+    // inflate the component description subreddit layout
     init {
         LayoutInflater.from(context).inflate(R.layout.component_description_subreddit, this, true)
         binding = ComponentDescriptionSubredditBinding.bind(this)

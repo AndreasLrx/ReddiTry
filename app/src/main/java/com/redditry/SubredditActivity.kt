@@ -39,6 +39,7 @@ class SubredditActivity : ActivityHead() {
                 String.format(resources.getString(R.string.members), members)
         }
 
+    // on create inflate the layout
     @SuppressLint("ClickableViewAccessibility", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class SubredditActivity : ActivityHead() {
         navigationId = R.id.menu_icon
         navBar = binding.navBar
 
+        // on touch on the post list disable the scroll view to scroll
         binding.posts.binding.postList.listView.setOnTouchListener(
             View.OnTouchListener { _, event ->
                 binding.scrollView.requestDisallowInterceptTouchEvent(true)
@@ -61,11 +63,13 @@ class SubredditActivity : ActivityHead() {
         )
 
         val extras = intent.extras
+        // get the subreddit name from the intent
         if (extras != null) {
             name = extras.getString("subreddit_name", "r/Android")
 
             binding.description.binding.subscribeButton.setOnClickListener {
 
+                // subscribe or unsubscribe to the subreddit
                 Thread {
 
                     val srFullname = "t5_$id"
@@ -96,12 +100,14 @@ class SubredditActivity : ActivityHead() {
                 }.start()
             }
 
+            // get the subreddit info
             Thread {
                 val res = subreddit.getSubreddit(name) ?: return@Thread
 
                 id = res.id ?: ""
                 isSubscriber = res.isSubscriber == true
 
+                // set the info
                 runOnUiThread {
                     title = res.title
                     members = res.subscribers
@@ -113,6 +119,7 @@ class SubredditActivity : ActivityHead() {
                 }
             }.start()
 
+            // set the lasy loading function for the post list
             binding.posts.binding.postList.setLazyLoading(
                 fun(
                     sortBy: Post.SortBy,

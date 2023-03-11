@@ -14,6 +14,7 @@ class MainActivity : ActivityHead() {
     private val user = User()
     private val posts = Post()
 
+    // On create inflate the layout and set the drawer component
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
