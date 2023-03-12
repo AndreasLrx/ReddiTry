@@ -81,12 +81,12 @@ class ProfileActivity : ActivityHead() {
             else
                 user.getUser(username!!)
 
-            username = profile?.name
-
             var pref: Pref? = null
             if (username == null) {
                 pref = user.getPref()
             }
+
+            username = profile?.name
 
             subredditId = profile?.subreddit?.name.toString()
             profilId = profile?.subreddit?.displayNameId.toString()
@@ -99,11 +99,16 @@ class ProfileActivity : ActivityHead() {
                 binding.description.setDescription(profile?.subreddit?.description.toString())
                 binding.description.setFollowersNumber(profile?.subreddit?.subscribers.toString())
                 binding.description.setUnderage(profile?.over_18 == true)
-                val loc = Locale(
-                    "",
-                    if (pref?.country_code != null) pref.country_code else "Country"
-                )
-                binding.description.setCountry(loc.displayCountry)
+                if (pref != null) {
+                    val loc = Locale(
+                        "",
+                        pref.country_code
+                    )
+
+                    binding.description.setCountry(loc.displayCountry)
+                } else {
+                    binding.description.binding.profileCountry.visibility = View.GONE
+                }
                 profile?.icon_img?.let { binding.bannerAndPp.setImage(it) }
                 profile?.subreddit?.banner_img?.let { binding.bannerAndPp.setBanner(it) }
                 if (profile != null) {
