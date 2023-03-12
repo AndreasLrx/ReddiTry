@@ -42,5 +42,6 @@ data class Post(
     val gallery_data: Gallery?,
     val media_metadata: JSONObject?,
     val media: JSONObject?,
-    val name: String
+    val name: String,
+    val likes: Boolean?
 )

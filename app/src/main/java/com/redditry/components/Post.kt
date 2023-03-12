@@ -54,6 +54,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
     private var _votes: Int = 0
     private var _comments: Int = 0
     private var _name = ""
+    private var _voteButton: Boolean? = null
 
     var name: String
         get() = _name
@@ -157,6 +158,22 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
             _comments = value
             binding.comments.text = comments.toString()
         }
+    var voteButton: Boolean?
+        get() = _voteButton
+        set(value) {
+            _voteButton = value
+            if (_voteButton == false) {
+                binding.downVoteButton.foregroundTintList =
+                    ColorStateList.valueOf(
+                        ContextCompat.getColor(context, R.color.purple)
+                    )
+            } else if (_voteButton == true) {
+                binding.upvoteButton.foregroundTintList =
+                    ColorStateList.valueOf(
+                        ContextCompat.getColor(context, R.color.orange)
+                    )
+            }
+        }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.component_post, this, true)
@@ -224,7 +241,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                         binding.votes.text = votes.toString()
                         binding.upvoteButton.foregroundTintList =
                             ColorStateList.valueOf(
-                                ContextCompat.getColor(context, R.color.purple)
+                                ContextCompat.getColor(context, R.color.orange)
                             )
                     }
                 } else {
@@ -243,7 +260,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
                     mainHandler.post {
                         votes--
                         binding.votes.text = votes.toString()
-                        binding.upvoteButton.foregroundTintList =
+                        binding.downVoteButton.foregroundTintList =
                             ColorStateList.valueOf(
                                 ContextCompat.getColor(context, R.color.purple)
                             )
@@ -270,6 +287,7 @@ constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
         backgroundColor = backgroundColor
         format = Format.Small
         name = data.name
+        voteButton = data.likes
 
         var imageUrl: String? = null
         if (data.contentUrl != null) {
