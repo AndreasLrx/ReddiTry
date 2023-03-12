@@ -27,7 +27,6 @@ import kotlin.collections.HashMap
 class EditProfileActivity : ActivityHead() {
     private lateinit var binding: ActivityProfileEditBinding
     private val user = User()
-    var SELECT_PICTURE = 200
     private var type: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

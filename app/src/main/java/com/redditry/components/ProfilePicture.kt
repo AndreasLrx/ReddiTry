@@ -30,10 +30,6 @@ class ProfilePicture @JvmOverloads constructor(
             }
             styledAttributes.recycle()
         }
-
-        binding.editButtonPp.setOnClickListener {
-            println("editButtonRoundBanner clicked")
-        }
     }
 
     fun setImage(imageUrl: String) {
