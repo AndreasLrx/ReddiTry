@@ -8,6 +8,7 @@ import android.view.View
 import com.redditry.controller.Post
 import com.redditry.controller.User
 import com.redditry.databinding.ActivityProfileBinding
+import com.redditry.redditAPI.Pref
 import java.util.Locale
 
 class ProfileActivity : ActivityHead() {
@@ -82,7 +83,10 @@ class ProfileActivity : ActivityHead() {
 
             username = profile?.name
 
-            val pref = user.getPref()
+            var pref: Pref? = null
+            if (username == null) {
+                pref = user.getPref()
+            }
 
             subredditId = profile?.subreddit?.name.toString()
             profilId = profile?.subreddit?.displayNameId.toString()

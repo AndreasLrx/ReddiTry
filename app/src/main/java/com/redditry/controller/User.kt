@@ -83,6 +83,7 @@ class User {
         val response = s3.uploadToS3(url, parameters, file).execute().body()
         val string = response?.string()
 
+        // We want the url inside the Location markups
         val firstIndex = string?.indexOf("<Location>")?.plus(10)
         val secondIndex = string?.indexOf("</Location>")
 

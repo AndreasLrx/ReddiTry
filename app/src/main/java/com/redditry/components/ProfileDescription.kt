@@ -13,7 +13,7 @@ class ProfileDescription @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
-    private var binding: ComponentDescriptionProfileBinding
+    var binding: ComponentDescriptionProfileBinding
 
     init {
         LayoutInflater.from(context)
