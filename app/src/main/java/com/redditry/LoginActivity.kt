@@ -68,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener {
             val scope = BuildConfig.REDDIT_SCOPE
             val urlString =
-                "https://www.reddit.com/api/v1/authorize.compact?client_id=" +
+                "https://www.reddit.com/api/v1/authorize?client_id=" +
                     BuildConfig.REDDIT_CLIENT_ID +
                     "&response_type=code&state=%22random%22&redirect_uri=" +
                     API.redirectUri +
