@@ -125,7 +125,7 @@ class SubredditActivity : ActivityHead() {
                     sortBy: Post.SortBy,
                     after: String
                 ): Pair<ArrayList<com.redditry.redditAPI.Post>, String?> {
-                    return posts.getPostsFrom(title, sortBy, after, 10)
+                    return posts.getPostsFrom(name, sortBy, after, 10)
                 }
             )
         }
